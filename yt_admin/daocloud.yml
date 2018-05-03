@@ -1,0 +1,14 @@
+version: 2.0
+
+build:
+  lite_image:
+    compile:
+      dockerfile_path: docker/compile.dockerfile
+      build_dir: /
+      cache: true
+    extract:
+      - /admin/dist/build/index.html
+    package:
+      dockerfile_path: docker/package.dockerfile
+      build_dir: /
+      cache: true

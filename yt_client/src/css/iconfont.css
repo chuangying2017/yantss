@@ -1,0 +1,105 @@
+@font-face {
+  font-family: 'yt-department';
+  src:  url('fonts/yt-department.eot?1ufuep');
+  src:  url('fonts/yt-department.eot?1ufuep#iefix') format('embedded-opentype'),
+    url('fonts/yt-department.ttf?1ufuep') format('truetype'),
+    url('fonts/yt-department.woff?1ufuep') format('woff'),
+    url('fonts/yt-department.svg?1ufuep#yt-department') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="ic-"], [class*=" ic-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'yt-department' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ic-num-1:before {
+  content: "\e90e";
+}
+.ic-num-2:before {
+  content: "\e90f";
+}
+.ic-num-3:before {
+  content: "\e910";
+}
+.ic-num-4:before {
+  content: "\e911";
+}
+.ic-num-5:before {
+  content: "\e912";
+}
+.ic-num-6:before {
+  content: "\e913";
+}
+.ic-num-7:before {
+  content: "\e914";
+}
+.ic-num-8:before {
+  content: "\e915";
+}
+.ic-num-9:before {
+  content: "\e916";
+}
+.ic-num-0:before {
+  content: "\e917";
+}
+.ic-person:before {
+  content: "\e900";
+  color: #de2228;
+}
+.ic-edit:before {
+  content: "\e901";
+}
+.ic-more:before {
+  content: "\e902";
+}
+.ic-shut:before {
+  content: "\e903";
+}
+.ic-top_border:before {
+  content: "\e904";
+}
+.ic-charge:before {
+  content: "\e905";
+}
+.ic-arrow_right:before {
+  content: "\e906";
+}
+.ic-delivery:before {
+  content: "\e907";
+}
+.ic-add_order:before {
+  content: "\e908";
+}
+.ic-close:before {
+  content: "\e909";
+}
+.ic-search:before {
+  content: "\e90a";
+}
+.ic-filter:before {
+  content: "\e90b";
+}
+.ic-plus:before {
+  content: "\e90c";
+}
+.ic-minus:before {
+  content: "\e90d";
+}
+.ic-loading:before {
+  content: "\e983";
+}
+.ic-info:before {
+  content: "\ea0d";
+}

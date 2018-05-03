@@ -1,0 +1,7 @@
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const USERINFO_SUCCESS = 'USERINFO_SUCCESS'
+export const LOGOUT_USER = 'LOGOUT_USER'
+export const NEW_CART = 'NEW_CART'
+export const ADD_CART = 'ADD_CART'
+export const DEL_CART = 'DEL_CART'
+export const CLE_CART = 'CLE_CART'

@@ -1,0 +1,15 @@
+version: 2.0
+
+build:
+  lite_image:
+    compile:
+      dockerfile_path: docker/compile.dockerfile
+      build_dir: /
+      cache: true
+    extract:
+      - /station/docker/nginx.conf.d/default.conf
+      - /station/dist/build/index.html
+    package:
+      dockerfile_path: docker/package.dockerfile
+      build_dir: /
+      cache: true
