@@ -1,3 +1,0 @@
-<template>
-  stores-orders
-</template>

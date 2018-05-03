@@ -1,3 +1,0 @@
-<template>
-  stations-create
-</template>
