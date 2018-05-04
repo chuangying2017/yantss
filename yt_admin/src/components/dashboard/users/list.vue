@@ -22,6 +22,7 @@
             <tr>
               <th>头像</th>
               <th>微信昵称</th>
+              <th class="text-center">是否新用户</th>
               <th>性别</th>
               <!--<th>积分</th>-->
               <!--<th>余额</th>-->
@@ -34,6 +35,7 @@
                 <img :src="user.avatar" alt="" width="30">
               </td>
               <td>{{user.nickname}}</td>
+              <td class="text-center">是</td>
               <td>{{user.sex}}</td>
               <!--<td>125</td>-->
               <!--<td>0.00</td>-->

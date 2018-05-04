@@ -102,6 +102,7 @@
                         <input type="number" class="form-control" number>
                       </div>
                     </div>
+                    
                     <div class="form-group">
                       <label for="inputPassword3" class="col-sm-2 control-label">限时销售</label>
 

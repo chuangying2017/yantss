@@ -94,7 +94,9 @@
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a v-link="{path: '/dashboard/products/list'}"><i class="fa fa-navicon"></i> 商品列表</a></li>
+              <!--<li><a v-link="{path: '/dashboard/products/list'}"><i class="fa fa-navicon"></i> 商品列表</a></li>-->
+              <li><a v-link="{path: '/dashboard/products/selllist/list'}"><i class="fa fa-cubes"></i> 出售中的商品</a></li>
+              <li><a v-link="{path: '/dashboard/products/depotpro/list'}"><i class="fa fa-cubes"></i> 仓库中的商品</a></li>
               <li><a v-link="{path: '/dashboard/products/packages/list'}"><i class="fa fa-cubes"></i> 商品组合</a></li>
               <li><a v-link="{path: '/dashboard/products/cats/list'}"><i class="fa fa-sitemap"></i> 分类管理</a></li>
               <li><a v-link="{path: '/dashboard/products/groups/list'}"><i class="fa fa-exchange"></i> 分组管理</a></li>
@@ -135,7 +137,7 @@
               </li>
               <li><a v-link="{path: '/dashboard/stations/residences/list'}"><i class="fa fa-image"></i> 小区管理</a>
               </li>
-              <li><a v-link="{path: '/dashboard/stations/payagre/edit'}"><i class="fa fa-image">用户协议管理</i></a>
+              <li><a v-link="{path: '/dashboard/stations/payagre/list'}"><i class="fa fa-image">协议管理</i></a>
               </li>
               <!--<li><a v-link="{path: '/dashboard/stations/topups/list'}"><i class="fa fa-battery-quarter"></i> 用户充值</a>-->
               <!--<li><a href="../layout/fixed.html"><i class="fa fa-bar-chart"></i> 数据统计</a></li>-->
@@ -190,6 +192,7 @@
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
+            	<li><a v-link="{path: '/dashboard/users/customusers'}"><i class="fa fa-users"></i>自定义新用户</a></li>
               <li><a v-link="{path: '/dashboard/users/list'}"><i class="fa fa-users"></i> 用户管理</a></li>
               <li><a v-link="{path: '/dashboard/users/groups/list'}"><i class="fa fa-navicon"></i> 用户分组</a></li>
             </ul>

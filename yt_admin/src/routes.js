@@ -44,6 +44,34 @@ export default {
 							'/edit/:product_id': {
 								component: require('./components/dashboard/products/edit.vue')
 							},
+							'/selllist': {
+								component: require('./components/dashboard/products/selllist/index.vue'),
+								subRoutes: {
+									'/list': {
+										component: require('./components/dashboard/products/selllist/list.vue')
+									},
+									'/create': {
+										component: require('./components/dashboard/products/selllist/create.vue')
+									},
+									'/edit/:product_id': {
+										component: require('./components/dashboard/products/selllist/edit.vue')
+									}
+								}
+							},
+							'/depotpro': {
+								component: require('./components/dashboard/products/depotpro/index.vue'),
+								subRoutes: {
+									'/list': {
+										component: require('./components/dashboard/products/depotpro/list.vue')
+									},
+									'/create': {
+										component: require('./components/dashboard/products/depotpro/create.vue')
+									},
+									'/edit/:product_id': {
+										component: require('./components/dashboard/products/depotpro/edit.vue')
+									}
+								}
+							},
 							'/packages': {
 								component: require('./components/dashboard/products/Packages/index.vue'),
 								subRoutes: {
@@ -229,7 +257,10 @@ export default {
 							'/payagre': {
 								component: require('./components/dashboard/stations/payagre/index.vue'),
 								subRoutes: {
-									'/edit': {
+									'/list': {
+										component: require('./components/dashboard/stations/payagre/list.vue')
+									},
+									'/edit/:payager_id': {
 										component: require('./components/dashboard/stations/payagre/edit.vue')
 									}
 								}
@@ -382,6 +413,9 @@ export default {
 						role: 'User',
 						nav: 'user',
 						subRoutes: {
+							'/customusers': {
+								component: require('./components/dashboard/users/customusers.vue')
+							},
 							'/list': {
 								component: require('./components/dashboard/users/list.vue')
 							},
