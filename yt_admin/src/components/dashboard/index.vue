@@ -135,6 +135,8 @@
               </li>
               <li><a v-link="{path: '/dashboard/stations/residences/list'}"><i class="fa fa-image"></i> 小区管理</a>
               </li>
+              <li><a v-link="{path: '/dashboard/stations/payagre/edit'}"><i class="fa fa-image">用户协议管理</i></a>
+              </li>
               <!--<li><a v-link="{path: '/dashboard/stations/topups/list'}"><i class="fa fa-battery-quarter"></i> 用户充值</a>-->
               <!--<li><a href="../layout/fixed.html"><i class="fa fa-bar-chart"></i> 数据统计</a></li>-->
             </ul>
