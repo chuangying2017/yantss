@@ -23,7 +23,7 @@
         <img src="https://ocie5114k.qnssl.com/banner_fxhb.jpg" alt="">
       </a>
     </swipe-item> -->
-    <swipe-item v-for="banner in mallBanners">
+    <swipe-item v-for="(index,banner) in mallBanners">
       <a class="swipe-link" href="{{ banner.url }}">
         <img :src="banner.cover_image" alt="">
       </a>
@@ -126,7 +126,15 @@
       SwipeItem,
       Loader
     },
-
+//  methods:{
+//  	autoheight:function(event){
+//  		console.log(event)
+//  	}
+//  },
+		ready:function(){
+				console.log(this.$els.imgobj0)
+ 				
+		},
     route: {
       data: function () {
         return Promise.all([
