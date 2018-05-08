@@ -4,26 +4,31 @@
     <div class="col-xs-12">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#basic" data-toggle="tab" aria-controls="basic" role="tab"
-                                                    data-toggle="tab">用户协议编辑</a></li>
+        	<li role="presentation"  class="active">
+          	<a href="#zf" @click="type=1" data-toggle="tab" aria-controls="zf" role="tab" data-toggle="tab">支付编辑</a>
+          </li>
+          <li role="presentation">
+          	<a href="#basic" @click="type=2" data-toggle="tab" aria-controls="basic" role="tab" data-toggle="tab">用户编辑</a>
+          </li>
+          
         </ul>
         <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="basic">
+        	<!--支付协议-->
+      		<div role="tabpanel" class="tab-pane in active" id="zf">
             <form class="form-horizontal">
               <div class="row">
                 <div class="col-md-8">
                   <div class="box-body">
-                   
+                  	
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-2 control-label">商品详情</label>
-
+                      <label for="inputPassword3" class="col-sm-2 control-label">{{payagre.title}}</label>
                       <div class="col-sm-10">
-                        <editor :model.sync="product.detail"></editor>
+                        <editor :model.sync="payagre.protocol_content"></editor>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="inputPassword3" class="col-sm-2 control-label"></label>
-
+												
                       <div class="col-sm-10">
                         <button type="submit" class="btn btn-danger pull-left" @click.prevent="submit">保存</button>
                       </div>
@@ -33,6 +38,31 @@
               </div>
             </form>
           </div>
+        	<!--用户协议-->
+          <div role="tabpanel" class="tab-pane fade" id="basic">
+            <form class="form-horizontal">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-2 control-label">{{useragre.title}}</label>
+                      <div class="col-sm-10">
+                        <editor :model.sync="useragre.protocol_content"></editor>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-2 control-label"></label>
+												
+                      <div class="col-sm-10">
+                        <button type="submit" class="btn btn-danger pull-left" @click.prevent="submit">保存</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+      		
         </div>
       </div>
 
@@ -50,27 +80,22 @@ export default {
     data: function () {
       return {
         limitTimeSales: false,
-        product: {
-          info: {},
-          group_ids: []
-        },
-        sku: {},
-        editor: {},
-        images: [],
-        categories: [],
-        groups: []
+      	useragre:null,
+        payagre:null,
+        agre:[],
+        type:1,
+      
       }
     },
+    
     route: {
-      data ({to: {params: {product_id}}}) {
+      data () {
         var self = this
-        return Promise.all([api.categories.getAll()]).then(function ([product]) {
-          self.$broadcast('init')
+        return Promise.all([api.payagre.getall()]).then(function ([paygredetail]) {
+        self.$broadcast('init')
           return {
-            product: {
-              detail: product.info.detail,   
-            }
-           
+         		 payagre:paygredetail[0],
+         		 useragre:paygredetail[1]
           }
         })
       }
@@ -79,11 +104,34 @@ export default {
     methods: {
      
       submit () {
-        var self = this
-        this.getSku()
-        api.products.update(this.product.id, this.product).then(function (da) {
+      
+        var self = this;
+        self.agre=[];
+        if(self.type==1&&(self.payagre.protocol_content==""||self.payagre.protocol_content==null)){
+        	alert("支付协议不能为空");
+        	return
+        }
+        if(self.type==2&&(self.useragre.protocol_content==""||self.useragre.protocol_content==null)){
+        	alert("使用方法不能为空");
+        	return
+        }
+        console.log(self.payagre.protocol_content)
+        console.log(self.useragre.protocol_content)
+				if(self.type==1){
+					self.agre.push({user_id:0,type:self.type,protocol_content:self.payagre["protocol_content"]});
+					  console.log(self.payagre["protocol_content"])
+				}
+				if(self.type==2){
+					self.agre.push({user_id:0,type:self.type,protocol_content:self.useragre["protocol_content"]});
+				}
+ 				
+        
+       
+
+        api.payagre.update(self.agre).then(function (da) {
+        	console.log(da)
           window.alert('更新成功!')
-          self.$route.router.go('/dashboard/stations/payagre/edit')
+//        self.$route.router.go('/dashboard/stations/payagre/edit')
         })
       }
     }

@@ -117,7 +117,7 @@
               </li>
               <li><a v-link="{path: '/dashboard/stations/orders/cardlist'}"><i class="fa fa-reorder"></i> 优鲜卡订单管理</a></li>
               <li><a v-link="{path: '/dashboard/stations/orders/newCard'}"><i class="fa fa-reorder"></i> 优鲜卡管理</a></li>
-              <li><a v-link="{path: '/dashboard/stations/collect_orders/list'}"><i class="fa fa-list-ul"></i> 收款管理</a></li>
+              <!--<li><a v-link="{path: '/dashboard/stations/collect_orders/list'}"><i class="fa fa-list-ul"></i> 收款管理</a></li>-->
               <li><a v-link="{path: '/dashboard/stations/list'}"><i class="fa fa-map-marker"></i> 服务部详情</a></li>
               <li><a href="http://yt.l43.cn/admin/login" target="_blank"><i class="fa fa-life-bouy"></i> 管理工具</a>
               </li>
@@ -137,7 +137,7 @@
               </li>
               <li><a v-link="{path: '/dashboard/stations/residences/list'}"><i class="fa fa-image"></i> 小区管理</a>
               </li>
-              <li><a v-link="{path: '/dashboard/stations/payagre/list'}"><i class="fa fa-image">协议管理</i></a>
+              <li><a v-link="{path: '/dashboard/stations/payagre/edit'}"><i class="fa fa-image">协议管理</i></a>
               </li>
               <!--<li><a v-link="{path: '/dashboard/stations/topups/list'}"><i class="fa fa-battery-quarter"></i> 用户充值</a>-->
               <!--<li><a href="../layout/fixed.html"><i class="fa fa-bar-chart"></i> 数据统计</a></li>-->
@@ -174,7 +174,7 @@
           <!--<li><a href="../layout/fixed.html"><i class="fa fa-bar-chart"></i> 数据统计</a></li>-->
           <!--</ul>-->
           <!--</li>-->
-          <li class="treeview" v-if="permit('Weazm')" :class="{active: route.nav == 'mall'}">
+          <!--<li class="treeview" v-if="permit('Weazm')" :class="{active: route.nav == 'mall'}">
             <a href="#">
               <i class="fa fa-shopping-cart"></i>
               <span>邮寄</span>
@@ -182,9 +182,9 @@
             </a>
             <ul class="treeview-menu">
               <li><a v-link="{path: '/dashboard/mall/orders/list'}"><i class="fa fa-navicon"></i> 商城订单</a></li>
-              <!--<li><a v-link="{path: '/dashboard/finance/stations/list'}"><i class="fa fa-bar-chart"></i> 数据统计</a></li>-->
+              <li><a v-link="{path: '/dashboard/finance/stations/list'}"><i class="fa fa-bar-chart"></i> 数据统计</a></li>
             </ul>
-          </li>
+          </li>-->
           <li class="treeview" v-if="permit('Weazm')" :class="{active: route.nav == 'user'}">
             <a href="#">
               <i class="fa fa-user"></i>

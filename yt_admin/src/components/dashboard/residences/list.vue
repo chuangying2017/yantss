@@ -83,7 +83,8 @@
         console.log(query)
         var self = this
         api.residences.getAll(query).then(function ({residences, pagination}) {
-          self.residences = residences
+         
+         self.residences = residences
           self.pagination = pagination
         })
       },

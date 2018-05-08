@@ -9,7 +9,7 @@
         <div class="box-header">
           <h3 class="box-title">协议列表 ({{pagination.total}})</h3>
 
-          <div class="box-tools">
+          <!--<div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
               <input type="text" name="table_search" class="form-control pull-right" placeholder="Search"
                      v-model="query.keyword">
@@ -19,7 +19,7 @@
                 </button>
               </div>
             </div>
-          </div>
+          </div>-->
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
@@ -43,7 +43,7 @@
                 <div class="btn-group">
                   <a v-link="{path: '/dashboard/stations/payagre/edit/' + product.id}" type="button"
                      class="btn btn-default btn-sm">编辑</a>
-                  <a @click.prevent="remove(product)" type="button" class="btn btn-default btn-sm">删除</a>
+                  <!--<a @click.prevent="remove(product)" type="button" class="btn btn-default btn-sm">删除</a>-->
                  
                 </div>
               </td>

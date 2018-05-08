@@ -5,6 +5,7 @@ export default {
     return new Promise(function (resolve, reject) {
       Vue.http.get(root + residenceId).then(
         function ({data: {data: residence}}) {
+        	
           resolve(residence)
         },
         function (data) {

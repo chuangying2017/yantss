@@ -18,6 +18,7 @@ import banners from './banners.js'
 import residences from './residences.js'
 import allcards from './allcards.js'
 import cardorder from './cardorder.js'
+import payagre from './payagre.js'
 export default {
   users: users,
   access: access,
@@ -38,5 +39,6 @@ export default {
   banners: banners,
   residences: residences,
   allcards: allcards,
-  cardorder: cardorder
+  cardorder: cardorder,
+  payagre:payagre
 }

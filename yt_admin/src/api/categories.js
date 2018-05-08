@@ -4,8 +4,7 @@ export default {
   get: function (catId) {
     return new Promise(function (resolve, reject) {
       Vue.http.get(root + catId).then(
-        function ({data: {data: category}}) {
-          console.log(category)
+        function ({data: {data: category}}) { 
           resolve(category)
         },
         function (data) {

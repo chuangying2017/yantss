@@ -162,17 +162,17 @@ export default {
 									}
 								}
 							},
-							'/collect_orders': {
-								component: require('./components/dashboard/stations/collect_orders/index.vue'),
-								subRoutes: {
-									'/list': {
-										component: require('./components/dashboard/stations/collect_orders/list.vue')
-									},
-									'/detail/:order_no': {
-										component: require('./components/dashboard/stations/collect_orders/detail.vue')
-									}
-								}
-							},
+//							'/collect_orders': {
+//								component: require('./components/dashboard/stations/collect_orders/index.vue'),
+//								subRoutes: {
+//									'/list': {
+//										component: require('./components/dashboard/stations/collect_orders/list.vue')
+//									},
+//									'/detail/:order_no': {
+//										component: require('./components/dashboard/stations/collect_orders/detail.vue')
+//									}
+//								}
+//							},
 							'/coupons': {
 								component: require('./components/dashboard/stations/coupons/index.vue'),
 								subRoutes: {
@@ -256,11 +256,8 @@ export default {
 							},
 							'/payagre': {
 								component: require('./components/dashboard/stations/payagre/index.vue'),
-								subRoutes: {
-									'/list': {
-										component: require('./components/dashboard/stations/payagre/list.vue')
-									},
-									'/edit/:payager_id': {
+								subRoutes: {					
+									'/edit': {
 										component: require('./components/dashboard/stations/payagre/edit.vue')
 									}
 								}
@@ -390,24 +387,24 @@ export default {
 							}
 						}
 					},
-					'/mall': {
-						component: require('./components/dashboard/mall/index.vue'),
-						role: 'mall',
-						nav: 'mall',
-						subRoutes: {
-							'/orders': {
-								component: require('./components/dashboard/mall/orders/index.vue'),
-								subRoutes: {
-									'/list': {
-										component: require('./components/dashboard/mall/orders/list.vue')
-									},
-									'/:order_no': {
-										component: require('./components/dashboard/mall/orders/detail.vue')
-									}
-								}
-							}
-						}
-					},
+//					'/mall': {
+//						component: require('./components/dashboard/mall/index.vue'),
+//						role: 'mall',
+//						nav: 'mall',
+//						subRoutes: {
+//							'/orders': {
+//								component: require('./components/dashboard/mall/orders/index.vue'),
+//								subRoutes: {
+//									'/list': {
+//										component: require('./components/dashboard/mall/orders/list.vue')
+//									},
+//									'/:order_no': {
+//										component: require('./components/dashboard/mall/orders/detail.vue')
+//									}
+//								}
+//							}
+//						}
+//					},
 					'/users': {
 						component: require('./components/dashboard/users/index.vue'),
 						role: 'User',
