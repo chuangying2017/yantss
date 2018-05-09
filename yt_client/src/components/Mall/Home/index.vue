@@ -146,7 +146,7 @@
           {data: {data: subsProducts}},
           {data: {sliders: mallBanners}},
         ]) {
-        	console.log(mallBanners)
+
           return {
             mallProducts: mallProducts,
             subsProducts: subsProducts,
