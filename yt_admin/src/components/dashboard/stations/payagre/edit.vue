@@ -92,6 +92,7 @@ export default {
       data () {
         var self = this
         return Promise.all([api.payagre.getall()]).then(function ([paygredetail]) {
+        
         self.$broadcast('init')
           return {
          		 payagre:paygredetail[0],
@@ -125,9 +126,6 @@ export default {
 					self.agre.push({user_id:0,type:self.type,protocol_content:self.useragre["protocol_content"]});
 				}
  				
-        
-       
-
         api.payagre.update(self.agre).then(function (da) {
         	console.log(da)
           window.alert('更新成功!')

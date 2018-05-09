@@ -25,7 +25,7 @@
     </swipe-item> -->
     <swipe-item v-for="(index,banner) in mallBanners">
       <a class="swipe-link" href="{{ banner.url }}">
-        <img :src="banner.cover_image" alt="">
+        <img id="d{{index}}" :src="banner.cover_image" v-el:mf alt="">
       </a>
     </swipe-item>
   </swipe>
@@ -104,6 +104,11 @@
 </template>
 
 <script>
+//	window.onload=function(){
+//		setTimeout(function(){
+//			console.log(document.getElementById("d0").height)
+//		},2000)
+//	}
   import Loader from './../../Share/loader.vue'
   import NavFoot from './../Shared/navfoot.vue'
   import {Swipe, SwipeItem} from 'vue-swipe'
@@ -126,30 +131,25 @@
       SwipeItem,
       Loader
     },
-//  methods:{
-//  	autoheight:function(event){
-//  		console.log(event)
-//  	}
-//  },
-		ready:function(){
-				console.log(this.$els.imgobj0)
- 				
-		},
+//		ready:function(){
+//				console.log(this.$els.mf)
+// 				
+//		},
     route: {
       data: function () {
         return Promise.all([
           this.$http.get('/mall/products'),
           this.$http.get('/subscribe/products'),
-          this.$http.get('/mall/banner')
+          this.$http.get('/mall/banner'),
         ]).then(function ([
           {data: {data: mallProducts}},
           {data: {data: subsProducts}},
-          {data: {sliders: mallBanners}}
+          {data: {sliders: mallBanners}},
         ]) {
           return {
             mallProducts: mallProducts,
             subsProducts: subsProducts,
-            mallBanners: mallBanners
+            mallBanners: mallBanners,
           }
         })
       }

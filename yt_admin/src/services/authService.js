@@ -33,7 +33,7 @@ export default {
   },
   setInterceptor: function (token) {
     Vue.http.interceptors.push(function (request, next) {
-      request.params['token'] = token
+    request.params['token'] = token
       next()
     })
   },

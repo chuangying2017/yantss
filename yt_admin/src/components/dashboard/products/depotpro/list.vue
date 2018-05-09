@@ -14,7 +14,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">商品列表 ({{pagination.total}})</h3>
+          <h3 class="box-title">仓库中的商品列表 ({{pagination.total}})</h3>
 
           <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
@@ -89,7 +89,7 @@
         goTo: 1,
         query: {
           type: 'entity',
-          status: 'up',
+          status: 'down',
           keyword: '',
           page: 1
         },

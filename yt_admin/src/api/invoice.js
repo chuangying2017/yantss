@@ -56,6 +56,7 @@ export default {
   getExportLink: function (invoiceNo, type) {
     var token = Auth.check()
     return API_ROOT + stationRoot + invoiceNo + '?token=' + token + '&export=' + type
+
   },
   listBonus () {
     return new Promise(function (resolve, reject) {
