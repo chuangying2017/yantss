@@ -82,7 +82,7 @@ export default {
         limitTimeSales: false,
       	useragre:null,
         payagre:null,
-        agre:[],
+        agre:{},
         type:1,
       
       }
@@ -107,7 +107,7 @@ export default {
       submit () {
       
         var self = this;
-        self.agre=[];
+        self.agre={};
         if(self.type==1&&(self.payagre.protocol_content==""||self.payagre.protocol_content==null)){
         	alert("支付协议不能为空");
         	return
@@ -119,11 +119,11 @@ export default {
         console.log(self.payagre.protocol_content)
         console.log(self.useragre.protocol_content)
 				if(self.type==1){
-					self.agre.push({user_id:0,type:self.type,protocol_content:self.payagre["protocol_content"]});
+					self.agre={user_id:0,type:self.type,protocol_content:self.payagre["protocol_content"],title:self.payagre.title};
 					  console.log(self.payagre["protocol_content"])
 				}
 				if(self.type==2){
-					self.agre.push({user_id:0,type:self.type,protocol_content:self.useragre["protocol_content"]});
+					self.agre={user_id:0,type:self.type,protocol_content:self.useragre["protocol_content"],title:self.useragre.title};
 				}
  				
         api.payagre.update(self.agre).then(function (da) {
