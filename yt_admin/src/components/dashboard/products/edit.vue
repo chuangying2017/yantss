@@ -186,7 +186,8 @@
         editor: {},
         images: [],
         categories: [],
-        groups: []
+        groups: [],
+        dismode:0 //0为单次配送 1为多次配送
       }
     },
     route: {

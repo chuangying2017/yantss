@@ -204,6 +204,10 @@
       </a>
       <a href="#" class="add-link" @click.prevent="addAdrView = true" v-show="addresses.length && !addAdrView">+
         创建新地址 </a>
+        <!--map start-->
+     <!--	<div><baidu-map></baidu-map></div>-->
+     <div id="allmap" v-show="!addAdrView"></div>
+      <!--map end-->
        <!--<div class="address-box" v-show="adrView">
         <div class="box-wrap">
          <div class="box-content">
@@ -238,6 +242,7 @@
           </div>
         </div>
       </div>-->
+      
       <!--create new addr start-->
       <form v-form name="adrForm" @submit.prevent="onSubmit" v-if="!addresses.length || addAdrView">
         <h3 class="subTitle">选择配送区域 <a href="#" @click.prevent="addAdrView = false" v-show="addresses.length"
@@ -273,10 +278,7 @@
         </div>
       </form>
       <!--create new addr end-->
-      <!--map start-->
-     <!--	<div><baidu-map></baidu-map></div>-->
-     <div id="allmap"></div>
-      <!--map end-->
+      
       <div class="m-fixed-nav" v-show="orderData.address_id !== null && !addAdrView">
         <div class="pure-g">
           <div class="pure-u-1-1">
@@ -657,7 +659,7 @@
 			  switch(error.code) 
 			    {
 			    case error.PERMISSION_DENIED:
-			     		alert(1)
+//			     		alert(1)
 			      //x.innerHTML="User denied the request for Geolocation."
 			      break;
 			    case error.POSITION_UNAVAILABLE:

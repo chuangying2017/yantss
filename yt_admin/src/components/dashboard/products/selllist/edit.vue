@@ -62,6 +62,13 @@
                         <input type="text" class="form-control" v-model="sku.unit">
                       </div>
                     </div>
+                     <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-2 control-label">配送方式</label>
+                    	<div class="col-sm-6"> 
+                        	<button type="button" class="btn btn-default mb20" v-bind:class="{'btn-danger':dismode==1}" @click="dismode=1">多次配送<i v-show="dismode==1">√</i></button>
+                        	<button type="button" class="btn btn-default mb20 col-sm-offset-1" v-bind:class="{'btn-danger':dismode==0}" @click="dismode=0">单次配送<i v-show="dismode==0">√</i></button>
+                      </div>
+                    </div>
                     <div class="form-group">
                       <label for="inputPassword3" class="col-sm-2 control-label">零售价格</label>
 
@@ -193,7 +200,8 @@
         editor: {},
         images: [],
         categories: [],
-        groups: []
+        groups: [],
+        dismode:null //0为单次配送 1为多次配送
       }
     },
     route: {
