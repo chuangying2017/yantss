@@ -21,6 +21,9 @@ Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(VueForm)
 Vue.use(Vuex)
+//Vue.use(BaiduMap,{
+//	ak:'pux0Qkvz9RqnYHxBC9HOGECKFb1ACaBT'
+//})
 Vue.filter('strictFilter', strictFilter)
 Vue.filter('productFilter', productFilter)
 utils.ObjectAssignPolyfill()

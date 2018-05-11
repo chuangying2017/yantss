@@ -19,7 +19,7 @@
 <article class="m-blog">
 
 <h1>燕塘优鲜达微商城用户使用协议</h1> 
-<div v-html="payagre"></div>
+<div v-html="payagre" id="payagre"></div>
 <!--
 <p>1、燕塘优鲜达微商城（以下简称“本平台”）为广东燕塘乳业股份有限公司旗下的电商平台，旨在为您提供更为便捷高效的订奶到家服务。指尖订奶，新鲜送到家。</p>
 <p>2、本平台所有展示商品均为“燕塘”品牌巴氏奶，须冷藏保存，请在保质期内饮用完毕。“燕塘”品牌所有牛奶均选用优质奶源，营养丰富，请放心饮用。</p>
@@ -85,4 +85,5 @@
     margin: 1rem 0;
     line-height: 160%;
   }
+  #payagre ol{list-style: decimal !important;}
 </style>

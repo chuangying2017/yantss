@@ -41,6 +41,7 @@
               <th>销量</th>
               <th>序号</th>
               <th>创建时间</th>
+              <th>手机端链接</th>
               <th>操作</th>
             </tr>
             <tr v-for="product in products">
@@ -54,6 +55,7 @@
               <td>{{product.meta.sales}}</td>
               <td>{{product.priority}}</td>
               <td>{{product.created_at.date | date}}</td>
+              <td><a :href="product.clientWeChatUrl">右键复制链接</a></td>
               <td>
                 <div class="btn-group">
                   <a v-link="{path: '/dashboard/products/depotpro/edit/' + product.id}" type="button"

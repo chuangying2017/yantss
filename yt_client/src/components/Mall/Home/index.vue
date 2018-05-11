@@ -154,7 +154,14 @@
           }
         })
       }
-    }
+    },
+  
+//	watch:{
+//		 mallBanners:function(val,oldval){  
+//              console.log(document.getElementById("d0"))  
+//          } 
+//	}
+  		
   }
 </script>
 

@@ -5,7 +5,7 @@
         <a v-link="{ path: '/mall/user' }"><i class="iconfont">&#xe628;</i></a>
       </div>
       <div class="pure-u-1-3">
-        <h1 class="title">
+        <h1 class="title" id="usertit">
           优惠券列表
         </h1>
       </div>
@@ -23,12 +23,12 @@
       </div>
     </div>
   </div>
-  <div class="panel" v-show="!$loadingRouteData">
+  <div id="userpanel" class="panel" v-show="!$loadingRouteData">
     <router-view></router-view>
   </div>
   <div class="coupon-rules dark mt20">
     <h3><span>使用方法</span></h3>
-    <div v-html="useragre"></div>
+    <div v-html="useragre" id="useragre"></div>
     <!--<ul>
       <li>选购完商品后，进入结算页面，点击"使用满减券"</li>
       <li>系统会列出可使用的优惠券，您可选择一张券点击"立即使用"，使用成功后提交订单即可</li>
@@ -73,12 +73,13 @@
   
 </script>
 
-<style scoped>
-  #yt-mall .m-head-info .title {
+<style>
+  #yt-mall .m-head-info #usertit {
     color: #000;
   }
 
-  .panel {
+  #userpanel {
     padding: 1rem 2rem;
   }
+  #useragre ol{list-style: decimal !important;}
 </style>

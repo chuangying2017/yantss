@@ -5,10 +5,10 @@
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs" role="tablist">
         	<li role="presentation"  class="active">
-          	<a href="#zf" @click="type=1" data-toggle="tab" aria-controls="zf" role="tab" data-toggle="tab">支付编辑</a>
+          	<a href="#zf" @click="type=1" data-toggle="tab" aria-controls="zf" role="tab" data-toggle="tab">{{payagre.title}}</a>
           </li>
           <li role="presentation">
-          	<a href="#basic" @click="type=2" data-toggle="tab" aria-controls="basic" role="tab" data-toggle="tab">用户编辑</a>
+          	<a href="#basic" @click="type=2" data-toggle="tab" aria-controls="basic" role="tab" data-toggle="tab">{{useragre.title}}</a>
           </li>
           
         </ul>
@@ -116,11 +116,8 @@ export default {
         	alert("使用方法不能为空");
         	return
         }
-        console.log(self.payagre.protocol_content)
-        console.log(self.useragre.protocol_content)
 				if(self.type==1){
 					self.agre={user_id:0,type:self.type,protocol_content:self.payagre["protocol_content"],title:self.payagre.title};
-					  console.log(self.payagre["protocol_content"])
 				}
 				if(self.type==2){
 					self.agre={user_id:0,type:self.type,protocol_content:self.useragre["protocol_content"],title:self.useragre.title};

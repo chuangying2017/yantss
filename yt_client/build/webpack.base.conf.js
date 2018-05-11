@@ -85,5 +85,8 @@ module.exports = {
   },
   vue: {
     loaders: utils.cssLoaders()
-  }
+  },
+//externals: {
+//  'BMap': 'BMap'
+//}
 }

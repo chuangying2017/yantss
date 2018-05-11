@@ -204,9 +204,9 @@
       </a>
       <a href="#" class="add-link" @click.prevent="addAdrView = true" v-show="addresses.length && !addAdrView">+
         创建新地址 </a>
-      <div class="address-box" v-show="adrView">
+       <!--<div class="address-box" v-show="adrView">
         <div class="box-wrap">
-          <div class="box-content">
+         <div class="box-content">
             <h3 class="title">请选择地址<span class="close" @click.prevent="adrView = false"><i class="iconfont closeBox"
                                                                                            @click.prevent="closeBox">&#xe634;</i></span>
             </h3>
@@ -237,7 +237,8 @@
             <button @click.prevent="chooseAdr" class="u-nav-btn u-btn-primary" :disabled="!selectedAdrId">确认选择</button>
           </div>
         </div>
-      </div>
+      </div>-->
+      <!--create new addr start-->
       <form v-form name="adrForm" @submit.prevent="onSubmit" v-if="!addresses.length || addAdrView">
         <h3 class="subTitle">选择配送区域 <a href="#" @click.prevent="addAdrView = false" v-show="addresses.length"
                                        style="font-weight: normal;font-size: 1.4rem; float: right; color: #C71A40;">返回选择</a>
@@ -271,6 +272,11 @@
           </div>
         </div>
       </form>
+      <!--create new addr end-->
+      <!--map start-->
+     <!--	<div><baidu-map></baidu-map></div>-->
+     <div id="allmap"></div>
+      <!--map end-->
       <div class="m-fixed-nav" v-show="orderData.address_id !== null && !addAdrView">
         <div class="pure-g">
           <div class="pure-u-1-1">
@@ -450,12 +456,13 @@
   import ProductBox from './modules/productBox.vue'
   import DatePicker from './modules/datepicker.vue'
   import {areas} from './../../../assets/js/areas.js'
+// import {BaiduMap} from 'vue-baidu-map'
   import Loader from './../../Share/loader.vue'
   import Agreement from './modules/agreement.vue'
   import {newCart, addCart, delCart, cleCart} from './../../../vuex/actions'
   import Coupons from './modules/coupons.vue'
   import Giftcards from './modules/giftcards.vue'
-
+ 
   export default {
     name: 'OrderCreate',
     data: function () {
@@ -557,9 +564,6 @@
       Giftcards
     },
     computed: {
-//      step: function () {
-//        return this.$route.query.step
-//      },
       minDay: function () {
         var someDate = new Date()
         var numberOfDaysToAdd = 3
@@ -569,7 +573,7 @@
         var yyyy = someDate.getFullYear()
         return yyyy + '-' + (('0' + mm).slice(-2)) + '-' + (('0' + dd).slice(-2))
       }
-    },
+   },
     route: {
       activate: function () {
         var skus = window.localStorage.getItem('cart')
@@ -610,7 +614,64 @@
         })
       }
     },
-    methods: {
+    ready() {
+    	
+    	
+    let that = this
+    	that.getLocation()
+    let map = new BMap.Map('allmap')
+      let point = new BMap.Point(120.127401, 30.288469)
+      map.centerAndZoom(point, 18)   // 初始化地图,设置中心点坐标和地图级别
+      var myGeo = new BMap.Geocoder()
+      // 将地址解析结果显示在地图上,并调整地图视野
+      myGeo.getPoint('杭州市西湖区文二路391号', function (point) {
+        if (point) {
+          map.centerAndZoom(point, 15)
+        } else {
+          console.log('您选择地址没有解析到结果!')
+        }
+      }, '杭州市')
+
+    
+  },
+    methods: { 
+    	//是否开启定位
+    	getLocation:function()
+			{
+				console.log(1)
+			  if (navigator.geolocation){
+			  	navigator.geolocation.getCurrentPosition(this.showPosition,this.showError);
+			  }else{
+			  	alert("浏览器不支持百度地图")
+			  }
+			},
+			showPosition:function(position)
+			{
+			  var latlon=position.coords.latitude+","+position.coords.longitude;
+			  var img_url="http://maps.googleapis.com/maps/api/staticmap?center="
+			  +latlon+"&zoom=14&size=400x300&sensor=false";
+			  document.getElementById("mapholder").innerHTML="<img src='"+img_url+"' />";
+			},
+			showError:function(error)
+  		{
+			  switch(error.code) 
+			    {
+			    case error.PERMISSION_DENIED:
+			     		alert(1)
+			      //x.innerHTML="User denied the request for Geolocation."
+			      break;
+			    case error.POSITION_UNAVAILABLE:
+			      //x.innerHTML="Location information is unavailable."
+			      break;
+			    case error.TIMEOUT:
+			     // x.innerHTML="The request to get user location timed out."
+			      break;
+			    case error.UNKNOWN_ERROR:
+			     // x.innerHTML="An unknown error occurred."
+			      break;
+			    }
+  		},
+			  //
       addProduct: function (product) {
         // 修改单位
         this.$broadcast('checkUnit', product.unit)
@@ -1396,4 +1457,5 @@
     display: table-cell;
     vertical-align: middle;
   }
+  #allmap{height:25rem;}
 </style>
