@@ -204,6 +204,8 @@
       </a>
       <a href="#" class="add-link" @click.prevent="addAdrView = true" v-show="addresses.length && !addAdrView">+
         创建新地址 </a>
+      <a href="#" class="add-link" @click.prevent="addAdrView = true" v-show="addresses.length>1 && !addAdrView">
+        显示全部地址</a>
         <!--map start-->
      <!--	<div><baidu-map></baidu-map></div>-->
      <div id="allmap" v-show="!addAdrView"></div>
@@ -537,7 +539,10 @@
           '3-选择地址',
           '4-订单确认'
         ],
-        camMember: null
+        camMember: null,
+//      当前定位
+				nowlatitude:"",
+				nowlongitude:""
       }
     },
     vuex: {
@@ -566,6 +571,7 @@
       Giftcards
     },
     computed: {
+    	
       minDay: function () {
         var someDate = new Date()
         var numberOfDaysToAdd = 3
@@ -616,63 +622,62 @@
         })
       }
     },
-    ready() {
-    	
-    	
-    let that = this
-    	that.getLocation()
-    let map = new BMap.Map('allmap')
-      let point = new BMap.Point(120.127401, 30.288469)
-      map.centerAndZoom(point, 18)   // 初始化地图,设置中心点坐标和地图级别
-      var myGeo = new BMap.Geocoder()
-      // 将地址解析结果显示在地图上,并调整地图视野
-      myGeo.getPoint('杭州市西湖区文二路391号', function (point) {
-        if (point) {
-          map.centerAndZoom(point, 15)
-        } else {
-          console.log('您选择地址没有解析到结果!')
-        }
-      }, '杭州市')
-
-    
-  },
+      	watch:{
+		 addresses:function(val,oldval){  
+                console.log(val)  
+                 console.log(oldval) 
+            } 
+	},
+  
+//  ready:function(){
+//  		console.log(1)
+//  		let that = this
+//	    	that.getLocation
+//	    	let map = new BMap.Map('allmap')
+//	      let point = new BMap.Point(that.nowlatitude, that.nowlongitud)
+//	      map.centerAndZoom(point, 18)   // 初始化地图,设置中心点坐标和地图级别
+//	      var myGeo = new BMap.Geocoder()
+//	      // 将地址解析结果显示在地图上,并调整地图视野
+//	      myGeo.getPoint('杭州市西湖区文二路391号', function (point) {
+//	        if (point) {
+//	          map.centerAndZoom(point, 15)
+//	        } else {
+//	          console.log('您选择地址没有解析到结果!')
+//	        }
+//	      }, '杭州市')
+//  	
+//  },
     methods: { 
     	//是否开启定位
-    	getLocation:function()
-			{
-				console.log(1)
-			  if (navigator.geolocation){
-			  	navigator.geolocation.getCurrentPosition(this.showPosition,this.showError);
-			  }else{
-			  	alert("浏览器不支持百度地图")
-			  }
+    	getLocation:function() {
+    		var self=this
+				if(navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(self.showPosition, self.showError);
+				} else {
+					alert("此浏览器不支持地理定位!")
+				}
 			},
-			showPosition:function(position)
-			{
-			  var latlon=position.coords.latitude+","+position.coords.longitude;
-			  var img_url="http://maps.googleapis.com/maps/api/staticmap?center="
-			  +latlon+"&zoom=14&size=400x300&sensor=false";
-			  document.getElementById("mapholder").innerHTML="<img src='"+img_url+"' />";
+
+			showPosition:function(position) {
+				this.nowlatitude=position.coords.latitude
+				this.nowlongitud= position.coords.longitude
 			},
-			showError:function(error)
-  		{
-			  switch(error.code) 
-			    {
-			    case error.PERMISSION_DENIED:
-//			     		alert(1)
-			      //x.innerHTML="User denied the request for Geolocation."
-			      break;
-			    case error.POSITION_UNAVAILABLE:
-			      //x.innerHTML="Location information is unavailable."
-			      break;
-			    case error.TIMEOUT:
-			     // x.innerHTML="The request to get user location timed out."
-			      break;
-			    case error.UNKNOWN_ERROR:
-			     // x.innerHTML="An unknown error occurred."
-			      break;
-			    }
-  		},
+			showError:function(error) {
+				switch(error.code) {
+					case error.PERMISSION_DENIED:
+						alert("用户拒绝地理定位请求。")
+						break;
+					case error.POSITION_UNAVAILABLE:
+						alert("位置信息不可用。")
+						break;
+					case error.TIMEOUT:
+						alert("获取用户位置的请求超时。")
+						break;
+					case error.UNKNOWN_ERROR:
+						alert("出现未知错误。")
+						break;
+				}
+			},
 			  //
       addProduct: function (product) {
         // 修改单位

@@ -60,9 +60,9 @@
                     </div>
                     <div class="form-group">
                       <label for="inputPassword3" class="col-sm-2 control-label">配送方式</label>
-                    	<div class="col-sm-6"> 
-                        	<button type="button" class="btn btn-default mb20" v-bind:class="{'btn-danger':dismode==1}" @click="dismode=1">多次配送<i v-show="dismode==1">√</i></button>
-                        	<button type="button" class="btn btn-default mb20 col-sm-offset-1" v-bind:class="{'btn-danger':dismode==0}" @click="dismode=0">单次配送<i v-show="dismode==0">√</i></button>
+                    	<div class="col-sm-6 clearfix"> 
+                        	<div class="disbtn mb20" @click.prevent="dismode=1" v-bind:class="{'distype':dismode==1}">多次配送<i v-show="dismode==1">√</i></div>
+                        	<div class="disbtn mb20 col-sm-offset-1" @click.prevent="dismode=0" v-bind:class="{'distype':dismode==0}">单次配送<i v-show="dismode==0">√</i></div>
                       </div>
                     </div>
                     <div class="form-group">
@@ -312,5 +312,20 @@
     color: #fff;
     padding: 2px 5px;
     font-size: 12px;
+  }
+  
+ .disbtn{
+ 		margin-bottom: 20px;
+    width: 135px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 5px;
+    float: left;
+    background:#e0dbdb;
+    cursor: pointer;
+ }
+ .distype{
+  	background:red !important;
+  	color:#fff;
   }
 </style>
