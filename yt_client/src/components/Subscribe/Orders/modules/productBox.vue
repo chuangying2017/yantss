@@ -155,7 +155,8 @@
   #yt-mall .m-pd .wrap {
     background: #fff;
   }
-
+.f-table-cell{vertical-align: top !important;}
+.spec{width:62px !important;}
   .product-box .product-content {
     display: table-cell;
     vertical-align: middle;
@@ -245,4 +246,5 @@
   #yt-mall .m-pd .cover {
     border-bottom: 1px solid #EAEAEA;
   }
+  .m-check label{padding:.5rem .9rem !important;}
 </style>

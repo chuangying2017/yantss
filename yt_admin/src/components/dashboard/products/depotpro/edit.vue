@@ -65,8 +65,8 @@
                     <div class="form-group">
                       <label for="inputPassword3" class="col-sm-2 control-label">配送方式</label>
                     	<div class="col-sm-6 clearfix"> 
-                        	<div class="disbtn mb20" @click.prevent="dismode=1" v-bind:class="{'distype':dismode==1}">多次配送<i v-show="dismode==1">√</i></div>
-                        	<div class="disbtn mb20 col-sm-offset-1" @click.prevent="dismode=0" v-bind:class="{'distype':dismode==0}">单次配送<i v-show="dismode==0">√</i></div>
+                        	<div class="disbtn mb20" @click.prevent="sku.dismode=2" v-bind:class="{'distype':sku.dismode==2}">多次配送<i v-show="sku.dismode==2">√</i></div>
+                        	<div class="disbtn mb20 col-sm-offset-1" @click.prevent="sku.dismode=1" v-bind:class="{'distype':sku.dismode==1}">单次配送<i v-show="sku.dismode==1">√</i></div>
                       </div>
                     </div>
                     <div class="form-group">
@@ -254,7 +254,8 @@
               unit: product['skus']['unit'],
               income_price: product['skus']['income_price'],
               settle_price: product['skus']['settle_price'],
-              attr_value_ids: []
+              attr_value_ids: [],
+              dismode:product.dismode
             }
           }
         })

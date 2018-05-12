@@ -65,8 +65,8 @@
                     <div class="form-group">
                       <label for="inputPassword3" class="col-sm-2 control-label">配送方式</label>
                     	<div class="col-sm-6 clearfix"> 
-                        	<div class="disbtn mb20" @click.prevent="dismode=1" v-bind:class="{'distype':dismode==1}">多次配送<i v-show="dismode==1">√</i></div>
-                        	<div class="disbtn mb20 col-sm-offset-1" @click.prevent="dismode=0" v-bind:class="{'distype':dismode==0}">单次配送<i v-show="dismode==0">√</i></div>
+                        	<div class="disbtn mb20" @click.prevent="sku.dismode=2" v-bind:class="{'distype':sku.dismode==2}">多次配送<i v-show="sku.dismode==2">√</i></div>
+                        	<div class="disbtn mb20 col-sm-offset-1" @click.prevent="sku.dismode=1" v-bind:class="{'distype':sku.dismode==1}">单次配送<i v-show="sku.dismode==1">√</i></div>
                       </div>
                     </div>
                     <div class="form-group">
@@ -194,14 +194,18 @@
         limitTimeSales: false,
         product: {
           info: {},
-          group_ids: []
+          group_ids: [],
+          skus:[]
         },
-        sku: {},
+       
+        sku: {
+        	
+        },
         editor: {},
         images: [],
         categories: [],
         groups: [],
-        dismode:null //0为单次配送 1为多次配送
+//      dismode:1 //1为单次配送 2为多次配送
       }
     },
     route: {
@@ -220,6 +224,7 @@
               val.cover = false
             }
           })
+         self.product.skus.push({dismode:product.dismode})
           return {
             categories: categories,
             groups: groups,
@@ -241,7 +246,7 @@
               tags: product.info.tags,
               open_time: product.open_time,
               end_time: product.end_time,
-              skus: []
+//            skus:[dismode:product.dismode]
             },
             sku: {
               name: product['skus']['name'],
@@ -254,7 +259,8 @@
               unit: product['skus']['unit'],
               income_price: product['skus']['income_price'],
               settle_price: product['skus']['settle_price'],
-              attr_value_ids: []
+              attr_value_ids: [],
+              dismode:product.dismode
             }
           }
         })
@@ -290,7 +296,10 @@
       getSku () {
         this.sku.cover_image = this.product.cover_image
         this.sku.name = this.product.title
+        this.sku.dismode=this.sku.dismode
         this.product.skus = [this.sku]
+        
+        
       },
       submit () {
         var self = this

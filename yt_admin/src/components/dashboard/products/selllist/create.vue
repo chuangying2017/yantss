@@ -61,8 +61,8 @@
                     <div class="form-group">
                       <label for="inputPassword3" class="col-sm-2 control-label">配送方式</label>
                     	<div class="col-sm-6 clearfix"> 
-                        	<div class="disbtn mb20" @click.prevent="dismode=1" v-bind:class="{'distype':dismode==1}">多次配送<i v-show="dismode==1">√</i></div>
-                        	<div class="disbtn mb20 col-sm-offset-1" @click.prevent="dismode=0" v-bind:class="{'distype':dismode==0}">单次配送<i v-show="dismode==0">√</i></div>
+                        	<div class="disbtn mb20" @click.prevent="sku.dismode=2" v-bind:class="{'distype':sku.dismode==2}">多次配送<i v-show="sku.dismode==2">√</i></div>
+                        	<div class="disbtn mb20 col-sm-offset-1" @click.prevent="sku.dismode=1" v-bind:class="{'distype':sku.dismode==1}">单次配送<i v-show="sku.dismode==1">√</i></div>
                       </div>
                     </div>
                     <div class="form-group">
@@ -217,13 +217,14 @@
           stock: 0,
           income_price: 0,
           settle_price: 0,
-          attr_value_ids: []
+          attr_value_ids: [],
+          dismode:1//1为单次配送 2为多次配送
         },
         editor: {},
         images: [],
         categories: [],
         groups: [],
-        dismode:null //0为单次配送 1为多次配送
+        
       }
     },
     route: {
@@ -264,7 +265,7 @@
       getSku () {
         this.sku.cover_image = this.product.cover_image
         this.sku.name = this.product.title
-        this.product.skus.push(this.sku)
+        this.product.skus = [this.sku]
       },
       submit () {
         var self = this

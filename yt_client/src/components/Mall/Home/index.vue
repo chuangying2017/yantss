@@ -87,7 +87,7 @@
       <div class="pure-u-1-2" v-for="product in mallProducts | orderBy 'priority'">
         <a v-link="{ path: '/mall/subsproducts/' + product.id}" class="milk-box">
           <div class="milk-box">
-          <div class="cover" :style="'background-image: url(' + product.cover_image + ')'"></div>
+          <div class="cover" :style="'border:1px solid #EAEAEA;background-image: url(' + product.cover_image + ')'"></div>
           <p class="title">
             <span class="main">{{product.title}}</span><br>
             <!--<span class="sub">健康食品</span><br>-->
@@ -104,11 +104,7 @@
 </template>
 
 <script>
-//	window.onload=function(){
-//		setTimeout(function(){
-//			console.log(document.getElementById("d0").height)
-//		},2000)
-//	}
+	
   import Loader from './../../Share/loader.vue'
   import NavFoot from './../Shared/navfoot.vue'
   import {Swipe, SwipeItem} from 'vue-swipe'
@@ -156,11 +152,17 @@
       }
     },
   
-//	watch:{
-//		 mallBanners:function(val,oldval){  
-//              console.log(document.getElementById("d0"))  
-//          } 
-//	}
+	watch:{
+		 mallBanners:function(val,oldval){  
+		 							
+                document.getElementById("d0").onload=function(){
+                	console.log(document.body.clientWidth)
+                	console.log(document.getElementById("d0").width)
+                	console.log(document.getElementById("d0").height)
+                }
+
+            } 
+	}
   		
   }
 </script>
