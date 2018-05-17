@@ -26,7 +26,7 @@
         <div class="m-fixed-nav">
           <div class="pure-g">
             <div class="pure-u-1-1">
-              <button type="submit" class="u-nav-btn u-btn-primary" :disabled="adrForm.$invalid && !adrProcess">
+              <button type="submit" class="u-nav-btn u-btn-primary" :disabled="adrForm.$invalid || adrProcess">
                 <span>保存地址</span>
               </button>
             </div>
@@ -125,6 +125,9 @@
 		            return false
 		          }
 		        )
+      		},
+      		 phoneVerified: function (value) {
+        		return /^1[3|4|5|7|8]\d{9}$/.test(value)
       		},
 		}
 	}

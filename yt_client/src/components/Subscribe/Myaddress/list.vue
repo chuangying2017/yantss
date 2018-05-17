@@ -91,7 +91,7 @@
         <div class="m-fixed-nav">
           <div class="pure-g">
             <div class="pure-u-1-1">
-              <button type="submit" class="u-nav-btn u-btn-primary" :disabled="adrForm.$invalid">
+              <button type="submit" class="u-nav-btn u-btn-primary" :disabled="adrForm.$invalid||adrProcess">
                 <span>保存地址</span>
               </button>
             </div>
@@ -115,6 +115,7 @@
 
     data: function () {
       return {
+      	adrProcess:false,
       	defaultaddre:2,//判断是否有地址，1是没有
       	tempaddre:null,//暂存地址，
       	chageshow:false,
@@ -191,6 +192,9 @@
 			}
 	},
     methods: {
+    	 phoneVerified: function (value) {
+        return /^1[3|4|5|7|8]\d{9}$/.test(value)
+      },
     	setfault:function(addobj){
     		var self=this
     		self.address.map(function(val){
@@ -200,10 +204,18 @@
     		})
     		this.$http.get('/subscribe/address/' +self.settargetid+'/edit/1/'+addobj.id).then(
 	      	function (data) {
-	        	self.address=data.data.addresses;
+	      		if(data.datastatus==1){
+	      			self.address.map(function(val){
+	      				val.default_status=0
+	      			})
+	      			addobj.default_status=1
+	      		}else{
+	      			alert(data.data.msg)
+	      		}
+//	        	self.address=data.data.addresses;
 	      	},
 	      	function (data) {
-	      		console.log(data)
+	      		alert(data.data)
 	      	}
 	      )
     	},
@@ -213,6 +225,7 @@
       	self.formData.name=chageadd.name
       	self.formData.detail=chageadd.detail
   	    self.formData.phone=chageadd.phone
+  	    self.formData.id=chageadd.id
       	self.selectDist.id=chageadd.district_id;
         },
       
@@ -238,7 +251,7 @@
 	     onSubmit: function () {
 			        var self = this
 			        self.formData.user=""
-			        console.log(self.selectDist)
+			      
 			        if (self.adrForm.$invalid) {
 			          window.alert('请正确提交表单')
 			          self.working = false
@@ -268,8 +281,8 @@
 			        var self = this
 			        self.formData.district_id = self.selectDist.id
 			        self.formData.street = ''
-			       console.log(self.formData.district_id)
-			          self.$http.put('/subscribe/addressUpdate/'+self.formData.district_id, self.formData).then(
+			       console.log(self.formData)
+			          self.$http.put('/subscribe/addressUpdate/'+self.formData.id, self.formData).then(
 			          function (data) {
 			           // self.$route.router.go('/subscribe/myaddress/addrlist')
 			           self.chageshow=false;

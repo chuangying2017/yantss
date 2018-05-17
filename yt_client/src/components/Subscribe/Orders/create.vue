@@ -203,11 +203,11 @@
         <i class="iconfont">&#xe603;</i>
       </a>-->
     
-      <div href="#" class="list-link" v-for="(index,addre) in addresses|filterBy '1' in 'default_status'" v-show="!addAdrView" @click="resetposition(addre.id)">
+      <div href="#" class="list-link" :class="{defalutaddre:selectedAdrId==addre.id}" v-for="(index,addre) in addresses|filterBy '1' in 'default_status'" v-show="!addAdrView" @click="resetposition(addre.id),chooseAdr()">
         {{addre.province}}{{addre.city}}{{addre.district}}{{addre.street}}{{addre.detail}}<br>
         {{addre.name}}{{addre.phone}}
       </div>
-      <div v-show="addresses.length>1&&alladre&& !addAdrView" href="#" class="list-link" v-for="(index,addre) in addresses|filterBy '0' in 'default_status'" @click="resetposition(addre.id)">
+      <div :class="{defalutaddre:selectedAdrId==addre.id}" v-show="addresses.length>1&&alladre&& !addAdrView" href="#" class="list-link" v-for="(index,addre) in addresses|filterBy '0' in 'default_status'" @click="resetposition(addre.id),chooseAdr()">     
         {{addre.province}}{{addre.city}}{{addre.district}}{{addre.street}}{{addre.detail}}<br>
         {{addre.name}}{{addre.phone}}
       </div>
@@ -291,7 +291,7 @@
       </form>
       <!--create new addr end-->
       
-      <div class="m-fixed-nav" v-show="orderData.address_id !== null && !addAdrView">
+      <div class="m-fixed-nav" v-show="!addAdrView">
         <div class="pure-g">
           <div class="pure-u-1-1">
             <button class="u-nav-btn u-btn-primary" @click.prevent="createOrder" :disabled='confirmProcess'>
@@ -609,6 +609,7 @@
         }
       },
       data: function () {
+      	var self=this
         return Promise.all([
           this.$http.get('/subscribe/products'),
           this.$http.get('/subscribe/districts'),
@@ -622,7 +623,11 @@
           {data: {data: addresses}},
           {data: {data: coupons}}
         ]) {
-        
+        	addresses.map(function(val){
+        		 if(val.default_status==1){
+        		 		self.selectedAdrId=val.id
+        		 }
+        	})
           return {
             products: products,
             districts: districts,
@@ -640,88 +645,31 @@
 		 		if(that.addresses.length==0||that.addresses==undefined){
 		 			that.addAdrView = true
 		 		}else{
+		 			console.log(1)
+		 			var point
+		 			var map = new BMap.Map("allmap");
 		 			that.addresses.map(function(val){
 		 				if(val.default_status==1){
-		 					var map = new BMap.Map("allmap");
-		 					var point = new BMap.Point(that.addresses[0].latitude,that.addresses[0].longitude);
-							map.centerAndZoom(point, 13);
-//							map.panBy(150,165)
-							map.addOverlay(new BMap.Marker(point));
+		 					
+		 				  point = new BMap.Point(val.latitude,val.longitude);
+						
 		 				}
 		 			})
+		 				map.centerAndZoom(point, 13);
+//							map.panBy(150,165)
+							map.addOverlay(new BMap.Marker(point));
 		 		}
 		 	}
 
-		 	// 百度地图API功能
-//			var map = new BMap.Map("allmap");
-			// 百度地图API功能
-	
-//		map.centerAndZoom(new BMap.Point(113.266841, 23.128524), 18);
-	
-	
-	//map.centerAndZoom(point,12);
-	// 创建地址解析器实例
-//	var myGeo = new BMap.Geocoder();
-//	// 将地址解析结果显示在地图上,并调整地图视野
-//	myGeo.getPoint("北京市海淀区上地10街", function(point){
-//		if (point) {
-		
-			
-			
-//		}else{
-//			alert("您选择地址没有解析到结果!");
-//		}
-//	}, "北京市");
-//			map.centerAndZoom(new BMap.Point(116.331398,39.897445),11);
-//			map.enableScrollWheelZoom(true);
-			
-			// 用经纬度设置地图中心点
 
-//					map.clearOverlays(); 
-//					var new_point = new BMap.Point(that.addresses[0].latitude,that.addresses[0].longitude);
-//					var marker = new BMap.Marker(new_point);  // 创建标注
-//					map.addOverlay(marker);              // 将标注添加到地图中
-//					map.panTo(new_point);      
-		
 	} 
 		
 	
 		 
-//      let that = this
-//	    	that.getLocation
-//	    	let map = new BMap.Map('allmap')
-//	      let point = new BMap.Point(that.nowlatitude, that.nowlongitud)
-//	      map.centerAndZoom(point, 18)   // 初始化地图,设置中心点坐标和地图级别
-//	      var myGeo = new BMap.Geocoder()
-//	      // 将地址解析结果显示在地图上,并调整地图视野
-//	      myGeo.getPoint('杭州市西湖区文二路391号', function (point) {
-//	        if (point) {
-//	          map.centerAndZoom(point, 15)
-//	        } else {
-//	          console.log('您选择地址没有解析到结果!')
-//	        }
-//	      }, '杭州市')
-//          } 
+
 	},
   
-//  ready:function(){
-//  		console.log(1)
-//  		let that = this
-//	    	that.getLocation
-//	    	let map = new BMap.Map('allmap')
-//	      let point = new BMap.Point(that.nowlatitude, that.nowlongitud)
-//	      map.centerAndZoom(point, 18)   // 初始化地图,设置中心点坐标和地图级别
-//	      var myGeo = new BMap.Geocoder()
-//	      // 将地址解析结果显示在地图上,并调整地图视野
-//	      myGeo.getPoint('杭州市西湖区文二路391号', function (point) {
-//	        if (point) {
-//	          map.centerAndZoom(point, 15)
-//	        } else {
-//	          console.log('您选择地址没有解析到结果!')
-//	        }
-//	      }, '杭州市')
-//  	
-//  },
+
     methods: { 
     	//是否开启定位
 //  	getLocation:function() {
@@ -757,6 +705,7 @@
 			  //重新定位
 			resetposition:function(addresid){
 				var that=this
+				that.selectedAdrId=addresid
 					var map = new BMap.Map("allmap");
 					var point
 				that.addresses.map(function(val){
@@ -764,9 +713,6 @@
 						 point = new BMap.Point(val.latitude,val.longitude);
 					}
 				})
-				
-			
-				
 				map.centerAndZoom(point, 13);
 //				map.panBy(150,165)
 				map.addOverlay(new BMap.Marker(point));
@@ -780,12 +726,14 @@
         this.delCart(sku)
       },
       chooseAdr: function () {
-        var self = this
+      	var self = this
         this.selectedAdr = _.find(this.addresses, function (item) {
           return item.id === self.selectedAdrId
         })
-        this.orderData.address_id = this.selectedAdrId
-        this.adrView = false
+      
+     this.orderData.address_id = this.selectedAdrId
+        console.log(this.selectedAdrId)
+       this.adrView = false
       },
       onSubmit: function () {
         var self = this
@@ -817,10 +765,11 @@
         var self = this
         self.formData.district_id = self.selectDist.id
         self.formData.street = ''
-        console.log()
-      if(self.addresses.length==0&&self.addresses==undefined){
+        
+      if(self.addresses.length==0){
 		        self.formData.default_status=1
 		    }
+     
         self.$http.post('/subscribe/address', self.formData).then(
           function (data) {
             // 成功，提交订单
@@ -1389,13 +1338,16 @@
     display: block;
     margin: 1rem;
     padding: 1rem;
-    border: 1px solid #C71A40;
-    color: #C71A40;
+    border: 1px solid #d8c5c9;
+    color: #d8c5c9;
     font-size: 1.4rem;
     border-radius: 3px;
     background: #fff;
   }
-
+  .defalutaddre{
+  	border: 1px solid #C71A40;
+    color: #C71A40;
+  }
   .add-link {
     display: block;
     margin: 3rem 1rem;
