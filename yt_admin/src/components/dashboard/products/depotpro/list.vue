@@ -114,7 +114,7 @@
     },
     methods: {
       jump () {
-        this.$route.router.go('/dashboard/products/list?page=' + this.goTo)
+        this.$route.router.go('/dashboard/products/depotpro/list?page=' + this.goTo)
       },
       load () {
         var self = this

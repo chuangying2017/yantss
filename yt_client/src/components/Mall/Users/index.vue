@@ -81,6 +81,18 @@
           <i class="iconfont fr">&#xe603;</i>
         </a>
       </li>
+       <li>
+        <a v-link="{ path: '/subscribe/myaddress/addrlist' }">
+          <i class="icon-card"></i> 我的收货地址
+          <i class="iconfont fr">&#xe603;</i>
+        </a>
+      </li>
+      <li>
+        <a v-link="{ path: '/subscribe/agreement' }">
+          <i class="iconfont">&#xe639;</i> 用户使用协议
+          <i class="iconfont fr">&#xe603;</i>
+        </a>
+      </li>
       <!--<li>-->
         <!--<a v-link="{ path: '/coupons/list/usable' }">-->
           <!--<i class="iconfont">&#xe630;</i> 积分商城-->
@@ -88,14 +100,14 @@
         <!--</a>-->
       <!--</li>-->
     </ul>
-    <ul class="m-list-links m-list-section">
+    <!--<ul class="m-list-links m-list-section">
       <li>
         <a v-link="{ path: '/subscribe/agreement' }">
           <i class="iconfont">&#xe639;</i> 用户使用协议
           <i class="iconfont fr">&#xe603;</i>
         </a>
       </li>
-    </ul>
+    </ul>-->
   </div>
   <div class="placeholder">
     <i class="iconfont">&#xe660;</i>

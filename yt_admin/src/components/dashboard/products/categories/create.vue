@@ -32,17 +32,35 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">分类图片</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">分类小图</label>
                   <div class="col-sm-6">
-                    <gallery :limit="1" :url.sync="category.cover_image"></gallery>
-                    <button type="button" class="btn btn-danger mb20" @click="openGallery">上传图片</button>
+                    <gallery v-if="!bigimg" :limit="1" :coverlimit="1" :url.sync="category.cover_image"></gallery>
+                    <gallery v-else :limit="1" :coverlimit="1" :url.sync="category.big_image"></gallery>
+                    <button type="button" class="btn btn-danger mb20" @click.mousedown="bimg(false)" @click="openGallery()">上传小图</button>
                     <div class="row">
                       <div class="col-xs-6 col-md-3">
                         <div href="#" class="thumbnail thumbnail-mask" v-if="category.cover_image">
                           <img :src="category.cover_image" alt="" width="64">
-                          <span class="cover-delete">
+                          <!--<span class="cover-delete">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                          </span>
+                          </span>-->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">分类大图</label>
+                  <div class="col-sm-6">
+                    <!--<gallery v-else :limit="1" :coverlimit="1" :url.sync="category.big_image"></gallery>-->
+                    <button type="button" class="btn btn-danger mb20" @click.mousedown="bimg(true)" @click="openGallery()">上传大图</button>
+                    <div class="row">
+                      <div class="col-xs-6 col-md-3">
+                        <div href="#" class="thumbnail thumbnail-mask" v-if="category.big_image">
+                          <img :src="category.big_image" alt="" width="64">
+                          <!--<span class="cover-delete">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                          </span>-->
                         </div>
                       </div>
                     </div>
@@ -76,10 +94,12 @@
     },
     data () {
       return {
+      	bigimg:true,
         category: {
           name: '',
           pid: 0,
           cover_image: '',
+          big_image:'',
           priority: 1,
           desc: ''
         },
@@ -94,6 +114,10 @@
       }
     },
     methods: {
+    	bimg(typeimg){
+    		this.bigimg=typeimg
+    		console.log(1)
+    	},
       openGallery () {
         this.$broadcast('openGallery')
       },

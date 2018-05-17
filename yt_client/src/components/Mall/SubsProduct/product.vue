@@ -37,7 +37,7 @@
       <div class="wrap">
         <span class="spec f-table-cell">总数量</span>
         <!-- 修改单位 -->
-        <div class="f-table-cell" v-if="['箱','杯'].indexOf(product.skus.unit) > -1">
+        <div class="f-table-cell" v-if="product.dismode==1">
               <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="1"
                        :id="'q' + product.id + '1'"> <label
@@ -196,16 +196,26 @@
           function (data) {
             self.product = data.data.data
             self.fav = self.product.favs
-            // 修改单位
-            if (['箱','杯'].indexOf(self.product.skus.unit) > -1) {
+            //
+            if (product.dismode==1) {
               self.sku = {
                 name: null,
                 per_day: 1,
                 product_sku_id: null,
                 quantity: 1,
-                unit: '瓶'
+                unit: product.skus.unit
               }
             }
+            // 修改单位
+//          if (['箱','杯'].indexOf(self.product.skus.unit) > -1) {
+//            self.sku = {
+//              name: null,
+//              per_day: 1,
+//              product_sku_id: null,
+//              quantity: 1,
+//              unit: '瓶'
+//            }
+//          }
           },
           function (data) {
             window.alert('无法获取产品数据,请刷新重试')
@@ -349,4 +359,5 @@
   #yt-mall .m-article .content {
     padding: 1rem 2rem;
   }
+  .spec{vertical-align: top !important;width:5rem !important;}
 </style>

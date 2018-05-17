@@ -131,7 +131,20 @@ export default {
           },
           '/agreement': {
             component: require('./components/Subscribe/Orders/agreement.vue'),
-            name: '用户使用协议'
+          },
+           '/myaddress': {
+            component: require('./components/Subscribe/Myaddress/index.vue'),
+            subRoutes: {
+              '/addrlist': {
+                component: require('./components/Subscribe/Myaddress/list.vue'),
+              },
+              '/addrchange': {
+                component: require('./components/Subscribe/Myaddress/change.vue'),
+              },
+              '/creataddr/:defaultaddr': {
+                component: require('./components/Subscribe/Myaddress/creat.vue'),
+              }
+            }
           }
         }
       },

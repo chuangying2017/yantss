@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 <template>
-  <gallery :limit="5" :images.sync="images"></gallery>
+ <gallery :limit="5" :coverlimit="limittype" :images.sync="images" :coverimgs.sync="coverimgs"></gallery>
   <div class="row" v-if="!$loadRouteData">
     <div class="col-xs-12">
       <div class="nav-tabs-custom">
@@ -91,17 +90,45 @@
                         <input type="number" class="form-control" v-model="sku.stock" number>
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-2 control-label">商品图片</label>
+                   <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-2 control-label">商品封面图</label>
                       <div class="col-sm-6">
-                        <button type="button" class="btn btn-danger mb20" @click="openGallery">上传图片</button>
+                        <button type="button" class="btn btn-danger mb20" @click="typelim(1),openGallery()">上传封面图片</button>
+                        <div class="row">
+                          <div  v-show="typeof coverimgs=='string'"  class="col-xs-6 col-md-3">
+                            <div href="#" class="thumbnail thumbnail-mask">
+                              <img :src="coverimgs" alt="" width="64">
+                              <!--<div class="cover-mask" @click="setCover($index, image)">
+                                <span>设为封面</span>
+                              </div>-->
+                              <!--<span class="cover-label" v-if="images[$index]['cover']">封面</span>-->
+                            </div>
+                          </div>
+                          <div v-show="typeof coverimgs=='object'" class="col-xs-6 col-md-3" v-for="image in coverimgs" track-by="$index">
+                            <div href="#" class="thumbnail thumbnail-mask">
+                              <img :src="image.url" alt="" width="64">
+                              <!--<div class="cover-mask" @click="setCover($index, image)">
+                                <span>设为封面</span>
+                              </div>-->
+                              <!--<span class="cover-label" v-if="images[$index]['cover']">封面</span>-->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!---->
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-2 control-label">商品详情图</label>
+                      <div class="col-sm-6">
+                        <button type="button" class="btn btn-danger mb20" @click="typelim(2),openGallery()">上传详情图片</button>
                         <div class="row">
                           <div class="col-xs-6 col-md-3" v-for="image in images" track-by="$index">
                             <div href="#" class="thumbnail thumbnail-mask">
                               <img :src="image.url" alt="" width="64">
-                              <div class="cover-mask" @click="setCover($index, image)">
+                              <!--<div class="cover-mask" @click="setCover($index, image)">
                                 <span>设为封面</span>
-                              </div>
+                              </div>-->
                               <span class="cover-label" v-if="images[$index]['cover']">封面</span>
                             </div>
                           </div>
@@ -192,6 +219,7 @@
     components: [Gallery, Editor],
     data: function () {
       return {
+      	limittype:null,
         limitTimeSales: false,
         product: {
           info: {},
@@ -200,6 +228,7 @@
         sku: {},
         editor: {},
         images: [],
+        coverimgs:"",
         categories: [],
         groups: [],
         dismode:null //0为单次配送 1为多次配送
@@ -225,6 +254,7 @@
             categories: categories,
             groups: groups,
             images: product.images,
+            coverimgs:product.cover_image,
             product: {
               id: product.id,
               cat_id: product.cats.length > 0 ? product.cats[0]['id'] : null,
@@ -274,15 +304,19 @@
       }
     },
     methods: {
-      setCover (index, image) {
-        this.$set('product.cover_image', image.url)
-        this.images.forEach(function (val) {
-          val.cover = false
-        })
-        var oldImage = this.images[index]
-        oldImage.cover = true
-        this.images.$set(index, oldImage)
-      },
+    	typelim(num){
+    		this.limittype=num
+      	console.log(this.limittype)
+    	},
+//    setCover (index, image) {
+//      this.$set('product.cover_image', image.url)
+//      this.images.forEach(function (val) {
+//        val.cover = false
+//      })
+//      var oldImage = this.images[index]
+//      oldImage.cover = true
+//      this.images.$set(index, oldImage)
+//    },
       removeImage (image) {
         this.images.$remove(image)
       },
@@ -290,16 +324,28 @@
         this.$broadcast('openGallery', cb)
       },
       getSku () {
-        this.sku.cover_image = this.product.cover_image
+      	  this.product.skus=[]
+      	  if(typeof this.coverimgs=='string'){
+      	  	this.sku.cover_image = this.coverimgs
+        		this.product.cover_image=this.coverimgs
+      	  }else{
+      	  	this.sku.cover_image = this.coverimgs[0].url
+        		this.product.cover_image=this.coverimgs[0].url
+      	  }
+      	
+        
+        
         this.sku.name = this.product.title
+        
         this.product.skus = [this.sku]
       },
       submit () {
         var self = this
+        console.log(self.product)
         this.getSku()
         api.products.update(this.product.id, this.product).then(function (da) {
           window.alert('更新成功!')
-          self.$route.router.go('/dashboard/products/list')
+          self.$route.router.go('/dashboard/products/depotpro/list')
         })
       }
     }

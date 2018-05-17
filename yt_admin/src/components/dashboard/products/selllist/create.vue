@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <template>
   <gallery :limit="5" :images.sync="images"></gallery>
   <div class="row" v-if="!$loadRouteData">

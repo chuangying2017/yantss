@@ -193,22 +193,31 @@
         </div>
       </div>
       <h3 class="subTitle" v-if="addresses.length && !addAdrView">选择配送地址</h3>
-      <a href="#" class="list-link" @click.prevent="adrView = true"
+      <!--<a href="#" class="list-link" @click.prevent="adrView = true"
          v-show="addresses.length && !selectedAdr.name && !addAdrView">选择已保存地址 <i
-        class="iconfont">&#xe603;</i></a>
-      <a href="#" class="list-link" @click.prevent="adrView = true"
+        class="iconfont">&#xe603;</i></a>-->
+      <!--<a href="#" class="list-link" @click.prevent="adrView = true"
          v-show="addresses.length && selectedAdr.name && !addAdrView">
         {{selectedAdr.city}}{{selectedAdr.district}}{{selectedAdr.street}}{{selectedAdr.detail}}<br>
         {{selectedAdr.name}}{{selectedAdr.phone}}
         <i class="iconfont">&#xe603;</i>
-      </a>
-      <a href="#" class="add-link" @click.prevent="addAdrView = true" v-show="addresses.length && !addAdrView">+
+      </a>-->
+    
+      <div href="#" class="list-link" v-for="(index,addre) in addresses|filterBy '1' in 'default_status'" v-show="!addAdrView" @click="resetposition(addre.id)">
+        {{addre.province}}{{addre.city}}{{addre.district}}{{addre.street}}{{addre.detail}}<br>
+        {{addre.name}}{{addre.phone}}
+      </div>
+      <div v-show="addresses.length>1&&alladre&& !addAdrView" href="#" class="list-link" v-for="(index,addre) in addresses|filterBy '0' in 'default_status'" @click="resetposition(addre.id)">
+        {{addre.province}}{{addre.city}}{{addre.district}}{{addre.street}}{{addre.detail}}<br>
+        {{addre.name}}{{addre.phone}}
+      </div>
+      <a href="#" class="add-link" @click.prevent="addAdrView = true" v-show="addresses.length && !addAdrView&&alladre">+
         创建新地址 </a>
-      <a href="#" class="add-link" @click.prevent="addAdrView = true" v-show="addresses.length>1 && !addAdrView">
+      <a href="#" class="add-link" @click.prevent="alladre = !alladre" v-show="addresses.length>1&& !addAdrView">
         显示全部地址</a>
         <!--map start-->
      <!--	<div><baidu-map></baidu-map></div>-->
-     <div id="allmap" v-show="!addAdrView"></div>
+     <div id="allmap" v-show="!addAdrView" style="width:100%;height:20rem;position:relative"></div>
       <!--map end-->
        <!--<div class="address-box" v-show="adrView">
         <div class="box-wrap">
@@ -247,8 +256,9 @@
       
       <!--create new addr start-->
       <form v-form name="adrForm" @submit.prevent="onSubmit" v-if="!addresses.length || addAdrView">
-        <h3 class="subTitle">选择配送区域 <a href="#" @click.prevent="addAdrView = false" v-show="addresses.length"
-                                       style="font-weight: normal;font-size: 1.4rem; float: right; color: #C71A40;">返回选择</a>
+        <h3 class="subTitle">选择配送区域 
+        	<!--<a href="#" @click.prevent="addAdrView = false" v-show="addresses.length"
+                                       style="font-weight: normal;font-size: 1.4rem; float: right; color: #C71A40;">返回选择</a>-->
         </h3>
         <div class="radio-wrap">
           <select v-form-ctrl name="district" v-model="selectDist" required>
@@ -472,7 +482,7 @@
     data: function () {
       return {
         currentIndex: null,
-
+				alladre:false,
         showProduct: true,
         products: [],
         districts: [],
@@ -612,6 +622,7 @@
           {data: {data: addresses}},
           {data: {data: coupons}}
         ]) {
+        
           return {
             products: products,
             districts: districts,
@@ -622,11 +633,75 @@
         })
       }
     },
-      	watch:{
-		 addresses:function(val,oldval){  
-                console.log(val)  
-                 console.log(oldval) 
-            } 
+    watch:{
+		 step:function(val,oldval){ 
+		 	var that=this
+		 	if(val==3){
+		 		if(that.addresses.length==0||that.addresses==undefined){
+		 			that.addAdrView = true
+		 		}else{
+		 			that.addresses.map(function(val){
+		 				if(val.default_status==1){
+		 					var map = new BMap.Map("allmap");
+		 					var point = new BMap.Point(that.addresses[0].latitude,that.addresses[0].longitude);
+							map.centerAndZoom(point, 13);
+//							map.panBy(150,165)
+							map.addOverlay(new BMap.Marker(point));
+		 				}
+		 			})
+		 		}
+		 	}
+
+		 	// 百度地图API功能
+//			var map = new BMap.Map("allmap");
+			// 百度地图API功能
+	
+//		map.centerAndZoom(new BMap.Point(113.266841, 23.128524), 18);
+	
+	
+	//map.centerAndZoom(point,12);
+	// 创建地址解析器实例
+//	var myGeo = new BMap.Geocoder();
+//	// 将地址解析结果显示在地图上,并调整地图视野
+//	myGeo.getPoint("北京市海淀区上地10街", function(point){
+//		if (point) {
+		
+			
+			
+//		}else{
+//			alert("您选择地址没有解析到结果!");
+//		}
+//	}, "北京市");
+//			map.centerAndZoom(new BMap.Point(116.331398,39.897445),11);
+//			map.enableScrollWheelZoom(true);
+			
+			// 用经纬度设置地图中心点
+
+//					map.clearOverlays(); 
+//					var new_point = new BMap.Point(that.addresses[0].latitude,that.addresses[0].longitude);
+//					var marker = new BMap.Marker(new_point);  // 创建标注
+//					map.addOverlay(marker);              // 将标注添加到地图中
+//					map.panTo(new_point);      
+		
+	} 
+		
+	
+		 
+//      let that = this
+//	    	that.getLocation
+//	    	let map = new BMap.Map('allmap')
+//	      let point = new BMap.Point(that.nowlatitude, that.nowlongitud)
+//	      map.centerAndZoom(point, 18)   // 初始化地图,设置中心点坐标和地图级别
+//	      var myGeo = new BMap.Geocoder()
+//	      // 将地址解析结果显示在地图上,并调整地图视野
+//	      myGeo.getPoint('杭州市西湖区文二路391号', function (point) {
+//	        if (point) {
+//	          map.centerAndZoom(point, 15)
+//	        } else {
+//	          console.log('您选择地址没有解析到结果!')
+//	        }
+//	      }, '杭州市')
+//          } 
 	},
   
 //  ready:function(){
@@ -649,36 +724,53 @@
 //  },
     methods: { 
     	//是否开启定位
-    	getLocation:function() {
-    		var self=this
-				if(navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition(self.showPosition, self.showError);
-				} else {
-					alert("此浏览器不支持地理定位!")
-				}
-			},
-
-			showPosition:function(position) {
-				this.nowlatitude=position.coords.latitude
-				this.nowlongitud= position.coords.longitude
-			},
-			showError:function(error) {
-				switch(error.code) {
-					case error.PERMISSION_DENIED:
-						alert("用户拒绝地理定位请求。")
-						break;
-					case error.POSITION_UNAVAILABLE:
-						alert("位置信息不可用。")
-						break;
-					case error.TIMEOUT:
-						alert("获取用户位置的请求超时。")
-						break;
-					case error.UNKNOWN_ERROR:
-						alert("出现未知错误。")
-						break;
-				}
-			},
+//  	getLocation:function() {
+//  		var self=this
+//				if(navigator.geolocation) {
+//					navigator.geolocation.getCurrentPosition(self.showPosition, self.showError);
+//				} else {
+//					alert("此浏览器不支持地理定位!")
+//				}
+//			},
+//
+//			showPosition:function(position) {
+//				this.nowlatitude=position.coords.latitude
+//				this.nowlongitud= position.coords.longitude
+//			},
+//			showError:function(error) {
+//				switch(error.code) {
+//					case error.PERMISSION_DENIED:
+//						alert("用户拒绝地理定位请求。")
+//						break;
+//					case error.POSITION_UNAVAILABLE:
+//						alert("位置信息不可用。")
+//						break;
+//					case error.TIMEOUT:
+//						alert("获取用户位置的请求超时。")
+//						break;
+//					case error.UNKNOWN_ERROR:
+//						alert("出现未知错误。")
+//						break;
+//				}
+//			},
 			  //
+			  //重新定位
+			resetposition:function(addresid){
+				var that=this
+					var map = new BMap.Map("allmap");
+					var point
+				that.addresses.map(function(val){
+					if(val.id==addresid){
+						 point = new BMap.Point(val.latitude,val.longitude);
+					}
+				})
+				
+			
+				
+				map.centerAndZoom(point, 13);
+//				map.panBy(150,165)
+				map.addOverlay(new BMap.Marker(point));
+			},
       addProduct: function (product) {
         // 修改单位
         this.$broadcast('checkUnit', product.unit)
@@ -725,7 +817,10 @@
         var self = this
         self.formData.district_id = self.selectDist.id
         self.formData.street = ''
-        console.log(self.formData)
+        console.log()
+      if(self.addresses.length==0&&self.addresses==undefined){
+		        self.formData.default_status=1
+		    }
         self.$http.post('/subscribe/address', self.formData).then(
           function (data) {
             // 成功，提交订单

@@ -10,7 +10,9 @@
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="tab_1">
-            <viewer :limit="2"></viewer>
+          
+            <viewer v-show="coverlimit!=1" :limit="2"></viewer>
+            <viewer v-show="coverlimit==1" :limit="1"></viewer>
           </div>
           <!-- /.tab-pane -->
           <div class="tab-pane" id="tab_2">
@@ -27,7 +29,7 @@
   import Uploader from './uploader.vue'
   export default {
     name: 'Gallery',
-    props: ['limit', 'images', 'url'],
+    props: ['limit', 'coverlimit','images', 'coverimgs','url'],
     components: [Viewer, Uploader],
     data: function () {
       return {
@@ -38,8 +40,8 @@
     methods: {
       toggle: function () {
         this.open = true
-        if (!this.cb) {
-          this.images = []
+        if (!this.cb) {       	
+//      this.images = []
         }
       },
       close: function () {
@@ -49,14 +51,21 @@
     events: {
       'confirm': function (images) {
         if (typeof this.url === 'string') {
-          console.log('a')
+        	console.log("s")
+        	console.log(images)
           this.url = images[0]['url']
+          this.close()
         } else if (this.cb) {
           console.log('b')
           this.cb(images)
         } else {
-          console.log('c')
-          this.images = images
+          if(this.coverlimit==1){
+          	this.coverimgs = images
+          	
+          }else{
+          	this.images = images
+          }
+          
         }
         this.close()
       },

@@ -1,11 +1,11 @@
 <template>
-  <div class="row">
+  <!--<div class="row">
     <div class="col-md-6">
       <a v-link="{path: '/dashboard/products/selllist/create'}" class="btn btn-social btn-google btn-sm mb20">
         <i class="fa fa-plus"></i> 创建商品
       </a>
     </div>
-  </div>
+  </div>-->
   
   <div class="row">
     <div class="col-md-6"></div>
@@ -114,7 +114,7 @@
     },
     methods: {
       jump () {
-        this.$route.router.go('/dashboard/products/list?page=' + this.goTo)
+        this.$route.router.go('/dashboard/products/selllist/list?page=' + this.goTo)
       },
       load () {
         var self = this

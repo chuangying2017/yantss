@@ -12,7 +12,7 @@
       </div>
     </div>
   </div>
-  <swipe class="my-swipe">
+  <swipe class="my-swipe" id="swh">
     <!-- <swipe-item>
       <a class="swipe-link" v-link="{ path: '/activities/activity_58faba78d78b8' }">
         <img src="http://o8swwgh2r.bkt.clouddn.com/WechatIMG14.jpeg" alt="">
@@ -31,7 +31,13 @@
   </swipe>
   <div class="m-home-grid m-home-grid-icon f-mg-bottom">
     <div class="pure-g">
-      <div class="pure-u-1-4">
+    	<div class="pure-u-1-4" v-for="cat in cats">
+        <a v-link="{path: '/mall/products?cat='+cat.id}">
+          <img :src="cat.cover_image" alt="" class="icon">
+          <p class="info">{{cat.name}}</p>
+        </a>
+      </div>
+      <!--<div class="pure-u-1-4">
         <a v-link="{ path: '/mall/products?cat=7' }">
           <img src="http://o7tep4eu1.bkt.clouddn.com/icon/v2/1.png" alt="" class="icon">
           <p class="info">瓶装鲜奶/酸奶</p>
@@ -54,13 +60,14 @@
           <img src="http://o7tep4eu1.bkt.clouddn.com/icon/v2/4.png" alt="" class="icon">
           <p class="info">袋装酸奶</p>
         </a>
-      </div>
+      </div>-->
     </div>
   </div>
   <div class="m-nav">
     <div class="pure-g">
       <div class="pure-u-1-1">
-        <a><i class="iconfont">&#xe660;</i> 每日优鲜</a>
+        <!--<a><i class="iconfont">&#xe660;</i> 每日优鲜</a>-->
+        <a><img src="../../../assets/indexzwater.png" alt="" /> 每日优鲜<img src="../../../assets/indexywater.png" alt="" /></a>
       </div>
       <!--<div class="pure-u-1-2">-->
       <!--<a href="#" :class="{ 's-active': productView !== 'mall' }" @click.prevent="productView = 'subs'">优鲜达</a>-->
@@ -83,19 +90,56 @@
   <!--</div>-->
   <loader v-show="$loadingRouteData"></loader>
   <div class="m-home-grid m-home-grid-pd f-mg-bottom" v-show="!$loadingRouteData">
+  	
     <div class="pure-g">
-      <div class="pure-u-1-2" v-for="product in mallProducts | orderBy 'priority'">
-        <a v-link="{ path: '/mall/subsproducts/' + product.id}" class="milk-box">
-          <div class="milk-box">
+    	<div class="pure-u-1-2" v-for="product in mallProducts | orderBy 'priority'">
+       <a v-link="{ path: '/mall/subsproducts/' + product.id}" class="milk-box">
+      
+      <div class="milk-box">
+       		<div class="milkl">
+       			<p class="milktitle">{{product.title}}</p>
+       			<p class="milkmoney"><i class="milkicon">￥</i>{{product.price}}</p>
+       			<div class="milkbuy">立即购买></div>
+       		</div>
+       		<div class="milkr">
+       			<img :src="product.cover_image" alt="" />
+       		</div>
+       		
+       </div>
+         <!--  <div class="milk-box">
           <div class="cover" :style="'border:1px solid #EAEAEA;background-image: url(' + product.cover_image + ')'"></div>
           <p class="title">
-            <span class="main">{{product.title}}</span><br>
+            <span class="main">{{product.title}}</span><br>-->
             <!--<span class="sub">健康食品</span><br>-->
-            <span class="price">￥{{product.price}}</span>
+            <!--<span class="price">￥{{product.price}}</span>
           </p>
-          </div>
+          </div>-->
         </a>
       </div>
+      <!--<div class="pure-u-1-2" v-for="product in mallProducts | orderBy 'priority'">
+       <a v-link="{ path: '/mall/subsproducts/' + product.id}" class="milk-box">
+      
+      <div class="milk-box">
+       		<div class="milkl">
+       			<p class="milktitle">{{product.title}}</p>
+       			<p class="milkmoney"><i class="milkicon">￥</i>{{product.price}}</p>
+       			<div class="milkbuy">立即购买></div>
+       		</div>
+       		<div class="milkr">
+       			<img :src="product.cover_image" alt="" />
+       		</div>
+       		
+       </div>
+         <!--  <div class="milk-box">
+          <div class="cover" :style="'border:1px solid #EAEAEA;background-image: url(' + product.cover_image + ')'"></div>
+          <p class="title">
+            <span class="main">{{product.title}}</span><br>-->
+            <!--<span class="sub">健康食品</span><br>-->
+            <!--<span class="price">￥{{product.price}}</span>
+          </p>
+          </div>-->
+        <!--</a>
+      </div>-->
     </div>
     <!--<a v-link="{ path: '/mall/products?cat=' }" class="u-btn u-btn-default mt20">所有商品</a>-->
   </div>
@@ -117,6 +161,7 @@
         mallProducts: [],
         subsProducts: [],
         mallBanners: [],
+        cats:[],
         productView: 'mall'
       }
     },
@@ -137,16 +182,19 @@
           this.$http.get('/mall/products'),
           this.$http.get('/subscribe/products'),
           this.$http.get('/mall/banner'),
+          this.$http.get('/mall/cats')
         ]).then(function ([
           {data: {data: mallProducts}},
           {data: {data: subsProducts}},
           {data: {sliders: mallBanners}},
+          {data: {data: cats}}
         ]) {
 
           return {
             mallProducts: mallProducts,
             subsProducts: subsProducts,
-            mallBanners: mallBanners,
+            mallBanners:mallBanners,
+            cats: cats
           }
         })
       }
@@ -156,9 +204,12 @@
 		 mallBanners:function(val,oldval){  
 		 							
                 document.getElementById("d0").onload=function(){
-                	console.log(document.body.clientWidth)
-                	console.log(document.getElementById("d0").width)
-                	console.log(document.getElementById("d0").height)
+                	var cliw=document.body.clientWidth
+                	var imgw=document.getElementById("d0").width
+                	var imgh=document.getElementById("d0").height
+                	var cliwh=Math.ceil((cliw*imgh)/imgw)
+                	document.getElementById("swh").style.height=cliwh+"px"
+                	
                 }
 
             } 
@@ -240,9 +291,41 @@
 
   .milk-box {
     position: relative;
-    margin: .3rem;
+   
   }
-  .milk-box .cover{
+  /**/
+ .milk-box{position:relative;}
+      	.milkl{width: 55%;
+    position: absolute;
+    padding-left: 1rem;
+    bottom: -14rem;}
+    .milkr{   width: 44%;
+    min-height: 14rem;
+    left: 46%;
+    position: absolute;
+       margin-left: 1.2rem;
+    }
+    .milkr,.milkl{float:left}
+    .milkr img{    width: 5.5rem;
+    height: 15.5rem;}
+      		 .milktitle{font-size: 1.3rem;position:absolute;top: -12rem;    font-size: 12px;}
+      		 .milkmoney{font-size: 1.5rem;
+    color: #ff003c;
+    padding: 0.3rem;
+    font-weight: 600;position:absolute;    bottom: 2.6rem;}
+      		 .milkicon{font-style:normal;font-size:1.2rem}
+      		 .milkbuy{background: #ff003c;
+    color: #fff;
+    text-align: center;
+    width: 6.1rem;
+    padding: 0.5em;
+    padding-top:0.4em;
+    border-radius: 0.3rem;position:absolute;bottom: 0.2rem;}
+    .pure-u-1-2 {
+    
+    min-height: 16rem !important;
+}
+ /* .milk-box .cover{
     width: 100%;
     padding-bottom: 100%;
     background-size: cover;
@@ -263,7 +346,7 @@
     /*background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); !* Standard syntax *!*/
     /*position: absolute;*/
     /*bottom: 0;*/
-    width: 100%;
+    /*width: 100%;
   }
 
   .milk-box .title .main {
@@ -279,8 +362,14 @@
   .milk-box .title .price {
     font-size: 1.2rem;
     color: #C71A40;
-  }
+  }*/
 
+.pure-u-1-2{
+	border-bottom: 1px solid #EAEAEA;
+}
+.pure-u-1-2:nth-child(2n+1){
+	border-right: 1px solid #EAEAEA;
+}
   .m-nav {
     /*padding: .5rem;*/
     font-size: 1.6rem;
@@ -302,4 +391,6 @@
   .swipe-link {
     display: block;
   }
+  .m-home-grid{padding:0 !important;}
+  .pure-u-1-1>a>img{width:1.5rem;vertical-align: middle;}
 </style>
