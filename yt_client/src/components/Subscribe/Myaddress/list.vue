@@ -12,23 +12,10 @@
       </div>
     </div>
   </div>
-  <style>
-  	/*.addresscont{width:85%;}*/
-  	.addresscont .addinfo{width:80%;}
-  	.addresscont p{padding: 0.5rem 0;}
-  	.m-milkcard i{font-style: normal;}
-  	.addinfo{border-bottom: 1px solid #dbc3c3;}
-  	.setaddren{position:absolute;right:0;top:0;background:#d5cece}
-  	.defaulad{background:#acaaaa}
-  	.tools{right:0;bottom: 0;}
-  	.address{width:80%}
-  	.tools{width:20%;padding: 0.5rem 0 0 0.2rem;    color: blue;}
-  	.address,.tools{float:left}
-  	.addname{margin-right:1.5rem}
-  </style>
+  
   <loader v-show="$loadingRouteData"></loader>
   <ul>
-  	<li class="m-milkcard defaultadd" v-for="addre in address">
+  	<li class="m-milkcard" :class="{defaultadd:addre.default_status==1}" v-for="addre in address">
       <div class="addresscont">
       	<p class="addinfo"><i class="addname">{{addre.name}}</i>{{addre.phone}}</p>
       	<div class="">
@@ -185,12 +172,7 @@
 //          this.trackrShow = true
 //        }
 //      }
-    },
-	watch:{
-			address:function(newadd,oldnew){
-				
-			}
-	},
+   },
     methods: {
     	 phoneVerified: function (value) {
         return /^1[3|4|5|7|8]\d{9}$/.test(value)
@@ -204,7 +186,7 @@
     		})
     		this.$http.get('/subscribe/address/' +self.settargetid+'/edit/1/'+addobj.id).then(
 	      	function (data) {
-	      		if(data.datastatus==1){
+	      		if(data.data.status==1){
 	      			self.address.map(function(val){
 	      				val.default_status=0
 	      			})
@@ -232,8 +214,37 @@
       deladdr:function(addr){
       	var self = this
       	
-				if (window.confirm('是否确认删除?')) {     
-		          	this.$http.delete('/subscribe/address/' + (addr.id)).then(
+				if (window.confirm('是否确认删除?')) {   
+								var setfaultid=null;
+							  if(addr.default_status==1&&self.address.length>=2){
+							  	 self.address.map(function(val){
+							  	 		if(val.default_status!=1){
+							  	 			setfaultid=val.id
+							  	 		}
+							  	 })
+							  	 this.$http.put('/subscribe/addressDelete/' + (addr.id)+'/'+setfaultid).then(
+				          	function (data) {
+					           	self.address.$remove(addr)
+					           	self.address.map(function(val,index){
+								  	 		if(val.id==setfaultid){
+								  	 		
+
+								  	 			self.address[index].default_status=1
+								  	 			self.address.$set(index,self.address[index])
+								  	 		
+								  	 		}
+							  	 		})
+					           	if(self.address.length==0){
+												self.defaultaddre=1
+											}else{
+												self.defaultaddre=2
+											}
+				          	},
+				          	function (data) {
+				          		alert(data.data.message)
+				          	})
+							  }else{
+							  	this.$http.delete('/subscribe/address/' + (addr.id)).then(
 			          	function (data) {
 				           	self.address.$remove(addr)
 				           	if(self.address.length==0){
@@ -243,9 +254,10 @@
 										}
 			          	},
 			          	function (data) {
-			          		alert(data)
-			          	}
-		        		)
+			          		alert(data.data.message)
+			          	})
+							  }
+		          	
 		        }
 		     },
 	     onSubmit: function () {
@@ -281,11 +293,18 @@
 			        var self = this
 			        self.formData.district_id = self.selectDist.id
 			        self.formData.street = ''
-			       console.log(self.formData)
+			       
 			          self.$http.put('/subscribe/addressUpdate/'+self.formData.id, self.formData).then(
 			          function (data) {
+			          		self.address.map(function(val,index){
+						    			if(val.id==data.data.data.id){    				
+						    				self.address.$set(index,data.data.data)
+						    			}
+						    		})
 			           // self.$route.router.go('/subscribe/myaddress/addrlist')
 			           self.chageshow=false;
+			              self.adrProcess = false
+			            self.working = false
 	//		            self.orderData.address_id = data.data.data.id
 	//		            self.selectedAdr = data.data.data
 	//		            self.addresses.push(data.data.data)
@@ -1015,6 +1034,18 @@
  	    min-height: 100%;
  }
  .m-fixed-nav{
- 	position:static !important;
+ 	position:fixed;
  }
+ /**/
+.addresscont .addinfo{width:80%;}
+  	.addresscont p{padding: 0.5rem 0;}
+  	.m-milkcard i{font-style: normal;}
+  	.addinfo{border-bottom: 1px solid #dbc3c3;}
+  	.setaddren{position:absolute;right:0;top:0;background:#d5cece}
+  	.defaulad{background:#acaaaa}
+  	.tools{right:0;bottom: 0;}
+  	.address{width:80%}
+  	.tools{width:20%;padding: 0.5rem 0 0 0.2rem;    color: blue;}
+  	.address,.tools{float:left}
+  	.addname{margin-right:1.5rem}
 </style>

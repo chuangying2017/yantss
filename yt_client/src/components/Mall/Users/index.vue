@@ -83,7 +83,7 @@
       </li>
        <li>
         <a v-link="{ path: '/subscribe/myaddress/addrlist' }">
-          <i class="icon-card"></i> 我的收货地址
+          <i class="iconfont">&#xe632;</i> 我的收货地址
           <i class="iconfont fr">&#xe603;</i>
         </a>
       </li>

@@ -211,7 +211,7 @@
         {{addre.province}}{{addre.city}}{{addre.district}}{{addre.street}}{{addre.detail}}<br>
         {{addre.name}}{{addre.phone}}
       </div>
-      <a href="#" class="add-link" @click.prevent="addAdrView = true" v-show="addresses.length && !addAdrView&&alladre">+
+      <a href="#" class="add-link" @click.prevent="addAdrView = true" v-show="(addresses.length && !addAdrView&&alladre)||(addresses.length==1 && !addAdrView)">+
         创建新地址 </a>
       <a href="#" class="add-link" @click.prevent="alladre = !alladre" v-show="addresses.length>1&& !addAdrView">
         显示全部地址</a>
@@ -644,8 +644,22 @@
 		 	if(val==3){
 		 		if(that.addresses.length==0||that.addresses==undefined){
 		 			that.addAdrView = true
+		 			return false;
+		 		}else if(that.addresses.length>0&&that.hasdefaultaddr()!=1){
+		 			if(that.hasdefaultaddr()==2){
+		 				alert("默认地址不能为多个，请取消一个！")
+		 				that.$route.router.go('/subscribe/myaddress/addrlist')
+		 				return false;
+		 			}
+		 			if(that.hasdefaultaddr()==0){
+		 				alert("请到个人中心设置默认地址！")
+		 				that.$route.router.go('/subscribe/myaddress/addrlist')
+		 				return false;
+		 			}
+		 			return false;
 		 		}else{
-		 			console.log(1)
+		 			that.addAdrView = false
+		 		
 		 			var point
 		 			var map = new BMap.Map("allmap");
 		 			that.addresses.map(function(val){
@@ -671,6 +685,25 @@
   
 
     methods: { 
+    	//地址是否有默认地址
+    	hasdefaultaddr:function(){
+    		var self=this
+    		var temNumAddr=[]
+    		self.addresses.map(function(val){
+    			 if(val.default_status==1){
+    			 	temNumAddr.push(1)
+    			 }
+    		})
+    		if(temNumAddr.length==1){
+    			return 1
+    		}
+    		if(temNumAddr.length==0){
+    			return 0
+    		}
+    		if(temNumAddr.length>=2){
+    			return 2
+    		}
+    	},
     	//是否开启定位
 //  	getLocation:function() {
 //  		var self=this
@@ -1350,7 +1383,7 @@
   }
   .add-link {
     display: block;
-    margin: 3rem 1rem;
+    /*margin: 3rem 1rem;*/
     padding: 1rem;
     border: 0 none;
     color: #C71A40;
