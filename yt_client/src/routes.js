@@ -1,7 +1,7 @@
 import Auth from './auth/index.js'
 import Utils from './utils.js'
 // auth
-   import Home from './components/Home/index.vue'
+// import Home from './components/Home/index.vue'
    import AuthView from './components/Auth/index.vue'
    import Login from './components/Auth/login.vue'
    import Register from './components/Auth/register.vue'
@@ -39,9 +39,9 @@ import MallPayResult from './components/Mall/Pay/result.vue'
 export default {
   init: function (router) {
     router.map({
-         '/': {
-           component: Home
-         },
+//       '/': {
+//         component: Home
+//       },
          '/auth': {
            component: AuthView,
            subRoutes: {
@@ -326,12 +326,12 @@ export default {
         /**
          * 登陆
          */
-        // if (!Auth.check()) {
-        //   // 检查该条链接是否需要登录后再跳转
-        //   window.localStorage.setItem('backURL', transition.to.path)
-        //   transition.redirect('/auth/wechat')
-        //   return
-        // }
+           if (!Auth.check()) {
+             // 检查该条链接是否需要登录后再跳转
+             window.localStorage.setItem('backURL', transition.to.path)
+             transition.redirect('/auth/wechat')
+             return
+           }
 
         return 'next'
       }
@@ -348,13 +348,13 @@ export default {
     }
 
     let locatorTransition = function(transition){
-      // if(transition.to.checkLocator){
-      //   let result = Utils.checkLocator()
-      //   if(result !== true){
-      //     window.location.replace(result)
-      //     return
-      //   }
-      // }
+         if(transition.to.checkLocator){
+           let result = Utils.checkLocator()
+           if(result !== true){
+             window.location.replace(result)
+             return
+           }
+         }
       let result = Utils.checkLocator()
       if(result !== true){
         window.location.replace(result)

@@ -16,7 +16,7 @@
     <!--<img src="http://o7tep4eu1.bkt.clouddn.com/banner1.png" alt="">-->
     <!--</swipe-item>-->
     <swipe-item>
-      <img class="imgBanner" :src="urlMsh" alt="">
+      <img class="imgBanner" :src="cat.big_image" alt="">
     </swipe-item>
   </swipe>
   <div class="m-nav">
@@ -69,7 +69,7 @@
       return {
         products: [],
         cat: {},
-        urlMsh: "http://yt.l43.cn/images/"+this.$route.query.cat+".jpg"
+        //urlMsh:null //"http://yt.l43.cn/images/"+this.$route.query.cat+".jpg"
       }
     },
     route: {
