@@ -884,7 +884,7 @@
 
   #yt-mall .m-article .content img {
     display: block;
-    width: 100%;
+    width: 100% !important;
     height: auto;
   }
 
@@ -1015,7 +1015,7 @@
   }
 
   #yt-mall .m-home-grid.m-home-grid-icon a {
-    padding: .5rem;
+    padding:.5rem;
     color: #421F2E;
   }
 
@@ -1114,7 +1114,7 @@
 
   #yt-mall .m-nav a {
     display: block;
-    padding: 0 1rem 1rem 1rem;
+    padding: 1rem;
     text-align: center;
     color: #421F2E;
   }

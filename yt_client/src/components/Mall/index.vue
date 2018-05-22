@@ -1021,7 +1021,7 @@
   }
 
   #yt-mall .m-home-grid.m-home-grid-icon a {
-    padding: .5rem;
+    padding: 1rem .5rem 0;
     color: #421F2E;
   }
 
@@ -1119,7 +1119,7 @@
 
   #yt-mall .m-nav a {
     display: block;
-    padding: 0 1rem 1rem 1rem;
+    padding: 1rem;
     text-align: center;
     color: #421F2E;
   }

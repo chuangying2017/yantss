@@ -310,7 +310,9 @@
     height: 11.05rem;
     display: block;
     position: absolute;
-    top: 1.6rem;}
+    top: 1.6rem;margin: auto;
+    left: 0;
+    right: 0;}
       		 .milktitle{font-size: 1.3rem;position:absolute;top: -11rem;    font-size: 12px;overflow:hidden; 
 
 text-overflow:ellipsis;
