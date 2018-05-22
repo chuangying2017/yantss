@@ -15,7 +15,7 @@
   
   <loader v-show="$loadingRouteData"></loader>
   <ul>
-  	<li class="m-milkcard" :class="{defaultadd:addre.default_status==1}" v-for="addre in address">
+  	<li class="m-milkcard" v-for="addre in address">
       <div class="addresscont">
       	<p class="addinfo"><i class="addname">{{addre.name}}</i>{{addre.phone}}</p>
       	<div class="">
@@ -1041,11 +1041,15 @@
   	.addresscont p{padding: 0.5rem 0;}
   	.m-milkcard i{font-style: normal;}
   	.addinfo{border-bottom: 1px solid #dbc3c3;}
-  	.setaddren{position:absolute;right:0;top:0;background:#d5cece}
-  	.defaulad{background:#acaaaa}
+  	.setaddren{position:absolute;right:0;top:0;}
+  	.defaulad{color: #C71A40;}
   	.tools{right:0;bottom: 0;}
   	.address{width:80%}
-  	.tools{width:20%;padding: 0.5rem 0 0 0.2rem;    color: blue;}
+  	.tools{width:20%;padding: 0.5rem 0 0 0.2rem;    color: #000;}
+  	.tools i{position:absolute;right:0}
+  	.tools .change{right: 3.5rem !important;}
   	.address,.tools{float:left}
   	.addname{margin-right:1.5rem}
+  	.m-milkcard{font-size:1.4rem;background: #f2f2f2;}
+  	
 </style>
