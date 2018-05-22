@@ -105,7 +105,7 @@
         </div>
       </div>
       <div class="wrap" v-if="product.dismode==1">
-        <span class="qty f-table-cell" style="vertical-align: top;">数量</span>
+        <span class="qty f-table-cell" style="vertical-align: center;">数量</span>
         <div class="f-table-cell">
           <counter :qty.sync="sku.per_day" :min="1" :max="9999"></counter><span class="qty">{{product.skus.unit}}</span>
         </div>

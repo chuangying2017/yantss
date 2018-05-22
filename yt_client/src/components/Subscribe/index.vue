@@ -884,7 +884,7 @@
 
   #yt-mall .m-article .content img {
     display: block;
-    width: 100% !important;
+    
     height: auto;
   }
 

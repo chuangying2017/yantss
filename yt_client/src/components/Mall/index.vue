@@ -890,7 +890,7 @@
 
   #yt-mall .m-article .content img {
     display: block;
-    width: 100%;
+    width: 100% !important;
     height: auto;
   }
 
@@ -1122,6 +1122,7 @@
     padding: 1rem;
     text-align: center;
     color: #421F2E;
+    padding-top:2rem
   }
 
   #yt-mall .m-nav a.s-active {
