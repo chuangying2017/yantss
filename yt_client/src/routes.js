@@ -1,13 +1,13 @@
 import Auth from './auth/index.js'
 import Utils from './utils.js'
 // auth
-// import Home from './components/Home/index.vue'
-// import AuthView from './components/Auth/index.vue'
-// import Login from './components/Auth/login.vue'
-// import Register from './components/Auth/register.vue'
-// import Logout from './components/Auth/logout.vue'
-// import Wechat from './components/Auth/wechat.vue'
-// import WechatAuth from './components/Auth/wechatAuth.vue'
+   import Home from './components/Home/index.vue'
+   import AuthView from './components/Auth/index.vue'
+   import Login from './components/Auth/login.vue'
+   import Register from './components/Auth/register.vue'
+   import Logout from './components/Auth/logout.vue'
+   import Wechat from './components/Auth/wechat.vue'
+   import WechatAuth from './components/Auth/wechatAuth.vue'
 // subscribe
 import Subs from './components/Subscribe/init.vue'
 import SubsView from './components/Subscribe/index.vue'
@@ -39,36 +39,36 @@ import MallPayResult from './components/Mall/Pay/result.vue'
 export default {
   init: function (router) {
     router.map({
-//       '/': {
-//         component: Home
-//       },
-//       '/auth': {
-//         component: AuthView,
-//         subRoutes: {
-//           '/login': {
-//             component: Login,
-//             guest: true
-//           },
-//           '/register': {
-//             component: Register,
-//             guest: true
-//           },
-//           '/logout': {
-//             component: Logout,
-//             auth: true
-//           },
-//           '/wechat': {
-//             component: Wechat,
-//             guest: true,
-//             name: '微信授权'
-//           },
-//           '/wechatAuth': {
-//             component: WechatAuth,
-//             guest: true,
-//             name: '微信登陆'
-//           }
-//         }
-//       },
+         '/': {
+           component: Home
+         },
+         '/auth': {
+           component: AuthView,
+           subRoutes: {
+             '/login': {
+               component: Login,
+               guest: true
+             },
+             '/register': {
+               component: Register,
+               guest: true
+             },
+             '/logout': {
+               component: Logout,
+               auth: true
+             },
+             '/wechat': {
+               component: Wechat,
+               guest: true,
+               name: '微信授权'
+             },
+             '/wechatAuth': {
+               component: WechatAuth,
+               guest: true,
+               name: '微信登陆'
+             }
+           }
+         },
       '/subscribe': {
         component: SubsView,
         auth: true,
