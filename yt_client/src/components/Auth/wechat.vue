@@ -11,9 +11,11 @@
         self.$http.get('/auth/login/weixin?role=client').then(
           function (data) {
             // 获取成功，准备跳转
-            console.log(data)
+            
             var url = data.data.data.url
+            alert(url)
             window.location.href = url
+            
           },
           function (data) {
             // 获取失败，回到首页

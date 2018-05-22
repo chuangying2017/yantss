@@ -659,12 +659,12 @@
 		 			return false;
 		 		}else{
 		 			that.addAdrView = false
-		 		
+		 			
 		 			var point
 		 			var map = new BMap.Map("allmap");
 		 			that.addresses.map(function(val){
 		 				if(val.default_status==1){
-		 					
+		 					that.orderData.address_id = val.id
 		 				  point = new BMap.Point(val.latitude,val.longitude);
 						
 		 				}
@@ -764,9 +764,9 @@
           return item.id === self.selectedAdrId
         })
       
-     this.orderData.address_id = this.selectedAdrId
+     		this.orderData.address_id = this.selectedAdrId
         console.log(this.selectedAdrId)
-       this.adrView = false
+       	this.adrView = false
       },
       onSubmit: function () {
         var self = this

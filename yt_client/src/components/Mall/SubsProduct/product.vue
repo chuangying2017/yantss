@@ -29,22 +29,27 @@
       </div>
       <div class="wrap">
         <h1 class="title">{{ product.title }} </h1>
-        <p><span class="price">{{ product.price * sku.quantity | currency '￥' }}</span>
+        <p v-if="product.dismode!=1"><span class="price">{{ product.price * sku.quantity | currency '￥' }}</span>
+          <!--<span class="origin">￥219</span>-->
+          <span class="sales fr">产品单价：￥{{product.price}}</span>
+        </p>
+        <p v-else><span class="price">{{ product.price * sku.per_day| currency '￥' }}</span>
           <!--<span class="origin">￥219</span>-->
           <span class="sales fr">产品单价：￥{{product.price}}</span>
         </p>
       </div>
-      <div class="wrap">
-        <span class="spec f-table-cell">总数量</span>
+      <!--fafesef-->
+      <div class="wrap" v-if="product.dismode!=1">
+       <span class="spec f-table-cell">总数量</span>
         <!-- 修改单位 -->
-        <div class="f-table-cell" v-if="product.dismode==1">
+        <!--<div class="f-table-cell">
               <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="1"
                        :id="'q' + product.id + '1'"> <label
                 :for="'q' + product.id + '1'">1{{product.skus.unit}}</label>
               </span>
-        </div>
-        <div class="f-table-cell" v-else>
+        </div>-->
+        <div class="f-table-cell">
           <!--<span class="m-check">-->
           <!--<input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="20"-->
           <!--:id="'q' + product.id + '20'"> <label-->
@@ -87,18 +92,25 @@
           <!--</span>-->
         </div>
       </div>
-      <div class="wrap">
+      <div class="wrap" v-if="product.dismode!=1">
         <span class="qty f-table-cell">单位</span>
         <div class="f-table-cell">
           <span class="qty f-table-cell">{{product.skus.unit}}</span>
         </div>
       </div>
-      <div class="wrap">
+      <div class="wrap" v-if="product.dismode!=1">
         <span class="qty f-table-cell">每日送</span>
         <div class="f-table-cell">
           <counter :qty.sync="sku.per_day" :min="1" :max="9999"></counter>
         </div>
       </div>
+      <div class="wrap" v-if="product.dismode==1">
+        <span class="qty f-table-cell">数量</span>
+        <div class="f-table-cell">
+          <counter :qty.sync="sku.per_day" :min="1" :max="9999"></counter>{{product.skus.unit}}
+        </div>
+      </div>
+      <!--fesfesf-->
       <!--<attr v-for="attr in product.attributes" :attr="attr" :index="$index"></attr>-->
     </div>
     <div class="m-article">
