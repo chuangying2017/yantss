@@ -498,7 +498,7 @@
   }
 
   #yt-mall .f-mg-bottom {
-    margin-bottom: 1.5rem;
+    /*margin-bottom: 1.5rem;*/
   }
 
   #yt-mall .f-border-bottom {
@@ -1118,7 +1118,7 @@
 
   #yt-mall .m-nav a {
     display: block;
-    padding: 1rem;
+    padding: 0 1rem 1rem 1rem;
     text-align: center;
     color: #421F2E;
   }

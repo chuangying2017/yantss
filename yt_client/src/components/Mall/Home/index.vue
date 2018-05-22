@@ -307,8 +307,18 @@
     }
     .milkr,.milkl{float:left}
     .milkr img{    width: 5.5rem;
-    height: 15.5rem;}
-      		 .milktitle{font-size: 1.3rem;position:absolute;top: -12rem;    font-size: 12px;}
+    height: 13.5rem;}
+      		 .milktitle{font-size: 1.3rem;position:absolute;top: -9rem;    font-size: 12px;overflow:hidden; 
+
+text-overflow:ellipsis;
+
+display:-webkit-box; 
+
+/* autoprefixer: off*/
+-webkit-box-orient: vertical;
+/* autoprefixer: on*/
+
+-webkit-line-clamp:2; }
       		 .milkmoney{font-size: 1.5rem;
     color: #ff003c;
     padding: 0.3rem;
