@@ -97,7 +97,7 @@
       
       <div class="milk-box">
        		<div class="milkl">
-       			<p class="milktitle">{{product.title}}</p>
+       			<p class="milktitle" style="-webkit-box-orient: vertical;">{{product.title}}</p>
        			<p class="milkmoney"><i class="milkicon">￥</i>{{product.price}}</p>
        			<div class="milkbuy">立即购买></div>
        		</div>
@@ -306,9 +306,12 @@
        margin-left: 1.2rem;
     }
     .milkr,.milkl{float:left}
-    .milkr img{    width: 5.5rem;
-    height: 13.5rem;}
-      		 .milktitle{font-size: 1.3rem;position:absolute;top: -9rem;    font-size: 12px;overflow:hidden; 
+    .milkr img{      width: 5.5rem;
+    height: 11.05rem;
+    display: block;
+    position: absolute;
+    top: 1.6rem;}
+      		 .milktitle{font-size: 1.3rem;position:absolute;top: -11rem;    font-size: 12px;overflow:hidden; 
 
 text-overflow:ellipsis;
 
@@ -317,12 +320,13 @@ display:-webkit-box;
 /* autoprefixer: off*/
 -webkit-box-orient: vertical;
 /* autoprefixer: on*/
+-webkit-box-orient: vertical;
 
 -webkit-line-clamp:2; }
       		 .milkmoney{font-size: 1.5rem;
     color: #ff003c;
     padding: 0.3rem;
-    font-weight: 600;position:absolute;    bottom: 2.6rem;}
+    font-weight: 600;position:absolute;    bottom: 3.6rem;}
       		 .milkicon{font-style:normal;font-size:1.2rem}
       		 .milkbuy{background: #ff003c;
     color: #fff;
@@ -330,7 +334,7 @@ display:-webkit-box;
     width: 6.1rem;
     padding: 0.5em;
     padding-top:0.4em;
-    border-radius: 0.3rem;position:absolute;bottom: 0.2rem;}
+    border-radius: 0.3rem;position:absolute;bottom: 1.2rem;}
     .pure-u-1-2 {
     
     min-height: 16rem !important;

@@ -834,6 +834,7 @@
   }
 
   #yt-mall .m-count input {
+ 
     -webkit-appearance: none;
     padding: .5rem 1rem;
     border: 0 none;

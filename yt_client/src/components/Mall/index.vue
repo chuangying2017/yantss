@@ -840,6 +840,7 @@
   }
 
   #yt-mall .m-count input {
+  	height:100%;
     -webkit-appearance: none;
     padding: .5rem 1rem;
     border: 0 none;
