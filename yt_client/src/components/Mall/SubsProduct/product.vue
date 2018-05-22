@@ -53,38 +53,44 @@
           <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="30"
                        :id="'q' + product.id + '30'"> <label
-            :for="'q' + product.id + '30'">30{{product.skus.unit}}</label>
+            :for="'q' + product.id + '30'">30</label>
               </span>
           <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="60"
                        :id="'q' + product.id + '60'"> <label
-            :for="'q' + product.id + '60'">60{{product.skus.unit}}</label>
+            :for="'q' + product.id + '60'">60</label>
               </span>
           <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="90"
                        :id="'q' + product.id + '90'"> <label
-            :for="'q' + product.id + '90'">90{{product.skus.unit}}</label>
+            :for="'q' + product.id + '90'">90</label>
               </span>
             <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="120"
                        :id="'q' + product.id + '120'"> <label
-            :for="'q' + product.id + '120'">120{{product.skus.unit}}</label>
+            :for="'q' + product.id + '120'">120</label>
               </span>
             <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="150"
                        :id="'q' + product.id + '150'"> <label
-            :for="'q' + product.id + '150'">150{{product.skus.unit}}</label>
+            :for="'q' + product.id + '150'">150</label>
               </span>
             <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="180"
                        :id="'q' + product.id + '180'"> <label
-            :for="'q' + product.id + '180'">180{{product.skus.unit}}</label>
+            :for="'q' + product.id + '180'">180</label>
               </span>
           <!--<span class="m-check">-->
           <!--<input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="180"-->
           <!--:id="'q' + product.id + '180'"> <label-->
           <!--:for="'q' + product.id + '180'">180瓶</label>-->
           <!--</span>-->
+        </div>
+      </div>
+      <div class="wrap">
+        <span class="qty f-table-cell">单位</span>
+        <div class="f-table-cell">
+          <span class="qty f-table-cell">{{product.skus.unit}}</span>
         </div>
       </div>
       <div class="wrap">

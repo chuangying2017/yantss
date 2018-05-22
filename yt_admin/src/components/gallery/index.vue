@@ -51,19 +51,20 @@
     events: {
       'confirm': function (images) {
         if (typeof this.url === 'string') {
-        	console.log("s")
-        	console.log(images)
+         console.log('a')
+        
           this.url = images[0]['url']
           this.close()
         } else if (this.cb) {
-          console.log('b')
+       console.log('aa')
           this.cb(images)
         } else {
           if(this.coverlimit==1){
           	this.coverimgs = images
-          	
+          	   console.log('b')
           }else{
           	this.images = images
+          	   console.log('bc')
           }
           
         }

@@ -13,6 +13,7 @@
           code: self.$route.query.code
         }).then(
           function (data) {
+          	console.log(data)
             // 成功获取token
             Auth.login(data.data.data.token)
             self.loginSuccess(data.data.data.token)
