@@ -1022,8 +1022,8 @@
   #yt-mall .m-home-grid.m-home-grid-icon .icon {
     display: block;
     margin: 0 auto;
-    width: 60px;
-    height: 68px;
+    width: 55px;
+    height: 62px;
     background: #C71A40;
     border-radius: .8rem;
     text-align: center;
