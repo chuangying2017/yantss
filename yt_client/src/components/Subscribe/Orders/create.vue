@@ -1006,7 +1006,7 @@
 
   #yt-mall .m-pd-item .thumbnail {
     width: 5rem;
-    height: 5rem;
+    height: 8rem;
   }
 
   #yt-mall .m-pd-item .price {
