@@ -87,7 +87,7 @@
       <div class="wrap" v-if="product.dismode==1">
         <span class="qty f-table-cell" style="vertical-align: center;">数量</span>
         <div class="f-table-cell">
-          <counter :qty.sync="sku.per_day" :min="1" :max="9999"></counter><span class="qty">{{product.skus.unit}}</span>
+          <counter :qty.sync="sku.per_day" :min="1" :max="9999"></counter><span class="qty">{{product.unit}}</span>
         </div>
       </div>
           <button @click.prevent="addToCart" class="u-nav-btn u-btn-primary mt10">添加到购物车</button>

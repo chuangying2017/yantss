@@ -112,7 +112,7 @@
 
   #yt-mall .m-pd-item .thumbnail {
     width: 8rem;
-    height: 8rem;
+    height: 13.3rem;
   }
 
   #yt-mall .pd-item-right {

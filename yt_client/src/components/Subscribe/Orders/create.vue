@@ -328,7 +328,7 @@
             <span class="title">{{sku.name}}</span>
           </div>
           <div class="pure-u-1-2">
-            <a @click.prevent="step = 1"><span class="content">{{sku.quantity}}{{sku.unit}}/每日{{sku.per_day}}{{sku.unit}}</span></a>
+            <a @click.prevent="step = 1"><span class="content"><i v-if="sku.dismode==2">{{sku.quantity}}{{sku.unit}}/每日</i>{{sku.per_day}}{{sku.unit}}</span></a>
           </div>
         </div>
       </div>
@@ -664,6 +664,7 @@
 		 			var map = new BMap.Map("allmap");
 		 			that.addresses.map(function(val){
 		 				if(val.default_status==1){
+		 					that.selectedAdr = val
 		 					that.orderData.address_id = val.id
 		 				  point = new BMap.Point(val.latitude,val.longitude);
 						
@@ -1006,7 +1007,7 @@
 
   #yt-mall .m-pd-item .thumbnail {
     width: 5rem;
-    height: 8rem;
+    height: 8.3rem;
   }
 
   #yt-mall .m-pd-item .price {
