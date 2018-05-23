@@ -99,7 +99,7 @@
        		<div class="milkl">
        			<p class="milktitle" style="-webkit-box-orient: vertical;">{{product.title}}</p>
        			<p class="milkmoney"><i class="milkicon">￥</i>{{product.price}}</p>
-       			<div class="milkbuy">立即购买></div>
+       			<!--<div class="milkbuy">立即购买></div>-->
        		</div>
        		<div class="milkr">
        			<img :src="product.cover_image" alt="" />
@@ -307,11 +307,11 @@
   }
   
   .milkr {
-  	width: 56%;
-  	height:16rem;
-  	/*left: 46%;*/
-  	position: relative;
-  	  
+  
+  	     width: 47%;
+    height: 16rem;
+    position: relative;
+    margin-left: 1rem; 
   	/*margin-left: 1.2rem;*/
   }
   
@@ -334,10 +334,10 @@
   }
   
   .milktitle {
-  	font-size: 1.3rem;
+  
   	/*position: absolute;*/
-  	margin-top:7rem;
-  	font-size: 12px;
+  	
+  
   	overflow: hidden;
   	text-overflow: ellipsis;
   	display: -webkit-box;
@@ -346,15 +346,20 @@
   	/* autoprefixer: on*/
   	-webkit-box-orient: vertical;
   	-webkit-line-clamp: 2;
+  	
+  	margin-top: 4.5rem;
+    font-size: 13px;
+   
+    
   }
   
   .milkmoney {
-  	font-size: 1.5rem;
-  	color: #ff003c;
-  	padding: 0.3rem;
-  	font-weight: 600;
-  	position: absolute;
-  	top:10rem
+  	       font-size: 1.5rem;
+    color: #ff003c;
+    padding: .3rem;
+    font-weight: 600;
+    position: absolute;
+    top: 9rem;
   }
   
   .milkicon {
