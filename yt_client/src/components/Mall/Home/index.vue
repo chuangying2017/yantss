@@ -294,54 +294,90 @@
    
   }
   /**/
- .milk-box{position:relative;}
-      	.milkl{width: 55%;
-    position: absolute;
-    padding-left: 1rem;
-    bottom: -14rem;}
-    .milkr{   width: 44%;
-    min-height: 14rem;
-    left: 46%;
-    position: absolute;
-       margin-left: 1.2rem;
-    }
-    .milkr,.milkl{float:left}
-    .milkr img{      width: 5.5rem;
-    height: 11.05rem;
-    display: block;
-    position: absolute;
-    top: 1.6rem;margin: auto;
-    left: 0;
-    right: 0;}
-      		 .milktitle{font-size: 1.3rem;position:absolute;top: -11rem;    font-size: 12px;overflow:hidden; 
-
-text-overflow:ellipsis;
-
-display:-webkit-box; 
-
-/* autoprefixer: off*/
--webkit-box-orient: vertical;
-/* autoprefixer: on*/
--webkit-box-orient: vertical;
-
--webkit-line-clamp:2; }
-      		 .milkmoney{font-size: 1.5rem;
-    color: #ff003c;
-    padding: 0.3rem;
-    font-weight: 600;position:absolute;    bottom: 3.6rem;}
-      		 .milkicon{font-style:normal;font-size:1.2rem}
-      		 .milkbuy{background: #ff003c;
-    color: #fff;
-    text-align: center;
-    width: 6.1rem;
-    padding: 0.5em;
-    padding-top:0.4em;
-    border-radius: 0.3rem;position:absolute;bottom: 1.2rem;}
-    .pure-u-1-2 {
-    
-    min-height: 16rem !important;
-}
- /* .milk-box .cover{
+  
+  .milk-box {
+  	position: relative;
+  }
+  
+  .milkl {
+  	width: 43%;
+  	/*position: absolute;*/
+  	padding-left: 1rem;
+  	bottom: -14rem;
+  }
+  
+  .milkr {
+  	width: 56%;
+  	height:16rem;
+  	/*left: 46%;*/
+  	position: relative;
+  	  
+  	/*margin-left: 1.2rem;*/
+  }
+  
+  .milkr,
+  .milkl {
+  	float: left
+  }
+  
+  .milkr img {
+  	width: 80%;
+  	    position: absolute;
+    bottom: 1.4rem;
+  	/*height: auto;*/
+  	display: block;
+  	/*position: absolute;*/
+  	/*top: 1.6rem;*/
+  	margin: auto;
+  	left: 0;
+  	right: 0;
+  }
+  
+  .milktitle {
+  	font-size: 1.3rem;
+  	/*position: absolute;*/
+  	margin-top:7rem;
+  	font-size: 12px;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+  	display: -webkit-box;
+  	/* autoprefixer: off*/
+  	-webkit-box-orient: vertical;
+  	/* autoprefixer: on*/
+  	-webkit-box-orient: vertical;
+  	-webkit-line-clamp: 2;
+  }
+  
+  .milkmoney {
+  	font-size: 1.5rem;
+  	color: #ff003c;
+  	padding: 0.3rem;
+  	font-weight: 600;
+  	position: absolute;
+  	top:10rem
+  }
+  
+  .milkicon {
+  	font-style: normal;
+  	font-size: 1.2rem
+  }
+  
+  .milkbuy {
+  	background: #ff003c;
+  	color: #fff;
+  	text-align: center;
+  	width: 6.1rem;
+  	padding: 0.5em;
+  	padding-top: 0.4em;
+  	border-radius: 0.3rem;
+  	position: absolute;
+  	top:12rem
+  }
+  
+  .pure-u-1-2 {
+  	height: 16rem !important;
+  }
+  /* .milk-box .cover{
     width: 100%;
     padding-bottom: 100%;
     background-size: cover;
@@ -356,13 +392,13 @@ display:-webkit-box;
     color: #000;
     font-size: 1.4rem;
     /*background: red; !* For browsers that do not support gradients *!*/
-    /*background: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); !* For Safari 5.1 to 6.0 *!*/
-    /*background: -o-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); !* For Opera 11.1 to 12.0 *!*/
-    /*background: -moz-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); !* For Firefox 3.6 to 15 *!*/
-    /*background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); !* Standard syntax *!*/
-    /*position: absolute;*/
-    /*bottom: 0;*/
-    /*width: 100%;
+  /*background: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); !* For Safari 5.1 to 6.0 *!*/
+  /*background: -o-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); !* For Opera 11.1 to 12.0 *!*/
+  /*background: -moz-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); !* For Firefox 3.6 to 15 *!*/
+  /*background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); !* Standard syntax *!*/
+  /*position: absolute;*/
+  /*bottom: 0;*/
+  /*width: 100%;
   }
 
   .milk-box .title .main {

@@ -375,7 +375,7 @@
   }
 
   #yt-mall .m-article .content {
-    padding: 1rem 2rem;
+    /*padding: 1rem 2rem;*/
   }
   .spec{vertical-align: top !important;width:5rem !important;}
 </style>

@@ -111,7 +111,7 @@
   }
 
   #yt-mall .m-pd-item .thumbnail {
-    width: 3.8rem;
+    width: 4rem;
     height: auto;
   }
 

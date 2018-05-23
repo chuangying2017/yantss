@@ -885,7 +885,7 @@
   }
 
   #yt-mall .m-article .content {
-    padding: 1rem;
+    /*padding: 1rem;*/
   }
 
   #yt-mall .m-article .content img {
@@ -1028,8 +1028,8 @@
   #yt-mall .m-home-grid.m-home-grid-icon .icon {
     display: block;
     margin: 0 auto;
-    width: 50px;
-    height: 50px;
+    width: 66px;
+    height: 66px;
     background: #C71A40;
     border-radius: .8rem;
     text-align: center;
