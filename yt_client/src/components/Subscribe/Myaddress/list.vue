@@ -197,7 +197,7 @@
 //	        	self.address=data.data.addresses;
 	      	},
 	      	function (data) {
-	      		alert(data.data)
+	      		alert(data.data.msg)
 	      	}
 	      )
     	},

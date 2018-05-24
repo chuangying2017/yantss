@@ -19,7 +19,7 @@
           },
           function (data) {
             // 获取失败，回到首页
-            console.log(data)
+          
             window.alert('获取微信登录链接失败，请重试')
             self.$route.router.go('/')
           }

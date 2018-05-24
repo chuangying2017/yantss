@@ -13,7 +13,7 @@
           code: self.$route.query.code
         }).then(
           function (data) {
-          	console.log(data)
+  
             // 成功获取token
             Auth.login(data.data.data.token)
             self.loginSuccess(data.data.data.token)
@@ -39,7 +39,7 @@
           },
           function (data) {
             // 获取token失败
-            console.log(data)
+           
             window.alert('获取登录令牌失败，请重试')
             self.$route.router.go('/')
           }

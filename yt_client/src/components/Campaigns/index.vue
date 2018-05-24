@@ -26,7 +26,7 @@
             transition.next()
           },
           function (data) {
-            console.log(data)
+//          console.log(data)
             transition.next()
           }
         )

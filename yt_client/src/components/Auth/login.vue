@@ -56,7 +56,7 @@
                   self.$route.router.go('/')
                 },
                 function (data) {
-                  console.log(data)
+                  
                 }
               )
             }

@@ -138,8 +138,7 @@
     // 修改单位
     events: {
       checkUnit: function (unit) {
-        console.log(unit)
-        if (['箱', '杯'].indexOf(unit) > -1) {
+        if (this.product.dismode==1) {
           this.sku = {
             quantity: 1,
             per_day: 1
@@ -150,6 +149,17 @@
             per_day: 1
           }
         }
+//      if (['箱', '杯'].indexOf(unit) > -1) {
+//        this.sku = {
+//          quantity: 1,
+//          per_day: 1
+//        }
+//      } else {
+//        this.sku = {
+//          quantity: 30,
+//          per_day: 1
+//        }
+//      }
       }
     }
   }

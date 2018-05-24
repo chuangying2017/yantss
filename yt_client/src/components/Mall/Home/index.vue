@@ -300,7 +300,7 @@
   }
   
   .milkl {
-  	width: 43%;
+  	width: 59%;
   	/*position: absolute;*/
   	padding-left: 1rem;
   	bottom: -14rem;
@@ -308,10 +308,10 @@
   
   .milkr {
   
-  	     width: 47%;
+  	     width: 41%;
     height: 17rem;
     position: relative;
-    margin-left: 1rem; 
+    /*margin-left: 1rem;*/ 
   	/*margin-left: 1.2rem;*/
   }
   
@@ -321,7 +321,7 @@
   }
   
   .milkr img {
-  	width: 80%;
+  	width: 100%;
   	    position: absolute;
     bottom: 1.4rem;
   	/*height: auto;*/
@@ -348,7 +348,7 @@
   	-webkit-box-orient: vertical;
   	-webkit-line-clamp: 2;
   	
-  	margin-top: 6.5rem;
+  	margin-top: 5.5rem;
     font-size: 13px;
    
     

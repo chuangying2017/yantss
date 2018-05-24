@@ -100,13 +100,13 @@
           function (data) {
             // console.log(data.data.data)
             self.working = false
-            console.log(data.data.meta.charge)
+//          console.log(data.data.meta.charge)
             // 创建订单成功，调用支付接口
-            console.log(typeof window.XMLHttpRequest)
-            console.log(window.XMLHttpRequest)
+//          console.log(typeof window.XMLHttpRequest)
+//          console.log(window.XMLHttpRequest)
             window.pingpp.createPayment(data.data.meta.charge, function (result, error) {
-              console.log(result)
-              console.log(error)
+//            console.log(result)
+//            console.log(error)
               if (result === 'success') {
                 // 公众号内支付成功
                 self.$route.router.go('/campaigns/tickets?status=')
