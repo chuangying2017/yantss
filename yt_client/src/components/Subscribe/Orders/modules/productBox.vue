@@ -81,7 +81,7 @@
       <div class="wrap" v-if="product.dismode!=1">
         <span class="qty f-table-cell">每日送</span>
         <div class="f-table-cell">
-          <counter :qty.sync="sku.per_day" :min="1" :max="9999"></counter>
+          <counter :qty.sync="sku.per_day" :min="1" :max="sku.quantity"></counter>
         </div>
       </div>
       <div class="wrap" v-if="product.dismode==1">

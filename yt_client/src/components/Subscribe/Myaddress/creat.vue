@@ -110,8 +110,10 @@
 		        console.log(self.formData)
 		        self.$http.post('/subscribe/address', self.formData).then(
 		          function (data) {
+		          	alert("成功")
+		          	alert(data.data.data.district)
 		            self.$route.router.go('/subscribe/myaddress/addrlist')
-		            
+		            alert(1)
 //		            self.orderData.address_id = data.data.data.id
 //		            self.selectedAdr = data.data.data
 //		            self.addresses.push(data.data.data)
