@@ -309,7 +309,7 @@
   .milkr {
   
   	     width: 47%;
-    height: 16rem;
+    height: 17rem;
     position: relative;
     margin-left: 1rem; 
   	/*margin-left: 1.2rem;*/
@@ -331,6 +331,7 @@
   	margin: auto;
   	left: 0;
   	right: 0;
+  	max-height: 15.6rem;
   }
   
   .milktitle {
@@ -347,7 +348,7 @@
   	-webkit-box-orient: vertical;
   	-webkit-line-clamp: 2;
   	
-  	margin-top: 4.5rem;
+  	margin-top: 6.5rem;
     font-size: 13px;
    
     
@@ -359,7 +360,7 @@
     padding: .3rem;
     font-weight: 600;
     position: absolute;
-    top: 9rem;
+    top: 11rem;
   }
   
   .milkicon {
