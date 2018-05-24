@@ -298,10 +298,16 @@
       },
       submit () {
         var self = this
+        if(self.coverimgs.length==0){
+        	alert("请添加商品封面图！")
+        	return false
+        }
         this.getSku()
         api.products.create(this.product).then(function (da) {
           window.alert('创建成功!')
           self.$route.router.go('/dashboard/products/depotpro/list')
+        },function(){
+        	window.alert("创建失败!")
         })
       }
     }
