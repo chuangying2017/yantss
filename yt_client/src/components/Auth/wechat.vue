@@ -11,7 +11,7 @@
         self.$http.get('/auth/login/weixin?role=client').then(
           function (data) {
             // 获取成功，准备跳转
-            
+          
             var url = data.data.data.url
         
             window.location.href = url

@@ -1,7 +1,7 @@
 import Auth from './auth/index.js'
 import Utils from './utils.js'
 // auth
-// import Home from './components/Home/index.vue'
+   import Home from './components/Home/index.vue'
      import AuthView from './components/Auth/index.vue'
    import Login from './components/Auth/login.vue'
    import Register from './components/Auth/register.vue'

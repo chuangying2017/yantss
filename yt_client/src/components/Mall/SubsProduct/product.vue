@@ -215,7 +215,7 @@
             self.product = data.data.data
             self.fav = self.product.favs
             //
-            if (product.dismode==1) {
+            if (self.product.dismode==1) {
               self.sku = {
                 name: null,
                 per_day: 1,
