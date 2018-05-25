@@ -1028,8 +1028,8 @@
   #yt-mall .m-home-grid.m-home-grid-icon .icon {
     display: block;
     margin: 0 auto;
-  	width: 45px;
-    height: 51px;
+  	width: 50px;
+    height: 50px;
     background: #C71A40;
     border-radius: .8rem;
     text-align: center;
