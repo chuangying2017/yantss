@@ -29,8 +29,8 @@ export default {
   },
 
   token: function () {
-    var token = window.localStorage.getItem('jwt-token')
-
+//  var token = window.localStorage.getItem('jwt-token')
+var token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjk0MzU2LCJpc3MiOiJodHRwOlwvXC95dDIubDQzLmNuXC93ZWF6bS15dC1hcGktZmNhNjQ4ZWEwMGU3XC9zZXJ2ZXIucGhwXC9hcGlcL2F1dGhcL2xvZ2luXC93ZWl4aW4iLCJpYXQiOjE1MjI2MzIxNzAsImV4cCI6MTUyMjY2MDk3MCwibmJmIjoxNTIyNjMyMTcwLCJqdGkiOiJENnhqMFlwbHUzWHptRXpSIn0.MJDQvPphMiTROj_y45v8pY6-HNzYIs_XnULs_EftNTQ"
     if (token !== null && token !== undefined) {
       if (this.isTokenExpired(token)) {
         return 'expired'
