@@ -300,7 +300,7 @@
   }
   
   .milkl {
-  	width: 59%;
+  	width: 56%;
   	/*position: absolute;*/
   	padding-left: 1rem;
   	bottom: -14rem;
@@ -328,7 +328,7 @@
     margin: auto;
     left: 0;
     right: 0;
-    max-height: 15.6rem;
+    max-height: 14.4rem;
   
   }
   
@@ -346,7 +346,7 @@
   	-webkit-box-orient: vertical;
   	-webkit-line-clamp: 2;
   	
-  	margin-top: 5.5rem;
+  	margin-top: 4.5rem;
     font-size: 13px;
    
     
