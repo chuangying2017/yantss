@@ -321,7 +321,7 @@
   }
   
   .milkr img {
-  	width: 93%;
+  	width: 95%;
     position: absolute;
     bottom: 2.6rem;
     display: block;
