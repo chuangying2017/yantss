@@ -10,9 +10,10 @@
         // 获取登录链接
         self.$http.get('/auth/login/weixin?role=station').then(
           function (data) {
-          	console.log(data)
+          	
             // 获取成功，准备跳转
             var url = data.data.data.url
+            alert(url)
             window.location.href = url
           },
           function (data) {
