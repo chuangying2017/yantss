@@ -321,14 +321,14 @@
   }
   
   .milkr img {
-  	width: 95%;
+  	width: 96%;
     position: absolute;
-    bottom: 2.6rem;
+    bottom: 2.5rem;
     display: block;
     margin: auto;
     left: 0;
     right: 0;
-    max-height: 14.4rem;
+    max-height: 14.5rem;
   
   }
   
@@ -344,7 +344,7 @@
   	-webkit-box-orient: vertical;
   	/* autoprefixer: on*/
   	-webkit-box-orient: vertical;
-  	-webkit-line-clamp: 2;
+  	-webkit-line-clamp: 3;
   	
   	margin-top: 4.5rem;
     font-size: 13px;
