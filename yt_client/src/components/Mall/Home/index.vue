@@ -321,17 +321,15 @@
   }
   
   .milkr img {
-  	width: 80%;
-  	    position: absolute;
-    bottom: 1.4rem;
-  	/*height: auto;*/
-  	display: block;
-  	/*position: absolute;*/
-  	/*top: 1.6rem;*/
-  	margin: auto;
-  	left: 0;
-  	right: 0;
-  	max-height: 15.6rem;
+  	width: 93%;
+    position: absolute;
+    bottom: 2.8rem;
+    display: block;
+    margin: auto;
+    left: 0;
+    right: 0;
+    max-height: 15.6rem;
+  
   }
   
   .milktitle {
