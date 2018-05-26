@@ -2,7 +2,7 @@
   <div class="search-bar">
     <div class="pure-g">
       <div class="pure-u-3-4">
-        <input type="tel" class="u-input" placeholder="输入手机号码搜索订单" v-model="phone">
+        <input type="tel" class="u-input" placeholder="输入手机号码、姓名、地址搜索订单" v-model="phone">
       </div>
       <div class="pure-u-1-4">
         <button class="u-button" @click.prevent="search" :disabled="!phone"><i class="iconfont">&#xe664;</i> 搜索</button>
