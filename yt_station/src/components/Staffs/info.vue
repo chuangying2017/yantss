@@ -114,7 +114,7 @@
         ]) {
           return {
             staff: staff,
-            bindURL: 'http://yt.l43.cn/yt-staff/#!/bind/' + staff.id + '?bind_token=' + staff.bind_token,
+            bindURL: 'http://yt2.l43.cn/yt-staff/#!/bind/' + staff.id + '?bind_token=' + staff.bind_token,
             staffs: staffs,
             selectStaffs: _.filter(staffs, function (item) {
               return item.id !== staff.id
