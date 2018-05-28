@@ -97,7 +97,7 @@
       
       <div class="milk-box">
        		<div class="milkl">
-       			<p class="milktitle" style="-webkit-box-orient: vertical;">{{product.title}}</p>
+       			<p class="milktitle" style="-webkit-box-orient: vertical;" v-html="product.title"></p>
        			<p class="milkmoney"><i class="milkicon">￥</i>{{product.price}}</p>
        			<!--<div class="milkbuy">立即购买></div>-->
        		</div>
@@ -337,17 +337,17 @@
   	/*position: absolute;*/
   	
   
-  	overflow: hidden;
+  	/*overflow: hidden;
   	text-overflow: ellipsis;
   	display: -webkit-box;
   	/* autoprefixer: off*/
   	-webkit-box-orient: vertical;
   	/* autoprefixer: on*/
-  	-webkit-box-orient: vertical;
+  	/*-webkit-box-orient: vertical;
   	-webkit-line-clamp: 3;
-  	
+  	*/
   	margin-top: 4.5rem;
-    font-size: 13px;
+    font-size: 12px;
    
     
   }

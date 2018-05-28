@@ -29,9 +29,10 @@ export default {
   },
 
   token: function () {
-  var token = window.localStorage.getItem('jwt-token')
-//var token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjk0MzU2LCJpc3MiOiJodHRwOi8veXQyLmw0My5jbi93ZWF6bS15dC1hcGktZmNhNjQ4ZWEwMGU3L3NlcnZlci5waHAvYXBpL2F1dGgvbG9naW4vd2VpeGluIiwiaWF0IjoxNTI3Mjk3NjE2LCJleHAiOjE1MjczMjY0MTYsIm5iZiI6MTUyNzI5NzYxNiwianRpIjoiTnJsYlVPVmdxS0JwZ2pMNCJ9.-nYD4WcG9Y3pyAN6WunyBpJO3b6bKRlhYQHnDf4AR4Q"
-  if (token !== null && token !== undefined) {
+  //var token = window.localStorage.getItem('jwt-token')
+var token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjk0MzU2LCJpc3MiOiJodHRwOi8veXQyLmw0My5jbi93ZWF6bS15dC1hcGktZmNhNjQ4ZWEwMGU3L3NlcnZlci5waHAvYXBpL2F1dGgvbG9naW4vd2VpeGluIiwiaWF0IjoxNTI3NDcwNzgxLCJleHAiOjE1Mjc0OTk1ODEsIm5iZiI6MTUyNzQ3MDc4MSwianRpIjoicGNSYldadzZKRjByTTZmWiJ9.R2PqLRTsaeYayR5tHBYKZVc8DsL2z2dB3eyhzCr-5GM"
+ window.localStorage.setItem('jwt-token', token)//要删
+ if (token !== null && token !== undefined) {
       if (this.isTokenExpired(token)) {
         return 'expired'
       } else {

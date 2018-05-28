@@ -37,12 +37,15 @@
 					<span class="fl">
             当前共 {{subscribes.length}} 条数据
           </span>
-					<a class="fr" id="importData" @click.prevent="renewData">
-						<i class="iconfont">&#xe639;</i> 导出
+					
+						
+					<a :href="downurl" class="fr importbtn" download>
+						<i class="iconfont">&#xe639;</i>导出
 					</a>
 					<a class="fr" @click.prevent="renewData">
 						<i class="iconfont">&#xe64b;</i> 刷新数据
 					</a>
+					
 
 				</div>
 				<div class="u-tab">
@@ -122,6 +125,7 @@
 	import Empty from './../Share/empty.vue'
 	import Refresh from './../Share/refresh.vue'
 	import Loader from './../Share/loader.vue'
+	import { API_ROOT } from 'src/config'
 	export default {
 		name: 'Subscribe',
 		components: {
@@ -142,7 +146,8 @@
 				processing: false,
 				renew: false,
 				inputNum: 1,
-				station: null
+				station: null,
+				downurl:null,
 			}
 		},
 
@@ -151,6 +156,9 @@
 				var cpage
 				var self = this
 				self.status = this.$route.params.status === 'all' ? '' : this.$route.params.status
+				var tokenstr = window.localStorage.getItem('jwt-token')
+		        var str = '?token='+tokenstr
+		        self.downurl=API_ROOT + '/stations/fetchall/'+self.status + str
 				if(self.status == '') {
 					cpage = self.allcurrentPage
 				} else if(self.status == 'shipping') {
@@ -197,7 +205,17 @@
 		},
 
 		methods: {
-
+//			export: function () {
+//				var self =this
+//		        var tokenstr = window.localStorage.getItem('jwt-token')
+//		        var str = '?token='+tokenstr
+//		        window.open(
+//		          API_ROOT + '/stations/fetchall/'+self.status + str
+//		          
+//		        )
+//		        alert( API_ROOT + '/stations/fetchall/'+self.status + str)
+////		        @click.prevent="export"
+//		    },
 			pre() {
 				var self = this
 				var page
@@ -486,5 +504,8 @@
 		font-style: normal;
 		padding: 7px;
 		cursor: pointer;
+	}
+	.importbtn{
+		margin-left:15px
 	}
 </style>
