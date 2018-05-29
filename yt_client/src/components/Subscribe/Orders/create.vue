@@ -70,7 +70,7 @@
               <li class="cart-list" v-for="sku in cart">
                 <div class="pure-g">
                   <div class="pure-u-3-4">
-                    {{sku.name}}（{{sku.quantity}}{{sku.unit}}/每日{{sku.per_day}}{{sku.unit}}）
+                    {{sku.name|filtproductit}}（{{sku.quantity}}{{sku.unit}}/每日{{sku.per_day}}{{sku.unit}}）
                   </div>
                   <div class="pure-u-1-4">
                     <span @click.prevent="delSku(sku)"><i class="iconfont">&#xe634;</i> 删除</span>
@@ -325,7 +325,7 @@
       <div class="m-order-list">
         <div class="pure-g" v-for="sku in tempOrder.skus">
           <div class="pure-u-1-2">
-            <span class="title">{{sku.name}}</span>
+            <span class="title">{{sku.name|filtproductit}}</span>
           </div>
           <div class="pure-u-1-2">
             <a @click.prevent="step = 1"><span class="content"><i v-if="sku.dismode==2" style="font-style: normal;">{{sku.quantity}}{{sku.unit}}/每日</i>{{sku.per_day}}{{sku.unit}}</span></a>

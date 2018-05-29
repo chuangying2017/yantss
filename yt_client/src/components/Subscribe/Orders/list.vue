@@ -28,7 +28,7 @@
               </div>
             </div>
             <div class="pure-u-1-2">
-              <p>{{sku.name}}</p>
+              <p>{{sku.name|filtproductit}}</p>
             </div>
             <div class="pure-u-1-3">
               <p class="tr">共 <span class="highlight">{{sku.total}}</span> 瓶</p>
