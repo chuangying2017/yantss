@@ -13,13 +13,13 @@
                 <div class="form-group">
                   <label for="optionsRadios" class="col-sm-4 control-label">开始时间</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" v-model="query.stime">
+                    <input type="date" class="form-control" v-model="query.stime">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="optionsRadios" class="col-sm-4 control-label">结束时间</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" v-model="query.etime">
+                    <input type="date" class="form-control" v-model="query.etime">
                   </div>
                 </div>
                 <div class="form-group">

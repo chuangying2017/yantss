@@ -37,7 +37,7 @@
             <img :src="product.cover_image" height="350" width="350" alt="" class="thumbnail">
           </div>
           <div class="pd-item-right">
-            <h2 class="title">{{ product.title }}</h2>
+            <h2 class="title" v-html="product.title"></h2>
             <p class="clearfix">
               <span class="price">￥{{ product.price }}</span>
               <span class="cart fr">+ 订购</span>
