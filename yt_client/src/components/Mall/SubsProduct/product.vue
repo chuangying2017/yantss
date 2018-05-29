@@ -28,7 +28,7 @@
         </swipe>
       </div>
       <div class="wrap">
-        <h1 class="title" v-html="product.title"></h1>
+        <h1 class="title">{{product.title|filtproductit}}</h1>
         <p v-if="product.dismode!=1"><span class="price">{{ product.price * sku.quantity | currency '￥' }}</span>
           <!--<span class="origin">￥219</span>-->
           <span class="sales fr">产品单价：￥{{product.price}}</span>
@@ -240,7 +240,7 @@
           }
         )
       }
-    },
+    },   
     methods: {
       addToCart: function () {
         this.delCart(this.sku)

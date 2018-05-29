@@ -13,7 +13,7 @@ import wx from './wx.js'
 import utils from './utils.js'
 // configs & apis
 import {API_ROOT, MIXPANEL_KEY} from './config'
-import {strictFilter, productFilter} from './filters'
+import {strictFilter, productFilter,productit} from './filters'
 // mixpanel init
 window.mixpanel.init(MIXPANEL_KEY)
 // plugins
@@ -24,6 +24,7 @@ Vue.use(Vuex)
 
 Vue.filter('strictFilter', strictFilter)
 Vue.filter('productFilter', productFilter)
+Vue.filter('filtproductit', productit)
 utils.ObjectAssignPolyfill()
 // router
 var router = new VueRouter({

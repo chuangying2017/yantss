@@ -26,7 +26,7 @@
       </swipe>
     </div>
     <div class="wrap">
-      <h1 class="title" v-html="product.title"></h1>
+      <h1 class="title">{{product.title|filtproductit}}</h1>
       <p><span class="price">￥{{ product.price }}</span>
         <!--<span class="origin">￥219</span>-->
         <span class="sales fr">产品销量：{{ product.sales }}</span>

@@ -33,8 +33,8 @@
         <div class="cover">
           <img :src="product.cover_image" alt="" width="100%" class="image">
           <div class="mask">
-            <p class="title f16" v-html="product.title">
-            
+            <p class="title f16">
+            {{product.title|}}
             </p>
           </div>
         </div>
@@ -67,7 +67,6 @@
     components: {
       Loader
     },
-
     route: {
       data: function (transition) {
         var self = this

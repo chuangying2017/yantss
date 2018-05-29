@@ -13,3 +13,8 @@ export function productFilter (arr, keyword) {
     return obj.cat.id === keyword
   })
 }
+
+export function productit(val){
+	if (val == null) return val
+  return val.replace(/<br\/>/gi,'');
+}
