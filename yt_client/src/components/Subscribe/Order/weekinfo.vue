@@ -40,7 +40,7 @@
                 <img :src="product.cover_image" alt="">
               </div>
               <div class="content">
-                {{ product.name }}
+                {{ product.name|filtproductit }}
               </div>
               <div class="num">
                 *{{ product.quantity }}
@@ -62,7 +62,7 @@
                 <img :src="product.cover_image" alt="">
               </div>
               <div class="content">
-                {{ product.name }}
+                {{ product.name|filtproductit }}
               </div>
               <div class="num">
                 *{{ product.quantity }}
