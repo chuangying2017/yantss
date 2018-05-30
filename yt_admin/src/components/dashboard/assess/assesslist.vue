@@ -1,5 +1,5 @@
 <template>
-  <station-select :stations="stations"></station-select>
+  
   <div class="row">
     <div class="col-md-12">
       <div class="box">
@@ -8,70 +8,46 @@
         </div>
         <div class="box-body">
           <form action="" class="form-horizontal">
-            <div class="row">
+            <div class="row">             
               <div class="col-md-4">
-                <div class="form-group">
-                  <label for="optionsRadios" class="col-sm-4 control-label">订单号</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" v-model="query.order_no">
-                  </div>
-                </div>
-                <!--<div class="form-group">
-                  <label for="optionsRadios" class="col-sm-4 control-label">支付订单号</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" v-model="query.pay_order_no">
-                  </div>
-                </div>-->
-                <div class="form-group">
-                  <label for="optionsRadios" class="col-sm-4 control-label">用户手机</label>
-                  <div class="col-sm-8">
-                    <input type="tel" class="form-control" v-model="query.phone">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="optionsRadios" class="col-sm-4 control-label">所属小区</label>
-                  <div class="col-sm-8">
-                    <select class="form-control" v-model="query.residence_id">
-                      <option v-for="residence in residences" value="{{residence.id}}">{{residence.name}}({{residence.district}})</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="groupRadios" class="col-sm-4 control-label">所属服务部</label>
-                  <div class="col-sm-8">
-                    <select class="form-control" v-model="query.station_id">
-                      <option v-for="station in filterStations" value="{{station.id}}">{{station.name}}</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="groupRadios" class="col-sm-4 control-label">订单状态</label>
-                  <div class="col-sm-8">
-                    <select class="form-control" v-model="query.status">
-                      <option value="null">全部</option>
-                      <option value="unpaid">未支付</option>
-                      <option value="shipping">正常配送</option>
-                      <option value="confirm">未安排配送员</option>
-                      <option value="untreated">未处理</option>
-                      <option value="overtime">超时未处理</option>
-                      <option value="reject">被拒绝</option>
-                      <option value="done">已完成</option>
-                      <option value="cancel">已取消</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
+              	 <div class="form-group">
                   <label for="optionsRadios" class="col-sm-4 control-label">开始时间</label>
                   <div class="col-sm-8">
-                    <input type="tel" class="form-control" v-model="query.start_time">
+                    <input type="text" class="form-control" v-model="query.start_time">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="optionsRadios" class="col-sm-4 control-label">结束时间</label>
                   <div class="col-sm-8">
-                    <input type="tel" class="form-control" v-model="query.end_time">
+                    <input type="text" class="form-control" v-model="query.end_time">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="optionsRadios" class="col-sm-4 control-label">送奶工</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" v-model="query.milkman">
+                  </div>
+                </div>  
+              </div>
+              <div class="col-md-4">
+              	<div class="form-group">
+                  <label for="groupRadios" class="col-sm-4 control-label">星级</label>
+                  <div class="col-sm-8">
+                    <select class="form-control" v-model="1">
+                      <option value="1">一星</option>
+                      <option value="2">二星</option>
+                      <option value="3">三星</option>
+                      <option value="4">四星</option>
+                      <option value="5">五星</option>
+                    </select>
+                  </div>
+                </div>
+               	<div class="form-group">
+                  <label for="groupRadios" class="col-sm-4 control-label">服务部</label>
+                  <div class="col-sm-8">
+                    <select class="form-control" v-model="query.station_id">
+                      <option v-for="station in filterStations" value="{{station.id}}">{{station.name}}</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -94,27 +70,86 @@
       </div>
     </div>
   </div>
+  <ul class="nav nav-tabs" role="tablist">
+		<li role="presentation"  class="active">
+	  	<a href="#zf" data-toggle="tab" aria-controls="zf" role="tab" @click="milklist">送奶工排行榜</a>
+	  </li>
+	  <li role="presentation">
+	  	<a href="#basic" data-toggle="tab" aria-controls="basic" role="tab" @click="severlist">服务部排行榜</a>
+	  </li>      
+  </ul>
   <div class="row">
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
           <h3 class="box-title">订单管理 ({{pagination.total}})</h3>
-          <!--<div class="box-tools">-->
-          <!--<div class="input-group input-group-sm" style="width: 150px;">-->
-          <!--<input type="text" name="table_search" class="form-control pull-right" placeholder="微信昵称">-->
-
-          <!--<div class="input-group-btn">-->
-          <!--<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>-->
-          <!--</div>-->
-          <!--</div>-->
-          <!--</div>-->
+          
         </div>
         <!-- /.box-header -->
-        <div class="box-body table-responsive no-padding">
-          <table class="table table-hover table-striped">
+        <div class="tab-content">
+        	<div role="tabpanel" class="tab-pane in active" id="zf">
+	          <table class="table table-hover table-striped">
+	            <tbody>
+	            <tr>
+	              <th>NO.</th>
+	              <th>用户信息</th>
+	              <th>服务部信息</th>
+	              <th>送奶工信息</th>
+	              <th>评价内容</th>
+	              <th>评价时间</th>
+	            </tr>
+	            <tr>
+	            <!--<tr v-for="order in orders">-->
+	              <td>1</td>
+	              <td width="25%">
+	                <p>谢小姐 - 13822282671</p>
+	                <p>海珠区南泰路珠江医院宿舍39栋A2202</p>
+	                <p>订单号: 108180124846733705788</p>
+	              </td>
+	              <td>
+	                <p>名称: 昌岗中服务部</p>
+	                <p>负责人: 汪小平</p>
+	                <p>电话：13620812844</p>
+	              </td>
+	              <td>
+	                <p></p>
+	                <p>汪小平</p>
+	                <p>电话: 13620812844</p>
+	              </td>
+	              <td>
+	                <p class="all">
+	                  <input type="radio" name="b" value="0"  v-model="inputdata" disabled/>
+	                  <span><i class="iconfont">&#xe72a;</i></span>
+	                  <input type="radio" name="b" value="1" v-model="inputdata" disabled/>
+	                  <span><i class="iconfont">&#xe72a;</i></span>
+	                  <input type="radio" name="b" value="2" v-model="inputdata" disabled/>
+	                  <span><i class="iconfont">&#xe72a;</i></span>
+	                  <input type="radio" name="b" value="3" v-model="inputdata" disabled/>
+	                  <span><i class="iconfont">&#xe72a;</i></span>
+	                  <input type="radio" name="b" value="4" v-model="inputdata" disabled/>
+	                  <span><i class="iconfont">&#xe72a;</i></span>
+	                  <input type="radio" name="b" value="5" v-model="inputdata" disabled/>
+	                  <span><i class="iconfont">&#xe72a;</i></span>
+	                  比较满意，但仍可改善
+	                </p>
+	                <p class="tag">评价标签: 态度好、送奶准时、有礼貌,送奶服务很好，送奶时间很准确，下次还会继续选择</p>
+	                <p></p>
+	              </td>
+	              <td>
+	                <p></p>
+	                <p>2018-1-24 17:33:46</p>
+	                <p></p>
+	              </td>
+	            </tr>
+	            </tbody>
+	          </table>
+          </div>
+        	<!--用户协议-->
+          <div role="tabpanel" class="tab-pane fade" id="basic">
+             <table class="table table-hover table-striped">
             <tbody>
             <tr>
-              <th>NO.</th>
+              <th>NO.11</th>
               <th>用户信息</th>
               <th>订单信息</th>
               <th>服务部信息</th>
@@ -159,20 +194,13 @@
                 <span class="label label-default" v-if="order.status == 'cancel'">已取消</span>
               </td>
               <td>
-                <a v-link="{path: '/dashboard/stations/orders/detail/' + order.id}">详情 </a>
-                <a href="" @click.prevent="changeStation(order)"
-                   v-if="order.status == 'rejected' || order.status == 'assigning' || user.roles.indexOf('StationAdmin') > -1 ">重新分配</a>
-                <!--<select v-if="order.status == 'rejected' || order.status == 'assigning'"-->
-                <!--v-on:change="changeStation(order.id, $event)">-->
-                <!--<option value="no" :selected="newStation == 'no'">分配服务部</option>-->
-                <!--<option value="{{station.id}}" v-for="station in stations" v-if="station.id !== order.station.id">-->
-                <!--{{station['name']}}-->
-                <!--</option>-->
-                <!--</select>-->
+                <a v-link="{path: '/dashboard/stations/orders/detail/' + order.id}">查看详情 </a>    
               </td>
             </tr>
             </tbody>
           </table>
+          </div>
+         
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
@@ -186,31 +214,21 @@
 </template>
 <script>
   import api from 'api/index.js'
-  import Pagination from 'components/pagination.vue'
   import { API_ROOT } from 'src/config'
   import moment from 'moment'
-//import stationSelect from './select.vue'
+ import Pagination from '../../pagination.vue'
   let tempQuery = false
   let tempPage = 1
   export default {
-    name: 'ListStationOrders',
+    name: 'assesslist',
     components: {
-      Pagination,
-//    stationSelect
-    },
-    vuex: {
-      getters: {
-        user: function (state) {
-          return state.user.info
-        }
-      }
+      Pagination
     },
     data () {
       return {
         orders: [],
         stations: [],
-        residences: [],
-//        stationsObj: {},
+       
         filterStations: [],
         newStation: 'no',
         pagination: {},
@@ -232,9 +250,8 @@
           this.query = tempQuery
           return this.search(tempPage)
         } else {
-          return Promise.all([this.getItems(), api.stations.getAll(), api.residences.getDropdown()]).then(function ([orderData, stations, residences]) {
+          return Promise.all([this.getItems(), api.stations.getAll()]).then(function ([orderData, stations]) {
             var temp = {}
-//            var stationsObj = {}
             if (window._user.roles.indexOf('StationContact') > -1) {
               var associateStations = window._user.associateStations.split(',')
               console.log(associateStations)
@@ -248,15 +265,11 @@
                 temp[val.id] = val
               })
             }
-//            stations.forEach(function (val) {
-//              stationsObj[val.id] = val
-//            })
             return {
               orders: orderData.data,
               pagination: orderData.meta.pagination,
               stations: stations,
-              residences: residences,
-//              stationsObj: stationsObj,
+             
               filterStations: temp
             }
           })
@@ -264,13 +277,34 @@
       }
     },
     methods: {
-      changeStation (order) {
-        console.log(order)
-        this.$broadcast('changeStation', order)
-      },
-      overtime: function (timeBefore) {
-        return new Date().getTime() > new Date(timeBefore).getTime()
-      },
+    	milklist:function(){
+    		var self=this
+    		self.tempPage=1
+    		self.query = {
+          station_id: null,
+          residence_id: null,
+          phone: null,
+          order_no: null,
+          status: null,
+          start_time: null,
+          end_time: null
+        }
+    		self.search(self.tempPage)
+    	},
+    	severlist:function(){
+    		var self=this
+    		self.tempPage=1
+    		self.query = {
+          station_id: null,
+          residence_id: null,
+          phone: null,
+          order_no: null,
+          status: null,
+          start_time: null,
+          end_time: null
+        }
+    		self.search(self.tempPage)
+    	},    
       getItems: function (query = {}) {
         if (!query.station_id && window._user.roles.indexOf('StationContact') > -1) {
           query.station_id = window._user.associateStations
@@ -333,3 +367,31 @@
     }
   }
 </script>
+<style>
+  @font-face {
+    font-family: 'iconfont';  /* project id 552280 */
+    src: url('//at.alicdn.com/t/font_552280_gxxpzcu4xx39pb9.eot');
+    src: url('//at.alicdn.com/t/font_552280_gxxpzcu4xx39pb9.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_552280_gxxpzcu4xx39pb9.woff') format('woff'),
+    url('//at.alicdn.com/t/font_552280_gxxpzcu4xx39pb9.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_552280_gxxpzcu4xx39pb9.svg#iconfont') format('svg');
+  }
+  .iconfont {
+    font-family: "iconfont";
+    font-size: 2rem;
+    font-style: normal;
+  }
+  .all>input{opacity:0;position:absolute;}
+  .all>input:nth-of-type(1),
+  .all>span:nth-of-type(1){display:none;}
+  .all>span{color:gold;
+    -webkit-transition:color .2s;
+    transition:color .2s;
+  }
+  .all>input:checked~span{color:#666;}
+  .all>input:checked+span{color:gold;}
+  .tag{
+    width: 300px;
+    flex-wrap: wrap;
+  }
+</style>
