@@ -18,15 +18,15 @@
 					<p class="stationaddr">服务部:昌岗中服务部</p>
 				</div>
 				<div class="star">
-		          	<input type="radio" name="b" value="1" v-model="form.score" @click="setStar('1')"/>
+		          	<input type="radio" name="b" value="1" v-model="" @click="setStar('1')"/>
 		          	<span><i class="ciconfont">&#xe659;</i></span>
-		          	<input type="radio" name="b" value="2" v-model="form.score" @click="setStar('2')"/>
+		          	<input type="radio" name="b" value="2" v-model="" @click="setStar('2')"/>
 		          	<span><i class="ciconfont">&#xe659;</i></span>
-		          	<input type="radio" name="b" value="3" v-model="form.score" @click="setStar('3')"/>
+		          	<input type="radio" name="b" value="3" v-model="" @click="setStar('3')"/>
 		          	<span><i class="ciconfont">&#xe659;</i></span>
-		          	<input type="radio" name="b" value="4" v-model="form.score" @click="setStar('4')"/>
+		          	<input type="radio" name="b" value="4" v-model="" @click="setStar('4')"/>
 		          	<span><i class="ciconfont">&#xe659;</i></span>
-		          	<input type="radio" name="b" value="5" v-model="form.score" @click="setStar('5')"/>
+		          	<input type="radio" name="b" value="5" v-model="" @click="setStar('5')"/>
 		          	<span class="noselct"><i class="ciconfont">&#xe658;</i></span>
 				</div>
 				<p class="stationeval">感谢您的高评价！</p>
