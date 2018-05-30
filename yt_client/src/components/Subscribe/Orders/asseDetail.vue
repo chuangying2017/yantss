@@ -38,7 +38,7 @@
 <script>
 </script>
 
-<style scoped="scoped">
+<style scoped>
 	@font-face {
 	  font-family: 'iconfont';  /* project id 686760 */
 	  src: url('//at.alicdn.com/t/font_686760_jlt2ncly8r4cmcxr.eot');

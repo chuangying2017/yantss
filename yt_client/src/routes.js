@@ -129,6 +129,9 @@ export default {
  					'/assess': {
             component: require('./components/Subscribe/Orders/assess.vue')
           },
+          '/assesss': {
+            component: require('./components/Subscribe/Orders/assess1.vue')
+          },
           '/asseDetail': {
             component: require('./components/Subscribe/Orders/asseDetail.vue')
           },
