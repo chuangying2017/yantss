@@ -19,15 +19,15 @@
 				</div>
 				<div class="star">
 		          	<input type="radio" name="b" value="1" v-model="form.score" @click="setStar('1')"/>
-		          	<span><i class="iconfont">&#xe659;</i></span>
+		          	<span><i class="ciconfont">&#xe659;</i></span>
 		          	<input type="radio" name="b" value="2" v-model="form.score" @click="setStar('2')"/>
-		          	<span><i class="iconfont">&#xe659;</i></span>
+		          	<span><i class="ciconfont">&#xe659;</i></span>
 		          	<input type="radio" name="b" value="3" v-model="form.score" @click="setStar('3')"/>
-		          	<span><i class="iconfont">&#xe659;</i></span>
+		          	<span><i class="ciconfont">&#xe659;</i></span>
 		          	<input type="radio" name="b" value="4" v-model="form.score" @click="setStar('4')"/>
-		          	<span><i class="iconfont">&#xe659;</i></span>
+		          	<span><i class="ciconfont">&#xe659;</i></span>
 		          	<input type="radio" name="b" value="5" v-model="form.score" @click="setStar('5')"/>
-		          	<span class="noselct"><i class="iconfont">&#xe658;</i></span>
+		          	<span class="noselct"><i class="ciconfont">&#xe658;</i></span>
 				</div>
 				<p class="stationeval">感谢您的高评价！</p>
 				<div class="evalcont">
@@ -60,7 +60,7 @@
 	  url('//at.alicdn.com/t/font_686760_jlt2ncly8r4cmcxr.ttf') format('truetype'),
 	  url('//at.alicdn.com/t/font_686760_jlt2ncly8r4cmcxr.svg#iconfont') format('svg');
 	}
-	.iconfont {
+	.ciconfont {
 	    font-family: "iconfont";
 	    font-size: 3.5rem;
 	    font-style: normal;
