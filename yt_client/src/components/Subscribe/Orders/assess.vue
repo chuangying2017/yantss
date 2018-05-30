@@ -74,53 +74,53 @@
 	padding:18px}
 	.imgcont,.orderdetail{float:left}
 	.imgcont img{width:7.2rem;height:7.2rem;border-radius: 21px;border:1px solid #bfbfbf}
-	.protit{font-size:1.4rem;color:000;margin-left:1rem;margin-top: 0.35rem;}
-	.status{font-size:1.3rem;color:#1ab500;    position: absolute;
+	.protit{font-size:1.7rem;color:000;margin-left:1rem;margin-top: 0.35rem;}
+	.status{font-size:1.6rem;color:#1ab500;    position: absolute;
     right: 22px;}
-	.ordernum,.time{color:#a1a1a1;font-size:1.2rem;margin-left:1rem}
+	.ordernum,.time{color:#a1a1a1;font-size:1.5rem;margin-left:1rem}
 	.ordernum{margin: 1rem;}
 	.num{position: absolute;
-    right: 22px;font-size:1.5rem}
+    right: 22px;font-size:1.8rem}
     
     .talkarea{overflow: hidden;background:#fff;margin:12px;border-radius: 5px;
 	padding:18px}
 	.talkwrap{width:95%;margin:auto}
-	.givename{font-size:1.5rem;color:#000;}
-	.givetime,.stationaddr{font-size:1.2rem;color:#999;}
+	.givename{font-size:1.8rem;color:#000;}
+	.givetime,.stationaddr{font-size:1.5rem;color:#999;}
 	.givetime{margin:1.1rem auto;}
 	.stationaddr{border-bottom:1px solid #eee;padding-bottom: 2.15rem;}
 	.star{margin-top:2.7rem}
-	.stationeval{padding:2.05rem 0 1.85rem 0;text-align: center;color:#999;font-size:1.3rem}
+	.stationeval{padding:2.05rem 0 1.85rem 0;text-align: center;color:#999;font-size:1.6rem}
 	
 	.evalcont .seleced{
    		width: 47%;
 	    float: left;
 	    padding:0.6rem 0.4rem;
-	    font-size: 1.3rem;
+	    font-size: 1.6rem;
 	    color: #ffbb2a;
 	    border: 1px solid #ffbb2a;
 	    margin-top: 1rem;
 	    background: #fff3da;
 	    color:#ffbb2a;
-	    font-size:1.3rem;
+	    font-size:1.6rem;
 	    text-align: center;
    	}
    	.evalcont p{
    		width: 47%;
 	    float: left;
 	    padding:0.6rem 0.4rem;
-	    font-size: 1.3rem;
+	    font-size: 1.6rem;
 	    margin-top: 1rem;
 	     border: 1px solid #f5f5f5;
 	    background: #f5f5f5;
 	    color:#999;
-	    font-size:1.3rem;
+	    font-size:1.6rem;
 	    text-align: center;
    	}
    .evalcont p:nth-child(2n+2){margin-left:5.9%}
    .evalcont{margin: auto;overflow: hidden;padding-bottom: 2.5rem;}
-	.sendtalk{position:fixed;bottom: 0px;font-size:1.5rem;width:100%;height:6rem;background:#ff5400;color:#fff;line-height:6rem;text-align: center;}
+	.sendtalk{position:fixed;bottom: 0px;font-size:1.8rem;width:100%;height:6rem;background:#ff5400;color:#fff;line-height:6rem;text-align: center;}
 	#customtalk{background:#f5f5f5}
-	#customtalk textarea{resize:none;margin:auto;width:95%;border:none;outline:none;background:none;font-size:1.4rem;color:#999}
+	#customtalk textarea{resize:none;margin:auto;width:95%;border:none;outline:none;background:none;font-size:1.8rem;color:#999}
 
 </style>
