@@ -259,6 +259,12 @@
 
   .product-box {
     transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    -o-transform: translateY(100%);
+   
+    
     -webkit-transition: .3s all ease;
     -moz-transition: .3s all ease;
     -ms-transition: .3s all ease;
@@ -268,6 +274,10 @@
 
   .product-box.boxShow {
     transform: translateY(0%);
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -o-transform: translateY(0%);
   }
 
   #yt-mall .m-article .title {
