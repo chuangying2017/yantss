@@ -1455,15 +1455,24 @@
     z-index: 10000;
     background: #f0f0f0;
     transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    -o-transform: translateY(100%);
+    transition: .3s all ease;
     -webkit-transition: .3s all ease;
     -moz-transition: .3s all ease;
     -ms-transition: .3s all ease;
     -o-transition: .3s all ease;
-    transition: .3s all ease;
+    
   }
 
   .coupons-list.couponShow {
     transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
   }
 
   .coupons-list .wrap {
@@ -1495,15 +1504,25 @@
     z-index: 10000;
     background: #f0f0f0;
     transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    -o-transform: translateY(100%);
+    
+     transition: .3s all ease;
     -webkit-transition: .3s all ease;
     -moz-transition: .3s all ease;
     -ms-transition: .3s all ease;
     -o-transition: .3s all ease;
-    transition: .3s all ease;
+   
   }
 
   .giftcards-list.giftcardShow {
     transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
   }
 
   .giftcards-list .wrap {
