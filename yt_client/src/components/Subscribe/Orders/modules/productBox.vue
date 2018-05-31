@@ -129,6 +129,10 @@
         this.sku.product_sku_id = this.product.id
         this.sku.name = this.product.name
         this.sku.unit = this.product.unit
+        //重新赋值数量
+        if(this.product.dismode==1){
+        	this.sku.quantity=this.sku.per_day
+        }
         this.$dispatch('addSku', this.sku)
       },
       closeBox: function () {
@@ -138,6 +142,7 @@
     // 修改单位
     events: {
       checkUnit: function (unit) {
+      	
         if (this.product.dismode==1) {
           this.sku = {
             quantity: 1,
@@ -149,6 +154,7 @@
             per_day: 1
           }
         }
+       
 //      if (['箱', '杯'].indexOf(unit) > -1) {
 //        this.sku = {
 //          quantity: 1,

@@ -249,6 +249,9 @@
         this.sku.product_sku_id = this.product.skus.id
         // 修改单位
         this.sku.unit = this.product.skus.unit
+         if(this.product.dismode==1){
+        	this.sku.quantity=this.sku.per_day
+        }
         this.addCart(this.sku)
         var self = this
         setTimeout(function () {
@@ -261,6 +264,11 @@
         this.sku.product_sku_id = this.product.skus.id
         // 修改单位
         this.sku.unit = this.product.skus.unit
+        //重新赋值数量
+        
+        if(this.product.dismode==1){
+        	this.sku.quantity=this.sku.per_day
+        }
         this.addCart(this.sku)
         this.$route.router.go('/subscribe/orders/create?step=2')
       }
