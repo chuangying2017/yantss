@@ -19,7 +19,7 @@
         <div class="radio-wrap">
           <input v-form-ctrl name="name" type="text" v-model="formData.name" placeholder="称呼" required>
         </div>
-        <div class="radio-wrap">
+        <div class="radio-wrap" id="telephone">
           <input v-form-ctrl name="phone" type="num" v-model="formData.phone" placeholder="电话" required
                  custom-validator="phoneVerified">
         </div>

@@ -52,7 +52,7 @@
 
  <div class="addchange" v-show="chageshow">
 		 <!--create new addr start-->
-      <form v-form name="adrForm" @submit.prevent="onSubmit">
+      <form v-form name="adrForm" @submit.prevent="onSubmit" style="padding-bottom: 6rem;">
         <h3 class="subTitle">选择配送区域 <a href="#" @click.prevent="chageshow=false"
                                        style="font-weight: normal;font-size: 1.4rem; float: right; color: #C71A40;">返回</a>
         </h3>
