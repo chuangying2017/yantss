@@ -47,9 +47,9 @@
   }
 
   .sk-circle .sk-circle2 {
+  	transform: rotate(30deg);
     -webkit-transform: rotate(30deg);
     -ms-transform: rotate(30deg);
-    transform: rotate(30deg);
     -moz-transform: rotate(30deg);
     -o-transform: rotate(30deg);
   }
