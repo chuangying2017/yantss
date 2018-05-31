@@ -80,7 +80,7 @@
 	.status{font-size:1.4rem;color:#1ab500;    position: absolute;
     right: 22px;}
 	.ordernum,.time{color:#a1a1a1;font-size:1.3rem;margin-left:1rem}
-	.ordernum{margin:0.6rem 1rem;margin-right: 0;}
+	.ordernum{margin:0.5rem 1rem;margin-right: 0;}
 	.num{position: absolute;
     right: 22px;font-size:1.6rem}
     
