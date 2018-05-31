@@ -241,12 +241,11 @@
     -moz-animation-delay: -0.1s;
     -o-animation-delay: -0.1s;
   }
-@keyframes sk-circleBounceDelay {
+	@keyframes sk-circleBounceDelay {
     0%, 80%, 100% {
-    	  transform: scale(0);
+    	 transform: scale(0);
       -webkit-transform: scale(0);
       -ms-transform: scale(0);
-    
       -moz-transform: scale(0);
       -o-transform: scale(0);
     }
@@ -254,7 +253,6 @@
     	 transform: scale(1);
       -webkit-transform: scale(1);
       -ms-transform: scale(1);
-     
       -moz-transform: scale(1);
       -o-transform: scale(1);
     }
@@ -264,7 +262,6 @@
     	 transform: scale(0);
       -webkit-transform: scale(0);
       -ms-transform: scale(0);
-     
       -moz-transform: scale(0);
       -o-transform: scale(0);
     }
@@ -272,7 +269,6 @@
     	 transform: scale(1);
       -webkit-transform: scale(1);
       -ms-transform: scale(1);
-     
       -moz-transform: scale(1);
       -o-transform: scale(1);
     }
@@ -282,7 +278,6 @@
     	 transform: scale(0);
       -webkit-transform: scale(0);
       -ms-transform: scale(0);
-     
       -moz-transform: scale(0);
       -o-transform: scale(0);
     }
@@ -290,7 +285,6 @@
     	 transform: scale(1);
       -webkit-transform: scale(1);
       -ms-transform: scale(1);
-     
       -moz-transform: scale(1);
       -o-transform: scale(1);
     }
@@ -301,7 +295,6 @@
     	 transform: scale(0);
       -webkit-transform: scale(0);
       -ms-transform: scale(0);
-     
       -moz-transform: scale(0);
       -o-transform: scale(0);
     }
@@ -309,7 +302,6 @@
     	 transform: scale(1);
       -webkit-transform: scale(1);
       -ms-transform: scale(1);
-     
       -moz-transform: scale(1);
       -o-transform: scale(1);
     }
@@ -319,15 +311,13 @@
     	  transform: scale(0);
       -webkit-transform: scale(0);
       -ms-transform: scale(0);
-    
       -moz-transform: scale(0);
       -o-transform: scale(0);
     }
     40% {
-    	  transform: scale(1);
+    	 transform: scale(1);
       -webkit-transform: scale(1);
-      -ms-transform: scale(1);
-    
+      -ms-transform: scale(1); 
       -moz-transform: scale(1);
       -o-transform: scale(1);
     }
