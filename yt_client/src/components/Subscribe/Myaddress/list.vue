@@ -184,7 +184,15 @@
     				self.settargetid=val.id
     			}
     		})
-    		this.$http.get('/subscribe/address/' +self.settargetid+'/edit/1/'+addobj.id).then(
+    		//判断是否有默认地址
+    		var setadr=null
+    		if(self.settargetid==null){
+    			setadr='/subscribe/address/' +addobj.id+'/edit/1'
+    		}else{
+    			setadr='/subscribe/address/' +self.settargetid+'/edit/1/'+addobj.id
+    		}
+    	
+    		this.$http.get(setadr).then(
 	      	function (data) {
 	      		if(data.data.status==1){
 	      			self.address.map(function(val){
