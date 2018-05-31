@@ -31,7 +31,7 @@
               <p>{{sku.name|filtproductit}}</p>
             </div>
             <div class="pure-u-1-3">
-              <p class="tr">共 <span class="highlight">{{sku.total}}</span> 瓶</p>
+              <p class="tr">共 <span class="highlight">{{sku.total}}</span>{{sku.show_unit}}</p>
             </div>
           </div>
           <div class="pure-g">
