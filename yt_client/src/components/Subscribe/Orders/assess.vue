@@ -2,7 +2,7 @@
 	<div class="assess">
 		<div class="orderinfo">
 			<div class="imgcont">
-				<img src="http://o7tep4eu1.bkt.clouddn.com/FkAkx7KLM_KQS8wbxeq76QIshsvM-201607201118158646" alt="" />
+				<img src="http://o7tep4eu1.bkt.clouddn.com/FnrOOE4TCKmnxWzJNPrU9mTvet4_-201805251621477858" alt="" />
 			</div>
 			<div class="orderdetail">
 				<p class="protit">瓶装乳酸奶 210ml <i class="status">已完成</i></p>
@@ -65,62 +65,74 @@
 	    font-size: 3.5rem;
 	    font-style: normal;
    }
+   .star{text-align: center;}
    .star input{opacity:0;}
    .star span{color:#ffbb2a}
    .star .noselct{color:#999}
 	i{font-style:normal}
 	.assess{background:#ecf3ff;width:100%;min-height:100%;overflow: hidden;}
 	.orderinfo{overflow: hidden;background:#fff;margin:12px;border-radius: 5px;
-	padding:18px}
+	padding:15px}
 	.imgcont,.orderdetail{float:left}
-	.imgcont img{width:7.2rem;height:7.2rem;border-radius: 21px;border:1px solid #bfbfbf}
-	.protit{font-size:1.7rem;color:000;margin-left:1rem;margin-top: 0.35rem;}
-	.status{font-size:1.6rem;color:#1ab500;    position: absolute;
+	.imgcont{width:6.7rem;height:6.7rem;border:1px solid #bfbfbf;border-radius: 21px;text-align: center;}
+	.imgcont img{width:3.2rem;}
+	.protit{font-size:1.5rem;color:#000;margin-left:1rem;margin-top: 0.35rem;}
+	.status{font-size:1.4rem;color:#1ab500;    position: absolute;
     right: 22px;}
-	.ordernum,.time{color:#a1a1a1;font-size:1.5rem;margin-left:1rem}
-	.ordernum{margin: 1rem;}
+	.ordernum,.time{color:#a1a1a1;font-size:1.3rem;margin-left:1rem}
+	.ordernum{margin:0.65rem 1rem;margin-right: 0;}
 	.num{position: absolute;
-    right: 22px;font-size:1.8rem}
+    right: 22px;font-size:1.6rem}
     
     .talkarea{overflow: hidden;background:#fff;margin:12px;border-radius: 5px;
-	padding:18px}
+	padding:18px;margin-bottom: 7rem;}
 	.talkwrap{width:95%;margin:auto}
-	.givename{font-size:1.8rem;color:#000;}
-	.givetime,.stationaddr{font-size:1.5rem;color:#999;}
+	.givename{font-size:1.6rem;color:#000;}
+	.givetime,.stationaddr{font-size:1.3rem;color:#999;}
 	.givetime{margin:1.1rem auto;}
 	.stationaddr{border-bottom:1px solid #eee;padding-bottom: 2.15rem;}
 	.star{margin-top:2.7rem}
-	.stationeval{padding:2.05rem 0 1.85rem 0;text-align: center;color:#999;font-size:1.6rem}
+	.stationeval{padding:2.05rem 0 1.85rem 0;text-align: center;color:#999;font-size:1.4rem}
 	
 	.evalcont .seleced{
    		width: 47%;
 	    float: left;
 	    padding:0.6rem 0.4rem;
-	    font-size: 1.6rem;
+	    font-size: 1.4rem;
 	    color: #ffbb2a;
 	    border: 1px solid #ffbb2a;
 	    margin-top: 1rem;
 	    background: #fff3da;
 	    color:#ffbb2a;
-	    font-size:1.6rem;
+	    font-size:1.4rem;
 	    text-align: center;
    	}
    	.evalcont p{
    		width: 47%;
 	    float: left;
 	    padding:0.6rem 0.4rem;
-	    font-size: 1.6rem;
+	    font-size: 1.4rem;
 	    margin-top: 1rem;
 	     border: 1px solid #f5f5f5;
 	    background: #f5f5f5;
 	    color:#999;
-	    font-size:1.6rem;
+	    font-size:1.4rem;
 	    text-align: center;
    	}
    .evalcont p:nth-child(2n+2){margin-left:5.9%}
    .evalcont{margin: auto;overflow: hidden;padding-bottom: 2.5rem;}
-	.sendtalk{position:fixed;bottom: 0px;font-size:1.8rem;width:100%;height:6rem;background:#ff5400;color:#fff;line-height:6rem;text-align: center;}
+	.sendtalk{position:fixed;bottom: 0px;font-size:1.6rem;width:100%;height:6rem;background:#ff5400;color:#fff;line-height:6rem;text-align: center;}
 	#customtalk{background:#f5f5f5}
-	#customtalk textarea{resize:none;margin:auto;width:95%;border:none;outline:none;background:none;font-size:1.8rem;color:#999}
-
+	#customtalk textarea{resize:none;margin:auto;width:95%;border:none;outline:none;background:none;font-size:1.6rem;color:#999;}
+ 	@media screen and (max-width: 374px) {
+    	.ordernum{font-size:12px}
+    	.imgcont{width: 3.6rem;width:3.6rem;border-radius: 1rem;}
+    	.imgcont img[_v-077f3f87] {width: 3.2rem;border-radius: 1rem;}
+    	.orderinfo{padding: 6px;}
+    	.ciconfont {
+	    
+	    font-size: 2.6rem;
+	   
+   		}
+	}
 </style>
