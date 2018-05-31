@@ -76,11 +76,11 @@
 	.imgcont,.orderdetail{float:left}
 	.imgcont{width:6.7rem;height:6.7rem;border:1px solid #bfbfbf;border-radius: 21px;text-align: center;}
 	.imgcont img{width:3.2rem;}
-	.protit{font-size:1.5rem;color:#000;margin-left:1rem;margin-top: 0.35rem;}
+	.protit{font-size:1.5rem;color:#000;margin-left:1rem;}
 	.status{font-size:1.4rem;color:#1ab500;    position: absolute;
     right: 22px;}
 	.ordernum,.time{color:#a1a1a1;font-size:1.3rem;margin-left:1rem}
-	.ordernum{margin:0.65rem 1rem;margin-right: 0;}
+	.ordernum{margin:0.6rem 1rem;margin-right: 0;}
 	.num{position: absolute;
     right: 22px;font-size:1.6rem}
     
@@ -127,7 +127,7 @@
  	@media screen and (max-width: 374px) {
     	.ordernum{font-size:12px}
     	.imgcont{width: 3.6rem;width:3.6rem;border-radius: 1rem;}
-    	.imgcont img[_v-077f3f87] {width: 3.2rem;border-radius: 1rem;}
+    	.imgcont img{width: 3.2rem;border-radius: 1rem;}
     	.orderinfo{padding: 6px;}
     	.ciconfont {
 	    
