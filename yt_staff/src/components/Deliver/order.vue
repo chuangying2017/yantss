@@ -18,7 +18,7 @@
           <span class="title">{{sku.name}}</span>
         </div>
         <div class="pure-u-1-2">
-          <span class="content">剩余{{sku.remain}}瓶/日送{{sku.per_day}}瓶</span>
+          <span class="content">剩余{{sku.remain}}{{sku.show_unit}}/日送{{sku.per_day}}{{sku.show_unit}}</span>
         </div>
       </div>
       <div class="pure-g">

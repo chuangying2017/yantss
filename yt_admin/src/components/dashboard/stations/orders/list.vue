@@ -131,9 +131,9 @@
               </td>
               <td>
               	<p>订单号：{{order.order_no}}</p>
-              	<p>订单金额：{{order.total_amount/100 | currency '￥'}}</p>
-              	<p>优惠金额：{{order.discount_amount/100 | currency '￥'}}</p>
-              	<p>支付金额：{{order.pay_amount/100 | currency '￥'}}</p>
+              	<p>订单金额：{{order.order.total_amount | currency '￥'}}</p>
+              	<p>优惠金额：{{order.order.discount_amount | currency '￥'}}</p>
+              	<p>支付金额：{{order.order.pay_amount | currency '￥'}}</p>
               	<p>商品名称：<span v-for="shopname in order.skus">{{shopname.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
               </td>
               <td>
