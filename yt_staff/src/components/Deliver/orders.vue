@@ -17,7 +17,7 @@
             <p v-for="sku in preorder.skus" class="sku clearfix">
               <span class="fl">
               <i class="iconfont">&#xe666;</i> {{sku.name}}</span>
-              <span class="fr">共{{sku.total}}瓶/剩余{{sku.remain}}瓶</span>
+              <span class="fr">共{{sku.total}}{{sku.show_unit}}/剩余{{sku.remain}}{{sku.show_unit}}</span>
             </p>
             <p class="address">
               <i class="iconfont">&#xe64c;</i> 地址: {{preorder.address}}

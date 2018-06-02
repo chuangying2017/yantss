@@ -15,7 +15,7 @@
   
   <loader v-show="$loadingRouteData"></loader>
   <ul>
-  	<li class="m-milkcard" :class="{defaultadd:addre.default_status==1}" v-for="addre in address">
+  	<li class="m-milkcard" v-for="addre in address">
       <div class="addresscont">
       	<p class="addinfo"><i class="addname">{{addre.name}}</i>{{addre.phone}}</p>
       	<div class="">
@@ -52,7 +52,7 @@
 
  <div class="addchange" v-show="chageshow">
 		 <!--create new addr start-->
-      <form v-form name="adrForm" @submit.prevent="onSubmit">
+      <form v-form name="adrForm" @submit.prevent="onSubmit" style="padding-bottom: 6rem;">
         <h3 class="subTitle">选择配送区域 <a href="#" @click.prevent="chageshow=false"
                                        style="font-weight: normal;font-size: 1.4rem; float: right; color: #C71A40;">返回</a>
         </h3>
@@ -175,7 +175,7 @@
    },
     methods: {
     	 phoneVerified: function (value) {
-        return /^1[3|4|5|7|8]\d{9}$/.test(value)
+        return /^1[3|4|5|7|8|6]\d{9}$/.test(value)
       },
     	setfault:function(addobj){
     		var self=this
@@ -184,7 +184,15 @@
     				self.settargetid=val.id
     			}
     		})
-    		this.$http.get('/subscribe/address/' +self.settargetid+'/edit/1/'+addobj.id).then(
+    		//判断是否有默认地址
+    		var setadr=null
+    		if(self.settargetid==null){
+    			setadr='/subscribe/address/' +addobj.id+'/edit/1'
+    		}else{
+    			setadr='/subscribe/address/' +self.settargetid+'/edit/1/'+addobj.id
+    		}
+    	
+    		this.$http.get(setadr).then(
 	      	function (data) {
 	      		if(data.data.status==1){
 	      			self.address.map(function(val){
@@ -197,7 +205,7 @@
 //	        	self.address=data.data.addresses;
 	      	},
 	      	function (data) {
-	      		alert(data.data)
+	      		alert(data.data.msg)
 	      	}
 	      )
     	},
@@ -1041,11 +1049,15 @@
   	.addresscont p{padding: 0.5rem 0;}
   	.m-milkcard i{font-style: normal;}
   	.addinfo{border-bottom: 1px solid #dbc3c3;}
-  	.setaddren{position:absolute;right:0;top:0;background:#d5cece}
-  	.defaulad{background:#acaaaa}
+  	.setaddren{position:absolute;right:0;top:0;}
+  	.defaulad{color: #C71A40;}
   	.tools{right:0;bottom: 0;}
   	.address{width:80%}
-  	.tools{width:20%;padding: 0.5rem 0 0 0.2rem;    color: blue;}
+  	.tools{width:20%;padding: 0.5rem 0 0 0.2rem;    color: #000;}
+  	.tools i{position:absolute;right:0}
+  	.tools .change{right: 3.5rem !important;}
   	.address,.tools{float:left}
   	.addname{margin-right:1.5rem}
+  	.m-milkcard{font-size:1.4rem;background: #f2f2f2;}
+  	
 </style>

@@ -97,9 +97,9 @@
       
       <div class="milk-box">
        		<div class="milkl">
-       			<p class="milktitle">{{product.title}}</p>
+       			<p class="milktitle" style="-webkit-box-orient: vertical;" v-html="product.title"></p>
        			<p class="milkmoney"><i class="milkicon">￥</i>{{product.price}}</p>
-       			<div class="milkbuy">立即购买></div>
+       			<!--<div class="milkbuy">立即购买></div>-->
        		</div>
        		<div class="milkr">
        			<img :src="product.cover_image" alt="" />
@@ -294,38 +294,94 @@
    
   }
   /**/
- .milk-box{position:relative;}
-      	.milkl{width: 55%;
+  
+  .milk-box {
+  	position: relative;
+  }
+  
+  .milkl {
+  	width: 56%;
+  	/*position: absolute;*/
+  	padding-left: 1rem;
+  	bottom: -14rem;
+  }
+  
+  .milkr {
+  
+  	     width: 41%;
+    height: 17rem;
+    position: relative;
+    /*margin-left: 1rem;*/ 
+  	/*margin-left: 1.2rem;*/
+  }
+  
+  .milkr,
+  .milkl {
+  	float: left
+  }
+  
+  .milkr img {
+  	width: 96%;
     position: absolute;
-    padding-left: 1rem;
-    bottom: -14rem;}
-    .milkr{   width: 44%;
-    min-height: 14rem;
-    left: 46%;
-    position: absolute;
-       margin-left: 1.2rem;
-    }
-    .milkr,.milkl{float:left}
-    .milkr img{    width: 5.5rem;
-    height: 15.5rem;}
-      		 .milktitle{font-size: 1.3rem;position:absolute;top: -12rem;    font-size: 12px;}
-      		 .milkmoney{font-size: 1.5rem;
-    color: #ff003c;
-    padding: 0.3rem;
-    font-weight: 600;position:absolute;    bottom: 2.6rem;}
-      		 .milkicon{font-style:normal;font-size:1.2rem}
-      		 .milkbuy{background: #ff003c;
-    color: #fff;
-    text-align: center;
-    width: 6.1rem;
-    padding: 0.5em;
-    padding-top:0.4em;
-    border-radius: 0.3rem;position:absolute;bottom: 0.2rem;}
-    .pure-u-1-2 {
+    bottom: 2.5rem;
+    display: block;
+    margin: auto;
+    left: 0;
+    right: 0;
+    max-height: 14.5rem;
+  
+  }
+  
+  .milktitle {
+  
+  	/*position: absolute;*/
+  	
+  
+  	/*overflow: hidden;
+  	text-overflow: ellipsis;
+  	display: -webkit-box;
+  	/* autoprefixer: off*/
+  	-webkit-box-orient: vertical;
+  	/* autoprefixer: on*/
+  	/*-webkit-box-orient: vertical;
+  	-webkit-line-clamp: 3;
+  	*/
+  	margin-top: 4.5rem;
+    font-size: 12px;
+   
     
-    min-height: 16rem !important;
-}
- /* .milk-box .cover{
+  }
+  
+  .milkmoney {
+  	       font-size: 1.5rem;
+    color: #ff003c;
+    padding: .3rem;
+    font-weight: 600;
+    position: absolute;
+    top: 11rem;
+  }
+  
+  .milkicon {
+  	font-style: normal;
+  	font-size: 1.2rem
+  }
+  
+  .milkbuy {
+  	background: #ff003c;
+  	color: #fff;
+  	text-align: center;
+  	width: 6.1rem;
+  	padding: 0.5em;
+  	padding-top: 0.4em;
+  	border-radius: 0.3rem;
+  	position: absolute;
+  	top:12rem
+  }
+  
+  .pure-u-1-2 {
+  	height: 16rem !important;
+  }
+  /* .milk-box .cover{
     width: 100%;
     padding-bottom: 100%;
     background-size: cover;
@@ -340,13 +396,13 @@
     color: #000;
     font-size: 1.4rem;
     /*background: red; !* For browsers that do not support gradients *!*/
-    /*background: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); !* For Safari 5.1 to 6.0 *!*/
-    /*background: -o-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); !* For Opera 11.1 to 12.0 *!*/
-    /*background: -moz-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); !* For Firefox 3.6 to 15 *!*/
-    /*background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); !* Standard syntax *!*/
-    /*position: absolute;*/
-    /*bottom: 0;*/
-    /*width: 100%;
+  /*background: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); !* For Safari 5.1 to 6.0 *!*/
+  /*background: -o-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); !* For Opera 11.1 to 12.0 *!*/
+  /*background: -moz-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); !* For Firefox 3.6 to 15 *!*/
+  /*background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); !* Standard syntax *!*/
+  /*position: absolute;*/
+  /*bottom: 0;*/
+  /*width: 100%;
   }
 
   .milk-box .title .main {

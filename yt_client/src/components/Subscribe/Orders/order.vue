@@ -61,10 +61,10 @@
     <div class="m-order-list">
       <div class="pure-g" v-for="sku in order.skus">
         <div class="pure-u-1-2">
-          <span class="title">{{sku.name}}</span>
+          <span class="title">{{sku.name|filtproductit}}</span>
         </div>
         <div class="pure-u-1-2">
-          <span class="content">共{{sku.total}}瓶/日送{{sku.per_day}}瓶</span>
+          <span class="content">共{{sku.total}}{{sku.show_unit}}/<i style="font-style: normal;" v-if="order.status === 'shipping'">剩{{sku.remain}}{{sku.show_unit}}/</i>日送{{sku.per_day}}{{sku.show_unit}}</span>
         </div>
       </div>
       <div class="pure-g">

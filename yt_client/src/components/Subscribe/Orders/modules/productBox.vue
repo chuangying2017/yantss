@@ -5,72 +5,91 @@
         <div class="m-pd">
           <span class="closeBox"><i class="iconfont" @click.prevent="closeBox">&#xe634;</i></span>
           <div class="cover">
-            <img :src="product.cover_image" alt="">
+            <img :src="product.images[0]" alt="">
           </div>
           <div class="wrap">
-            <h1 class="title">{{ product.name }}</h1>
-            <p><span class="price">{{product.price * sku.quantity | currency '￥'}}<span class="sales fr">产品单价：￥{{product.price}}</span></span>
-            </p>
-          </div>
-          <div class="wrap">
-            <span class="spec f-table-cell">总数量</span>
-            <!-- 修改单位 -->
-            <div class="f-table-cell" v-if="['箱','杯'].indexOf(product.unit) > -1">
+        <h1 class="title">{{product.name|filtproductit}}</h1>
+        <p v-if="product.dismode!=1"><span class="price">{{ product.price * sku.quantity | currency '￥' }}</span>
+          <!--<span class="origin">￥219</span>-->
+          <span class="sales fr">产品单价：￥{{product.price}}</span>
+        </p>
+        <p v-else><span class="price">{{ product.price * sku.per_day| currency '￥' }}</span>
+          <!--<span class="origin">￥219</span>-->
+          <span class="sales fr">产品单价：￥{{product.price}}</span>
+        </p>
+      </div>
+      <!--fafesef-->
+      <div class="wrap" v-if="product.dismode!=1">
+       <span class="spec f-table-cell">总数量</span>
+        <!-- 修改单位 -->
+        <!--<div class="f-table-cell">
               <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="1"
                        :id="'q' + product.id + '1'"> <label
-                :for="'q' + product.id + '1'">1{{product.unit}}</label>
+                :for="'q' + product.id + '1'">1{{product.skus.unit}}</label>
               </span>
-            </div>
-            <div class="f-table-cell" v-else>
-              <!--<span class="m-check">-->
-              <!--<input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="20"-->
-              <!--:id="'q' + product.id + '20'"> <label-->
-              <!--:for="'q' + product.id + '20'">20{{product.unit}}</label>-->
-              <!--</span>-->
-              <span class="m-check">
+        </div>-->
+        <div class="f-table-cell">
+          <!--<span class="m-check">-->
+          <!--<input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="20"-->
+          <!--:id="'q' + product.id + '20'"> <label-->
+          <!--:for="'q' + product.id + '20'">20瓶</label>-->
+          <!--</span>-->
+          <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="30"
                        :id="'q' + product.id + '30'"> <label
-                :for="'q' + product.id + '30'">30{{product.unit}}</label>
+            :for="'q' + product.id + '30'">30</label>
               </span>
-              <span class="m-check">
+          <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="60"
                        :id="'q' + product.id + '60'"> <label
-                :for="'q' + product.id + '60'">60{{product.unit}}</label>
+            :for="'q' + product.id + '60'">60</label>
               </span>
-              <span class="m-check">
+          <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="90"
                        :id="'q' + product.id + '90'"> <label
-                :for="'q' + product.id + '90'">90{{product.unit}}</label>
+            :for="'q' + product.id + '90'">90</label>
               </span>
-              <span class="m-check">
+            <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="120"
                        :id="'q' + product.id + '120'"> <label
-                :for="'q' + product.id + '120'">120{{product.unit}}</label>
+            :for="'q' + product.id + '120'">120</label>
               </span>
-              <span class="m-check">
+            <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="150"
                        :id="'q' + product.id + '150'"> <label
-                :for="'q' + product.id + '150'">150{{product.unit}}</label>
+            :for="'q' + product.id + '150'">150</label>
               </span>
-              <span class="m-check">
+            <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="180"
                        :id="'q' + product.id + '180'"> <label
-                :for="'q' + product.id + '180'">180{{product.unit}}</label>
+            :for="'q' + product.id + '180'">180</label>
               </span>
-              <!--<span class="m-check">-->
-              <!--<input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="180"-->
-              <!--:id="'q' + product.id + '180'"> <label-->
-              <!--:for="'q' + product.id + '180'">180{{product.unit}}</label>-->
-              <!--</span>-->
-            </div>
-          </div>
-          <div class="wrap">
-            <span class="qty f-table-cell">每日送</span>
-            <div class="f-table-cell">
-              <counter :qty.sync="sku.per_day" :max="sku.quantity" :min="1"></counter>
-            </div>
-          </div>
+          <!--<span class="m-check">-->
+          <!--<input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="180"-->
+          <!--:id="'q' + product.id + '180'"> <label-->
+          <!--:for="'q' + product.id + '180'">180瓶</label>-->
+          <!--</span>-->
+        </div>
+      </div>
+      <div class="wrap" v-if="product.dismode!=1">
+        <span class="qty f-table-cell">单位:</span>
+        <div class="f-table-cell">
+          <span class="qty f-table-cell">{{product.unit}}</span>
+        </div>
+      </div>
+      <div class="wrap" v-if="product.dismode!=1">
+        <span class="qty f-table-cell">每日送</span>
+        <div class="f-table-cell">
+          <counter :qty.sync="sku.per_day" :min="1" :max="sku.quantity"></counter>
+        </div>
+      </div>
+      <div class="wrap" v-if="product.dismode==1">
+        <span class="qty f-table-cell" style="vertical-align: center;">数量</span>
+        <div class="f-table-cell">
+          <counter :qty.sync="sku.per_day" :min="1" :max="9999"></counter><span class="qty">{{product.unit}}</span>
+        </div>
+      </div>
           <button @click.prevent="addToCart" class="u-nav-btn u-btn-primary mt10">添加到购物车</button>
           <div class="m-article">
             <h2 class="title"><i class="iconfont">&#xe61c;</i> 商品介绍</h2>
@@ -110,6 +129,10 @@
         this.sku.product_sku_id = this.product.id
         this.sku.name = this.product.name
         this.sku.unit = this.product.unit
+        //重新赋值数量
+        if(this.product.dismode==1){
+        	this.sku.quantity=this.sku.per_day
+        }
         this.$dispatch('addSku', this.sku)
       },
       closeBox: function () {
@@ -119,8 +142,8 @@
     // 修改单位
     events: {
       checkUnit: function (unit) {
-        console.log(unit)
-        if (['箱', '杯'].indexOf(unit) > -1) {
+      	
+        if (this.product.dismode==1) {
           this.sku = {
             quantity: 1,
             per_day: 1
@@ -131,6 +154,18 @@
             per_day: 1
           }
         }
+       
+//      if (['箱', '杯'].indexOf(unit) > -1) {
+//        this.sku = {
+//          quantity: 1,
+//          per_day: 1
+//        }
+//      } else {
+//        this.sku = {
+//          quantity: 30,
+//          per_day: 1
+//        }
+//      }
       }
     }
   }
@@ -171,7 +206,7 @@
     background: #fff;
     overflow: hidden;
     overflow-y: scroll;
-    /*-webkit-overflow-scrolling: touch;*/
+    -webkit-overflow-scrolling: touch;
     position: relative;
   }
 
@@ -224,6 +259,12 @@
 
   .product-box {
     transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    -o-transform: translateY(100%);
+   
+    
     -webkit-transition: .3s all ease;
     -moz-transition: .3s all ease;
     -ms-transition: .3s all ease;
@@ -233,6 +274,10 @@
 
   .product-box.boxShow {
     transform: translateY(0%);
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -o-transform: translateY(0%);
   }
 
   #yt-mall .m-article .title {

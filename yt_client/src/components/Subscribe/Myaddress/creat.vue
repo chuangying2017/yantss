@@ -19,7 +19,7 @@
         <div class="radio-wrap">
           <input v-form-ctrl name="name" type="text" v-model="formData.name" placeholder="称呼" required>
         </div>
-        <div class="radio-wrap">
+        <div class="radio-wrap" id="telephone">
           <input v-form-ctrl name="phone" type="num" v-model="formData.phone" placeholder="电话" required
                  custom-validator="phoneVerified">
         </div>
@@ -110,8 +110,10 @@
 		        console.log(self.formData)
 		        self.$http.post('/subscribe/address', self.formData).then(
 		          function (data) {
+		          	
+		          	
 		            self.$route.router.go('/subscribe/myaddress/addrlist')
-		            
+		           
 //		            self.orderData.address_id = data.data.data.id
 //		            self.selectedAdr = data.data.data
 //		            self.addresses.push(data.data.data)
@@ -127,7 +129,7 @@
 		        )
       		},
       		 phoneVerified: function (value) {
-        		return /^1[3|4|5|7|8]\d{9}$/.test(value)
+        		return /^1[3|4|5|7|8|6]\d{9}$/.test(value)
       		},
 		}
 	}

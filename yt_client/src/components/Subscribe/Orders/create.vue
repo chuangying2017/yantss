@@ -45,7 +45,7 @@
                     <img :src="product.cover_image" height="350" width="350" alt="" class="thumbnail">
                   </div>
                   <div class="pd-item-right">
-                    <h2 class="title">{{ product.name }}</h2>
+                    <h2 class="title">{{ product.name|filtproductit }}</h2>
                     <span class="price">￥{{ product.price }}</span>
                     <span class="addCart">+ 添加</span>
                   </div>
@@ -70,7 +70,7 @@
               <li class="cart-list" v-for="sku in cart">
                 <div class="pure-g">
                   <div class="pure-u-3-4">
-                    {{sku.name}}（{{sku.quantity}}{{sku.unit}}/每日{{sku.per_day}}{{sku.unit}}）
+                    {{sku.name|filtproductit}}（{{sku.quantity}}{{sku.unit}}/每日{{sku.per_day}}{{sku.unit}}）
                   </div>
                   <div class="pure-u-1-4">
                     <span @click.prevent="delSku(sku)"><i class="iconfont">&#xe634;</i> 删除</span>
@@ -325,10 +325,10 @@
       <div class="m-order-list">
         <div class="pure-g" v-for="sku in tempOrder.skus">
           <div class="pure-u-1-2">
-            <span class="title">{{sku.name}}</span>
+            <span class="title">{{sku.name|filtproductit}}</span>
           </div>
           <div class="pure-u-1-2">
-            <a @click.prevent="step = 1"><span class="content">{{sku.quantity}}{{sku.unit}}/每日{{sku.per_day}}{{sku.unit}}</span></a>
+            <a @click.prevent="step = 1"><span class="content"><i v-if="sku.dismode==2" style="font-style: normal;">{{sku.quantity}}{{sku.unit}}/每日</i>{{sku.per_day}}{{sku.unit}}</span></a>
           </div>
         </div>
       </div>
@@ -659,12 +659,13 @@
 		 			return false;
 		 		}else{
 		 			that.addAdrView = false
-		 		
+		 			
 		 			var point
 		 			var map = new BMap.Map("allmap");
 		 			that.addresses.map(function(val){
 		 				if(val.default_status==1){
-		 					
+		 					that.selectedAdr = val
+		 					that.orderData.address_id = val.id
 		 				  point = new BMap.Point(val.latitude,val.longitude);
 						
 		 				}
@@ -764,9 +765,9 @@
           return item.id === self.selectedAdrId
         })
       
-     this.orderData.address_id = this.selectedAdrId
+     		this.orderData.address_id = this.selectedAdrId
         console.log(this.selectedAdrId)
-       this.adrView = false
+       	this.adrView = false
       },
       onSubmit: function () {
         var self = this
@@ -891,7 +892,7 @@
         )
       },
       phoneVerified: function (value) {
-        return /^1[3|4|5|7|8]\d{9}$/.test(value)
+        return /^1[3|4|5|7|8|6]\d{9}$/.test(value)
       },
       storeOrder: function (order) {
         window.localStorage.setItem('trackOrder', JSON.stringify(order))
@@ -1005,8 +1006,8 @@
   }
 
   #yt-mall .m-pd-item .thumbnail {
-    width: 5rem;
-    height: 5rem;
+    width:4rem;
+    height: auto;
   }
 
   #yt-mall .m-pd-item .price {
@@ -1454,15 +1455,24 @@
     z-index: 10000;
     background: #f0f0f0;
     transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    -o-transform: translateY(100%);
+    transition: .3s all ease;
     -webkit-transition: .3s all ease;
     -moz-transition: .3s all ease;
     -ms-transition: .3s all ease;
     -o-transition: .3s all ease;
-    transition: .3s all ease;
+    
   }
 
   .coupons-list.couponShow {
     transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
   }
 
   .coupons-list .wrap {
@@ -1494,15 +1504,25 @@
     z-index: 10000;
     background: #f0f0f0;
     transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    -o-transform: translateY(100%);
+    
+     transition: .3s all ease;
     -webkit-transition: .3s all ease;
     -moz-transition: .3s all ease;
     -ms-transition: .3s all ease;
     -o-transition: .3s all ease;
-    transition: .3s all ease;
+   
   }
 
   .giftcards-list.giftcardShow {
     transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
   }
 
   .giftcards-list .wrap {

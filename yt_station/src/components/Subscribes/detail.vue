@@ -75,7 +75,7 @@
         </div>
         <div class="pure-u-1-2">
           <div class="content">
-            <span>共{{sku.total}}瓶/剩{{ sku.remain }}瓶/日送{{sku.per_day}}瓶</span>
+            <span>共{{sku.total}}{{sku.show_unit}}/剩{{ sku.remain }}{{sku.show_unit}}/日送{{sku.per_day}}{{sku.show_unit}}</span>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import Home from './components/Home/index.vue'
-
+import Auth from './auth/index.js'
 import AuthView from './components/Auth/index.vue'
 import Login from './components/Auth/login.vue'
 import Register from './components/Auth/register.vue'
@@ -188,6 +188,32 @@ export default {
           }
         }
       }
+    })
+    router.beforeEach(function (transition) {
+      if (transition.to.auth) {
+        if (window.localStorage.getItem('backURL')) {
+        
+          var url = window.localStorage.getItem('backURL')
+          window.localStorage.removeItem('backURL')
+          transition.redirect(url)
+        }
+       
+        if (!Auth.check() && Auth.check() !== 'expired') {
+          // 检查该条链接是否需要登录后再跳转
+          window.localStorage.setItem('backURL', transition.to.path)
+          transition.redirect('/auth/wechat')
+        }
+      }
+     
+      if (transition.to.guest) {
+      
+        if (Auth.check()) {
+   
+          transition.redirect('/station/exchange')
+        }
+      }
+    
+      transition.next()
     })
   }
 }

@@ -22,7 +22,8 @@ export default {
     var self = this
     console.log('init:' + JSON.stringify(options));
     Vue.http.jsonp('http://yt.l43.cn/weazm-connection/server.php/wechat/js-sign-package', {
-      token_id: 'token_5a1bc3cd480d0',
+//    token_id: 'token_5a1bc3cd480d0',
+ 			token_id: 'token_5a1bc3cd480d0',
       url: encodeURIComponent(window.location.href.split('#')[0])
     }).then(function (data) {
       var signPackage = data.data.signPackage

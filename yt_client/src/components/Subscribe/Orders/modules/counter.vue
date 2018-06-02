@@ -28,15 +28,15 @@
 
     methods: {
       dec: function () {
-        if (this.qty > this.min) {
+        if (this.qty > parseInt(this.min)) {
           this.qty--
         } else {
           return false
         }
       },
-      inc: function () {
-        if (this.qty < this.max) {
-          this.qty++
+      inc: function () {	
+        if (parseInt(this.qty) < parseInt(this.max)) {
+          this.qty += 1
         } else {
           return false
         }
@@ -45,9 +45,9 @@
 
     watch: {
       qtyModel: function (newVal, oldVal) {
-        if (newVal < this.min) {
+        if (newVal < parseInt(this.min)) {
           newVal = this.min
-        } else if (newVal > this.max) {
+        } else if (newVal > parseInt(this.max)) {
           newVal = this.max
         }
         this.qty = parseInt(newVal)

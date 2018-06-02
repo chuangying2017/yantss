@@ -51,15 +51,15 @@ export default {
       },
 
       response: function (response) {
-        // if (response.status && response.status === 401) {
-        //   self.logout()
-        //   self.$route.redirect('/login')
-        // }
+         if (response.status && response.status === 401) {
+           self.logout()
+           self.$route.redirect('/login')
+         }
 
-        // if (response.status_code === 500 && response.message === 'Token has expired') {
-        //   self.logout()
-        //   self.$route.redirect('/login')
-        // }
+         if (response.status_code === 500 && response.message === 'Token has expired') {
+           self.logout()
+           self.$route.redirect('/login')
+         }
 
         return response
       }

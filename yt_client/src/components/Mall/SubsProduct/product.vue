@@ -28,23 +28,28 @@
         </swipe>
       </div>
       <div class="wrap">
-        <h1 class="title">{{ product.title }} </h1>
-        <p><span class="price">{{ product.price * sku.quantity | currency '￥' }}</span>
+        <h1 class="title">{{product.title|filtproductit}}</h1>
+        <p v-if="product.dismode!=1"><span class="price">{{ product.price * sku.quantity | currency '￥' }}</span>
+          <!--<span class="origin">￥219</span>-->
+          <span class="sales fr">产品单价：￥{{product.price}}</span>
+        </p>
+        <p v-else><span class="price">{{ product.price * sku.per_day| currency '￥' }}</span>
           <!--<span class="origin">￥219</span>-->
           <span class="sales fr">产品单价：￥{{product.price}}</span>
         </p>
       </div>
-      <div class="wrap">
-        <span class="spec f-table-cell">总数量</span>
+      <!--fafesef-->
+      <div class="wrap" v-if="product.dismode!=1">
+       <span class="spec f-table-cell">总数量</span>
         <!-- 修改单位 -->
-        <div class="f-table-cell" v-if="product.dismode==1">
+        <!--<div class="f-table-cell">
               <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="1"
                        :id="'q' + product.id + '1'"> <label
                 :for="'q' + product.id + '1'">1{{product.skus.unit}}</label>
               </span>
-        </div>
-        <div class="f-table-cell" v-else>
+        </div>-->
+        <div class="f-table-cell">
           <!--<span class="m-check">-->
           <!--<input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="20"-->
           <!--:id="'q' + product.id + '20'"> <label-->
@@ -53,32 +58,32 @@
           <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="30"
                        :id="'q' + product.id + '30'"> <label
-            :for="'q' + product.id + '30'">30{{product.skus.unit}}</label>
+            :for="'q' + product.id + '30'">30</label>
               </span>
           <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="60"
                        :id="'q' + product.id + '60'"> <label
-            :for="'q' + product.id + '60'">60{{product.skus.unit}}</label>
+            :for="'q' + product.id + '60'">60</label>
               </span>
           <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="90"
                        :id="'q' + product.id + '90'"> <label
-            :for="'q' + product.id + '90'">90{{product.skus.unit}}</label>
+            :for="'q' + product.id + '90'">90</label>
               </span>
             <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="120"
                        :id="'q' + product.id + '120'"> <label
-            :for="'q' + product.id + '120'">120{{product.skus.unit}}</label>
+            :for="'q' + product.id + '120'">120</label>
               </span>
             <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="150"
                        :id="'q' + product.id + '150'"> <label
-            :for="'q' + product.id + '150'">150{{product.skus.unit}}</label>
+            :for="'q' + product.id + '150'">150</label>
               </span>
             <span class="m-check">
                 <input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="180"
                        :id="'q' + product.id + '180'"> <label
-            :for="'q' + product.id + '180'">180{{product.skus.unit}}</label>
+            :for="'q' + product.id + '180'">180</label>
               </span>
           <!--<span class="m-check">-->
           <!--<input type="radio" v-model="sku.quantity" :name="'q' + product.id + 'quantity'" value="180"-->
@@ -87,12 +92,25 @@
           <!--</span>-->
         </div>
       </div>
-      <div class="wrap">
-        <span class="qty f-table-cell">每日送</span>
+      <div class="wrap" v-if="product.dismode!=1">
+        <span class="qty f-table-cell">单位:</span>
         <div class="f-table-cell">
-          <counter :qty.sync="sku.per_day" :min="1" :max="9999"></counter>
+          <span class="qty f-table-cell">{{product.skus.unit}}</span>
         </div>
       </div>
+      <div class="wrap" v-if="product.dismode!=1">
+        <span class="qty f-table-cell">每日送</span>
+        <div class="f-table-cell">
+          <counter :qty.sync="sku.per_day" :min="1" :max="sku.quantity"></counter>
+        </div>
+      </div>
+      <div class="wrap" v-if="product.dismode==1">
+        <span class="qty f-table-cell" style="vertical-align: center;">数量</span>
+        <div class="f-table-cell">
+          <counter :qty.sync="sku.per_day" :min="1" :max="9999"></counter><span class="qty">{{product.skus.unit}}</span>
+        </div>
+      </div>
+      <!--fesfesf-->
       <!--<attr v-for="attr in product.attributes" :attr="attr" :index="$index"></attr>-->
     </div>
     <div class="m-article">
@@ -197,7 +215,7 @@
             self.product = data.data.data
             self.fav = self.product.favs
             //
-            if (product.dismode==1) {
+            if (self.product.dismode==1) {
               self.sku = {
                 name: null,
                 per_day: 1,
@@ -222,7 +240,7 @@
           }
         )
       }
-    },
+    },   
     methods: {
       addToCart: function () {
         this.delCart(this.sku)
@@ -231,6 +249,9 @@
         this.sku.product_sku_id = this.product.skus.id
         // 修改单位
         this.sku.unit = this.product.skus.unit
+         if(this.product.dismode==1){
+        	this.sku.quantity=this.sku.per_day
+        }
         this.addCart(this.sku)
         var self = this
         setTimeout(function () {
@@ -243,6 +264,11 @@
         this.sku.product_sku_id = this.product.skus.id
         // 修改单位
         this.sku.unit = this.product.skus.unit
+        //重新赋值数量
+        
+        if(this.product.dismode==1){
+        	this.sku.quantity=this.sku.per_day
+        }
         this.addCart(this.sku)
         this.$route.router.go('/subscribe/orders/create?step=2')
       }
@@ -357,7 +383,7 @@
   }
 
   #yt-mall .m-article .content {
-    padding: 1rem 2rem;
+    /*padding: 1rem 2rem;*/
   }
   .spec{vertical-align: top !important;width:5rem !important;}
 </style>

@@ -11,26 +11,56 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="groupRadios" class="col-sm-4 control-label">时间</label>
+                  <label for="optionsRadios" class="col-sm-4 control-label">开始时间</label>
                   <div class="col-sm-8">
-                    <select class="selC" v-model="query.year">
-                      <option value="2018">2018</option>
-                      <option value="2018">2017</option>
-                      <option value="2018">2016</option>
-                    </select><select class="selC" v-model="query.month">
-                    <option value="12">12</option>
-                    <option value="11">11</option>
-                    <option value="10">10</option>
-                    <option value="9">9</option>
-                    <option value="8">8</option>
-                    <option value="7">7</option>
-                    <option value="6">6</option>
-                    <option value="5">5</option>
-                    <option value="4">4</option>
-                    <option value="3">3</option>
-                    <option value="2">2</option>
-                    <option value="1">1</option>
-                  </select>
+                    <input type="text" class="form-control" v-model="query.start_time">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="optionsRadios" class="col-sm-4 control-label">结束时间</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" v-model="query.end_time">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="optionsRadios" class="col-sm-4 control-label">用户手机</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" v-model="query.phone">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="groupRadios" class="col-sm-4 control-label">订单号</label>
+                  <div class="col-sm-8">
+                    <select class="form-control" v-model="query.order_no">
+                      <option value="0">未使用</option>
+                      <option value="1">已使用</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="groupRadios" class="col-sm-4 control-label">所属服务部</label>
+                  <div class="col-sm-8">
+                    <select class="form-control" v-model="query.station_id">
+                      <option v-for="station in filterStations" value="{{station.id}}">{{station.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="groupRadios" class="col-sm-4 control-label">送奶工</label>
+                  <div class="col-sm-8">
+                    <select class="form-control" v-model="query.station_id">
+                      <option v-for="station in filterStations" value="{{station.id}}">{{station.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="groupRadios" class="col-sm-4 control-label">星级</label>
+                  <div class="col-sm-8">
+                    <select class="form-control" v-model="query.station_id">
+                      <option v-for="station in filterStations" value="{{station.id}}">{{station.name}}</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -39,6 +69,11 @@
           </form>
         </div>
         <div class="box-footer">
+          <div class="btn-group pull-left">
+            <button type="button" class="btn btn-info" @click.prevent="select('YYYY-MM-DD')">今天</button>
+            <button type="button" class="btn btn-info" @click.prevent="select('YYYY-MM-DD', true)">本周</button>
+            <button type="button" class="btn btn-info" @click.prevent="select('YYYY-MM-01')">本月</button>
+          </div>
           <div class="btn-group pull-right">
             <button type="button" class="btn btn-danger" @click.prevent="export">导出</button>
             <button type="button" class="btn btn-danger" @click.prevent="search(1)">搜索</button>
@@ -52,7 +87,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">好友率排行</h3>
+          <h3 class="box-title">订单管理 ({{pagination.total}})</h3>
           <!--<div class="box-tools">-->
           <!--<div class="input-group input-group-sm" style="width: 150px;">-->
           <!--<input type="text" name="table_search" class="form-control pull-right" placeholder="微信昵称">-->
@@ -69,62 +104,88 @@
             <tbody>
             <tr>
               <th>NO.</th>
+              <th>用户信息</th>
+              <th>订单信息</th>
               <th>服务部信息</th>
-              <th>评价信息</th>
-              <th>好评率</th>
-              <th>时间</th>
+              <th>订单时间</th>
+              <th>状态</th>
+              <th>操作</th>
             </tr>
-            <tr>
-            <!--<tr v-for="order in orders">-->
-              <td>1</td>
+            <tr v-for="order in orders">
+              <td>{{$index + 1}}</td>
               <td>
-                <p>名称: 昌岗中服务部</p>
-                <p>负责人: 汪小平</p>
-                <p>电话：13620812844</p>
+                <p>{{order.name}} - {{order.phone}}</p>
+                <p>{{order.address}}</p>
+                <p>订单号: {{order.order_no}}</p>
               </td>
               <td>
-                <p>评价次数：20次</p>
-                <p>好评次数：20次</p>
-                <p>中评次数：20次</p>
-                <p>差评次数：20次</p>
+              	<p>订单号：{{order.order_no}}</p>
+              	<p>订单金额：{{order.total_amount/100 | currency '￥'}}</p>
+              	<p>优惠金额：{{order.discount_amount/100 | currency '￥'}}</p>
+              	<p>支付金额：{{order.pay_amount/100 | currency '￥'}}</p>
+              	<p>商品名称：<span v-for="shopname in order.skus">{{shopname.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
               </td>
               <td>
-                <p></p>
-                <p></p>
-                <p class="par">25%</p>
-                <p></p>
+                <p>名称: {{order['station']['name']}}</p>
+                <!--<p>负责人: {{order['station']['director']}}</p>
+                <p>电话: {{order['station']['phone']}}</p>-->
               </td>
               <td>
-                <p></p>
-                <p></p>
-                <p>2018-1-24 17:33:46</p>
-                <p></p>
+                <p>下单: {{order.created_at.date | date}}</p>
+                <p>起送: {{order.start_time}}</p>
+                <p> {{order.weekday_type == 'all' ? '周一到周日' : '周一到周五'}}({{order.daytime ? '上午' : '下午'}})</p>
+              </td>
+              <td>
+                <span class="label label-primary" v-if="order.status == 'shipping'">正常</span>
+                <span class="label label-danger" v-if="order.status == 'assigning' && order.assign.status == 'reject'">被拒绝</span>
+                <span class="label label-danger" v-if="order.status == 'assigning' && order.assign.status == 'confirm'">未安排配送员</span>
+                <span class="label label-danger"
+                      v-if="order.status == 'assigning' && (order.assign.status == 'untreated' || order.assign.status == 'assign')">未处理</span>
+                <span class="label label-warning"
+                      v-if="order.status == 'assigning' && overtime(order.assign.time_before)">超时</span>
+                <span class="label label-danger" v-if="order.status == 'unpaid'">未支付</span>
+                <span class="label label-success" v-if="order.status == 'done'">已完成</span>
+                <span class="label label-default" v-if="order.status == 'cancel'">已取消</span>
+              </td>
+              <td>
+                <a v-link="{path: '/dashboard/stations/orders/detail/' + order.id}">详情 </a>
+                <a href="" @click.prevent="changeStation(order)"
+                   v-if="order.status == 'rejected' || order.status == 'assigning' || user.roles.indexOf('StationAdmin') > -1 ">重新分配</a>
+                <!--<select v-if="order.status == 'rejected' || order.status == 'assigning'"-->
+                <!--v-on:change="changeStation(order.id, $event)">-->
+                <!--<option value="no" :selected="newStation == 'no'">分配服务部</option>-->
+                <!--<option value="{{station.id}}" v-for="station in stations" v-if="station.id !== order.station.id">-->
+                <!--{{station['name']}}-->
+                <!--</option>-->
+                <!--</select>-->
               </td>
             </tr>
             </tbody>
           </table>
         </div>
         <!-- /.box-body -->
-        <!--<div class="box-footer">-->
-          <!--<p>合计: {{pagination.total}}</p> 当前页:-->
-          <!--<pagination :pagination="pagination" :goto="search"></pagination>-->
-        <!--</div>-->
+        <div class="box-footer">
+          <p>合计: {{pagination.total}}</p> 当前页:
+          <pagination :pagination="pagination" :goto="search"></pagination>
+        </div>
       </div>
       <!-- /.box -->
     </div>
   </div>
 </template>
-
 <script>
   import api from 'api/index.js'
-  import Pagination from '../../pagination.vue'
+  import Pagination from 'components/pagination.vue'
   import { API_ROOT } from 'src/config'
+  import moment from 'moment'
+  
   let tempQuery = false
   let tempPage = 1
   export default {
-    name: 'cardlist',
+    name: 'ListStationOrders',
     components: {
-      Pagination
+      Pagination,
+      
     },
     vuex: {
       getters: {
@@ -136,8 +197,12 @@
     data () {
       return {
         orders: [],
-        inputdata: '5',
-        // pagination: {},
+        stations: [],
+        residences: [],
+//        stationsObj: {},
+        filterStations: [],
+        newStation: 'no',
+        pagination: {},
         query: {
           station_id: null,
           residence_id: null,
@@ -156,25 +221,50 @@
           this.query = tempQuery
           return this.search(tempPage)
         } else {
-          return Promise.all(this.getItems()).then(function (orderData) {
+          return Promise.all([this.getItems(), api.stations.getAll(), api.residences.getDropdown()]).then(function ([orderData, stations, residences]) {
+            var temp = {}
+//            var stationsObj = {}
+            if (window._user.roles.indexOf('StationContact') > -1) {
+              var associateStations = window._user.associateStations.split(',')
+              console.log(associateStations)
+              stations.forEach(function (val) {
+                if (associateStations.indexOf(val.id.toString()) > -1) {
+                  temp[val.id] = val
+                }
+              })
+            } else {
+              stations.forEach(function (val, key) {
+                temp[val.id] = val
+              })
+            }
+//            stations.forEach(function (val) {
+//              stationsObj[val.id] = val
+//            })
             return {
-              orders: orderData.data
-              // pagination: orderData.meta.pagination,
+              orders: orderData.data,
+              pagination: orderData.meta.pagination,
+              stations: stations,
+              residences: residences,
+//              stationsObj: stationsObj,
+              filterStations: temp
             }
           })
         }
       }
     },
     methods: {
-      // changeStation (order) {
-      //   console.log(order)
-      //   this.$broadcast('changeStation', order)
-      // },
+      changeStation (order) {
+        console.log(order)
+        this.$broadcast('changeStation', order)
+      },
       overtime: function (timeBefore) {
         return new Date().getTime() > new Date(timeBefore).getTime()
       },
       getItems: function (query = {}) {
-        return api.cardorder.getAll(query)
+        if (!query.station_id && window._user.roles.indexOf('StationContact') > -1) {
+          query.station_id = window._user.associateStations
+        }
+        return api.stations.orders.getAll(query)
       },
       export: function () {
         var query = this.query
@@ -187,7 +277,7 @@
           }
         })
         window.open(
-          API_ROOT + '/admin/card/cardorder/index' + str,
+          API_ROOT + '/admin/subscribe/orders' + str,
           '_blank'
         )
       },
@@ -206,7 +296,7 @@
         tempPage = page
         var self = this
         this.getItems(this.getQuery(page)).then(function (data) {
-          // self.pagination = data.meta.pagination
+          self.pagination = data.meta.pagination
           self.orders = data.data
         })
       },
@@ -220,17 +310,15 @@
           start_time: null,
           end_time: null
         }
+      },
+      select: function (format, week = false) {
+        if (week) {
+          this.query.start_time = moment().startOf('week').add(1, 'day').format(format)
+        } else {
+          this.query.start_time = moment().format(format)
+        }
+        this.search()
       }
     }
   }
 </script>
-<style>
-  .selC{
-    width: 100px;
-    height: 30px;
-  }
-  .par{
-    font-size: 20px;
-    font-weight: bold;
-  }
-</style>

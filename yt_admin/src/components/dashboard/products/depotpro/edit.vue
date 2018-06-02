@@ -256,6 +256,7 @@
             images: product.images,
             coverimgs:product.cover_image,
             product: {
+           	  status:"down",
               id: product.id,
               cat_id: product.cats.length > 0 ? product.cats[0]['id'] : null,
               title: product.title,

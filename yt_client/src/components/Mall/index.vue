@@ -498,7 +498,7 @@
   }
 
   #yt-mall .f-mg-bottom {
-    margin-bottom: 1.5rem;
+    /*margin-bottom: 1.5rem;*/
   }
 
   #yt-mall .f-border-bottom {
@@ -840,6 +840,7 @@
   }
 
   #yt-mall .m-count input {
+  	height:100%;
     -webkit-appearance: none;
     padding: .5rem 1rem;
     border: 0 none;
@@ -884,12 +885,12 @@
   }
 
   #yt-mall .m-article .content {
-    padding: 1rem;
+    /*padding: 1rem;*/
   }
 
   #yt-mall .m-article .content img {
     display: block;
-    width: 100%;
+    width: 100% !important;
     height: auto;
   }
 
@@ -1020,14 +1021,14 @@
   }
 
   #yt-mall .m-home-grid.m-home-grid-icon a {
-    padding: .5rem;
+    padding: 1rem .5rem 0;
     color: #421F2E;
   }
 
   #yt-mall .m-home-grid.m-home-grid-icon .icon {
     display: block;
     margin: 0 auto;
-    width: 50px;
+  	width: 50px;
     height: 50px;
     background: #C71A40;
     border-radius: .8rem;
@@ -1121,6 +1122,7 @@
     padding: 1rem;
     text-align: center;
     color: #421F2E;
+    padding-top:2rem
   }
 
   #yt-mall .m-nav a.s-active {
