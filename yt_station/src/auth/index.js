@@ -29,8 +29,8 @@ export default {
   },
 
   token: function () {
-  var token = window.localStorage.getItem('jwt-token')
-//var token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjk0MzU2LCJpc3MiOiJodHRwOi8veXQyLmw0My5jbi93ZWF6bS15dC1hcGktZmNhNjQ4ZWEwMGU3L3NlcnZlci5waHAvYXBpL2F1dGgvbG9naW4vd2VpeGluIiwiaWF0IjoxNTI3NDcwNzgxLCJleHAiOjE1Mjc0OTk1ODEsIm5iZiI6MTUyNzQ3MDc4MSwianRpIjoicGNSYldadzZKRjByTTZmWiJ9.R2PqLRTsaeYayR5tHBYKZVc8DsL2z2dB3eyhzCr-5GM"
+ // var token = window.localStorage.getItem('jwt-token')
+var token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjk0MzU2LCJpc3MiOiJodHRwOi8veXQyLmw0My5jbi93ZWF6bS15dC1hcGktZmNhNjQ4ZWEwMGU3L3NlcnZlci5waHAvYXBpL2F1dGgvbG9naW4vd2VpeGluIiwiaWF0IjoxNTI4MTA0MTkxLCJleHAiOjE1MjgxMzI5OTEsIm5iZiI6MTUyODEwNDE5MSwianRpIjoiYkdJb2dDcGcxd09HT0hERCJ9.Su1OLaSAD1Zx_RA6-9xfFdzRwUY5D4yf_169aFX_AIs"
  window.localStorage.setItem('jwt-token', token)//要删
  if (token !== null && token !== undefined) {
       if (this.isTokenExpired(token)) {

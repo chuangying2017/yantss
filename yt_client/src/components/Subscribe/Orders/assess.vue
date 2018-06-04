@@ -17,24 +17,21 @@
 					<p class="givetime">送奶时间:周一至周日&nbsp;&nbsp;上午9:00-11:00</p>
 					<p class="stationaddr">服务部:昌岗中服务部</p>
 				</div>
-				<div class="star">
-		          	<input type="radio" name="b" value="1" v-model="" @click="setStar('1')"/>
-		          	<span><i class="ciconfont">&#xe711;</i></span>
-		          	<input type="radio" name="b" value="2" v-model="" @click="setStar('2')"/>
-		          	<span><i class="ciconfont">&#xe711;</i></span>
-		          	<input type="radio" name="b" value="3" v-model="" @click="setStar('3')"/>
-		          	<span><i class="ciconfont">&#xe711;</i></span>
-		          	<input type="radio" name="b" value="4" v-model="" @click="setStar('4')"/>
-		          	<span><i class="ciconfont">&#xe711;</i></span>
-		          	<input type="radio" name="b" value="5" v-model="" @click="setStar('5')"/>
-		          	<span class="noselct"><i class="ciconfont">&#xe712;</i></span>
+				<div id="star" class="star">
+		          	<span @click="setStar(1)" :class="{noselct:starnum<1}"><i class="ciconfont" v-if="starnum>=1">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(2)" :class="{noselct:starnum<2}"><i class="ciconfont" v-if="starnum>=2">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(3)" :class="{noselct:starnum<3}"><i class="ciconfont" v-if="starnum>=3">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(4)" :class="{noselct:starnum<4}"><i class="ciconfont" v-if="starnum>=4">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(5)" :class="{noselct:starnum<5}"><i class="ciconfont" v-if="starnum>=5">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
 				</div>
 				<p class="stationeval">感谢您的高评价！</p>
 				<div class="evalcont">
-					<p class="seleced">热情健谈</p>
-					<p>及时送达</p>
-					<p>热情健谈</p>
-					<p>及时送达</p>
+					
+					<p v-for="n in issel" :class="{seleced:n.selc}" @click="seled($index)">{{n.connet}}</p>
+					<!--<p :class="{seleced:!issel}" @click="seled">热情健谈</p>
+					<p :class="{seleced:!issel}" @click="seled">热情健谈</p>
+					<p :class="{seleced:!issel}" @click="seled">热情健谈</p>
+					<p :class="{seleced:!issel}" @click="seled">热情健谈</p>-->
 				</div>
 				<div id="customtalk">
 					<textarea type="text" placeholder="说说你的评价或者建议吧！"></textarea>
@@ -49,6 +46,44 @@
 </template>
 
 <script>
+	export default{
+		name:'assess',
+		data(){
+			return{
+				starnum:5,
+				issel:[
+					{
+						connet:"热情健谈",
+						selc:false,
+					},{
+						connet:"热情健谈",
+						selc:false,
+					},{
+						connet:"热情健谈",
+						selc:false,
+					}
+				],
+			}
+		},
+		route:{
+			data:function(){
+				return Promise.all([])
+			}
+		},
+		
+		methods:{
+			setStar(num){
+				var self=this;
+				self.starnum=num;
+			},
+			seled(index){
+				var self=this
+				self.issel[index].selc=!self.issel[index].selc
+			}
+			
+		},
+	}
+	
 </script>
 
 <style scoped>
@@ -66,9 +101,10 @@
 	    font-style: normal;
    }
    .star{text-align: center;}
-   .star input{opacity:0;}
+  .star span{margin-left:1.8rem}
+  #star span:nth-child(1){margin-left:0px}
    .star span{color:#ffbb2a}
-   .star .noselct{color:#999}
+   .star .noselct i{color:#999}
 	i{font-style:normal}
 	.assess{background:#ecf3ff;width:100%;min-height:100%;overflow: hidden;}
 	.orderinfo{overflow: hidden;background:#fff;margin:12px;border-radius: 5px;

@@ -134,7 +134,7 @@
               	<p>订单金额：{{order.order.total_amount | currency '￥'}}</p>
               	<p>优惠金额：{{order.order.discount_amount | currency '￥'}}</p>
               	<p>支付金额：{{order.order.pay_amount | currency '￥'}}</p>
-              	<p>商品名称：<span v-for="shopname in order.skus">{{shopname.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+              	<p>商品名称：<span v-for="shopname in order.skus">{{shopname.name|filtproductit}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
               </td>
               <td>
                 <p>名称: {{order['station']['name']}}</p>
