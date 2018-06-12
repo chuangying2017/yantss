@@ -2,12 +2,12 @@ import Auth from './auth/index.js'
 import Utils from './utils.js'
 // auth
   // import Home from './components/Home/index.vue'
-//   import AuthView from './components/Auth/index.vue'
-// import Login from './components/Auth/login.vue'
-// import Register from './components/Auth/register.vue'
-// import Logout from './components/Auth/logout.vue'
-// import Wechat from './components/Auth/wechat.vue'
-// import WechatAuth from './components/Auth/wechatAuth.vue'
+     import AuthView from './components/Auth/index.vue'
+   import Login from './components/Auth/login.vue'
+   import Register from './components/Auth/register.vue'
+   import Logout from './components/Auth/logout.vue'
+   import Wechat from './components/Auth/wechat.vue'
+   import WechatAuth from './components/Auth/wechatAuth.vue'
 // subscribe
 import Subs from './components/Subscribe/init.vue'
 import SubsView from './components/Subscribe/index.vue'
@@ -42,33 +42,33 @@ export default {
 //       '/': {
 //         component: Home
 //       },
-//       '/auth': {
-//         component: AuthView,
-//         subRoutes: {
-//           '/login': {
-//             component: Login,
-//             guest: true
-//           },
-//           '/register': {
-//             component: Register,
-//             guest: true
-//           },
-//           '/logout': {
-//             component: Logout,
-//             auth: true
-//           },
-//           '/wechat': {
-//             component: Wechat,
-//             guest: true,
-//             name: '微信授权'
-//           },
-//           '/wechatAuth': {
-//             component: WechatAuth,
-//             guest: true,
-//             name: '微信登陆'
-//           }
-//         }
-//       },
+         '/auth': {
+           component: AuthView,
+           subRoutes: {
+             '/login': {
+               component: Login,
+               guest: true
+             },
+             '/register': {
+               component: Register,
+               guest: true
+             },
+             '/logout': {
+               component: Logout,
+               auth: true
+             },
+             '/wechat': {
+               component: Wechat,
+               guest: true,
+               name: '微信授权'
+             },
+             '/wechatAuth': {
+               component: WechatAuth,
+               guest: true,
+               name: '微信登陆'
+             }
+           }
+         },
       '/subscribe': {
         component: SubsView,
         auth: true,
@@ -126,13 +126,8 @@ export default {
           '/assess/:order_no': {
             component: require('./components/Subscribe/Orders/assess.vue')
           },
-   					'/assess': {
-            component: require('./components/Subscribe/Orders/assess.vue')
-          },
-//        '/assesss': {
-//          component: require('./components/Subscribe/Orders/assess1.vue')
-//        },
-          '/asseDetail': {
+   				
+          '/asseDetail/:order_no':{
             component: require('./components/Subscribe/Orders/asseDetail.vue')
           },
           '/assessSuccess': {
@@ -335,12 +330,12 @@ export default {
         /**
          * 登陆
          */
-//         if (!Auth.check()) {
-//           // 检查该条链接是否需要登录后再跳转
-//           window.localStorage.setItem('backURL', transition.to.path)
-//           transition.redirect('/auth/wechat')
-//           return
-//         }
+           if (!Auth.check()) {
+             // 检查该条链接是否需要登录后再跳转
+             window.localStorage.setItem('backURL', transition.to.path)
+             transition.redirect('/auth/wechat')
+             return
+           }
 
         return 'next'
       }

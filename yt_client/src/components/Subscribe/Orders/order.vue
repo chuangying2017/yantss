@@ -188,10 +188,17 @@
           </div>
         </div>
       </div>
-      <div class="pure-g">
-        <div class="pure-u-2-5">
-          <span class="title"><a class="wc" v-link="{ path: '/subscribe/assess/' + order.id }">评价详情</a></span>
-        </div>
+      <div class="pure-g" v-if="order.comment_type=='HaveUses'">
+      	<a class="wc" v-link="{ path: '/subscribe/asseDetail/' + order.id }">
+      		<div class="pure-u-2-5">
+          	<span class="title">评价详情</span>
+        	</div>
+        	<div class="pure-u-3-5">
+          <div class="content">
+            <span><i class="iconfont">&#xe603;</i></span>
+          </div>
+       	 </div>
+      	</a>
       </div>
     </div>
     <button href="#" class="ios-btn ios-btn-success mt20" @click.prevent="payOrder"
@@ -967,4 +974,6 @@
     border: 0 none;
     outline: none;
   }
+  .wc{width:100%;display: inline-block;}
+  .wc .title{color:#000}
 </style>

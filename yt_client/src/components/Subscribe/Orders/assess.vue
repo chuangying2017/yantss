@@ -1,45 +1,129 @@
 <template>
 	<div class="assess">
-		<div class="orderinfo">
+		<div v-for="orderpro in starcont.preorders.skus" class="orderinfo">
 			<div class="imgcont">
-				<img src="http://o7tep4eu1.bkt.clouddn.com/FnrOOE4TCKmnxWzJNPrU9mTvet4_-201805251621477858" alt="" />
+				<img :src="orderpro.cover_image" alt="" />
 			</div>
 			<div class="orderdetail">
-				<p class="protit">瓶装乳酸奶 210ml <i class="status">已完成</i></p>
-				<p class="ordernum">订单号：EE20180515173609426822</p>
-				<p class="time">配送时间：2018-01-04 <i class="num">30瓶</i></p>
+				<p class="protit" v-if="starcont.preorders.order.refund_status === 'none'">{{orderpro.name|filtproductit}}
+	              <i class="status" v-if="starcont.preorders.status === 'unpaid'">未支付</i>
+	              <i class="status" v-if="starcont.preorders.status === 'shipping'">正常派送</i>
+	              <i class="status" v-if="starcont.preorders.status === 'assigning'">待处理</i>
+	              <i class="status" v-if="starcont.preorders.status === 'done'">订单结束</i>
+	              <i class="status" v-if="starcont.preorders.status === 'cancel'">订单取消</i>
+	            </p>
+	            <p class="protit" v-else>{{orderpro.name|filtproductit}}
+	              <i class="status" v-if="starcont.preorders.order.refund_status === 'apply'">退款申请</i>
+	              <i class="status" v-if="starcont.preorders.order.refund_status === 'reject'">退款被拒</i>
+	              <i class="status" v-if="starcont.preorders.order.refund_status === 'approve'">审核通过</i>
+	              <i class="status" v-if="starcont.preorders.order.refund_status === 'shipping'">退货中</i>
+	              <i class="status" v-if="starcont.preorders.order.refund_status === 'shipped'">已退货</i>
+	              <i class="status" v-if="starcont.preorders.order.refund_status === 'refunding'">退款中</i>
+	              <i class="status" v-if="starcont.preorders.order.refund_status === 'done'">退款成功</i>
+	              <i class="status" v-if="starcont.preorders.order.refund_status === 'fail'">退款失败</i>
+	            </p>
+				<p class="ordernum">订单号：{{starcont.preorders.order_no}}</p>
+				<p class="time">配送时间：{{starcont.preorders.start_time}} <i class="num">{{orderpro.total}}{{orderpro.sku.unit}}</i></p>
 			</div>
+		</div>
+		<div v-if="showdm" v-for="orderpro in starcont.preorders.skus|limitBy starcont.preorders.skus.length-2 2" class="orderinfo">
+			<div class="imgcont">
+				<img :src="orderpro.cover_image" alt="" />
+			</div>
+			<div class="orderdetail">
+				<p class="protit" v-if="starcont.preorders.order.refund_status === 'none'">{{orderpro.name|filtproductit}}
+	              <i class="status" v-if="starcont.preorders.status === 'unpaid'">未支付</i>
+	              <i class="status" v-if="starcont.preorders.status === 'shipping'">正常派送</i>
+	              <i class="status" v-if="starcont.preorders.status === 'assigning'">待处理</i>
+	              <i class="status" v-if="starcont.preorders.status === 'done'">订单结束</i>
+	              <i class="status" v-if="starcont.preorders.status === 'cancel'">订单取消</i>
+	            </p>
+	            <p class="protit" v-else>{{orderpro.name|filtproductit}}
+	              <i class="status" v-if="starcont.preorders.order.refund_status === 'apply'">退款申请</i>
+	              <i class="status" v-if="starcont.preorders.order.refund_status === 'reject'">退款被拒</i>
+	              <i class="status" v-if="starcont.preorders.order.refund_status === 'approve'">审核通过</i>
+	              <i class="status" v-if="starcont.preorders.order.refund_status === 'shipping'">退货中</i>
+	              <i class="status" v-if="starcont.preorders.order.refund_status === 'shipped'">已退货</i>
+	              <i class="status" v-if="starcont.preorders.order.refund_status === 'refunding'">退款中</i>
+	              <i class="status" v-if="starcont.preorders.order.refund_status === 'done'">退款成功</i>
+	              <i class="status" v-if="starcont.preorders.order.refund_status === 'fail'">退款失败</i>
+	            </p>
+				<p class="ordernum">订单号：{{starcont.preorders.order_no}}</p>
+				<p class="time">配送时间：{{starcont.preorders.start_time}} <i class="num">{{orderpro.total}}{{orderpro.sku.unit}}</i></p>
+			</div>
+		</div>
+		<div class="showmore"  v-if="starcont.preorders.skus.length>2" @click="showmore">
+			显示全部信息
 		</div>
 		<div class="talkarea">
 			<div class="talkwrap">
 				<div class="giveinfo">
-					<p class="givename">独孤送奶</p>
-					<p class="givetime">送奶时间:周一至周日&nbsp;&nbsp;上午9:00-11:00</p>
-					<p class="stationaddr">服务部:昌岗中服务部</p>
+					<p class="givename">{{starcont.preorders.staff.name}}</p>
+					<p class="givetime">送奶时间:
+						<i v-if="starcont.preorders.weekday_type=='all'">周一至周日</i>
+						<i v-if="starcont.preorders.weekday_type=='workday'">周一至周五</i>
+						&nbsp;&nbsp;
+						<i v-if="starcont.preorders.daytime==1">上午6:00-8:00</i>
+						<i v-if="starcont.preorders.daytime==0">下午4:00-6:00</i>
+					</p>
+					<!--<p class="givetime" v-if="starcont.preorders.weekday_type=='workday'">送奶时间:周一至周五&nbsp;&nbsp;上午9:00-11:00</p>-->
+					<p class="stationaddr">服务部:{{starcont.preorders.station.name}}</p>
 				</div>
 				<div id="star" class="star">
-		          	<span @click="setStar(1)" :class="{noselct:starnum<1}"><i class="ciconfont" v-if="starnum>=1">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(2)" :class="{noselct:starnum<2}"><i class="ciconfont" v-if="starnum>=2">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(3)" :class="{noselct:starnum<3}"><i class="ciconfont" v-if="starnum>=3">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(4)" :class="{noselct:starnum<4}"><i class="ciconfont" v-if="starnum>=4">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(5)" :class="{noselct:starnum<5}"><i class="ciconfont" v-if="starnum>=5">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(1)" :class="{noselct:score<1}"><i class="ciconfont" v-if="score>=1">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(2)" :class="{noselct:score<2}"><i class="ciconfont" v-if="score>=2">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(3)" :class="{noselct:score<3}"><i class="ciconfont" v-if="score>=3">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(4)" :class="{noselct:score<4}"><i class="ciconfont" v-if="score>=4">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(5)" :class="{noselct:score<5}"><i class="ciconfont" v-if="score>=5">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
 				</div>
 				<p class="stationeval">感谢您的高评价！</p>
-				<div class="evalcont">
-					
-					<p v-for="n in issel" :class="{seleced:n.selc}" @click="seled($index)">{{n.connet}}</p>
-					<!--<p :class="{seleced:!issel}" @click="seled">热情健谈</p>
-					<p :class="{seleced:!issel}" @click="seled">热情健谈</p>
-					<p :class="{seleced:!issel}" @click="seled">热情健谈</p>
-					<p :class="{seleced:!issel}" @click="seled">热情健谈</p>-->
+				<div class="evalcont" v-if="score==1">
+					<p @click="seled($event)">{{starcont.settingArray.value.star_one.one_one}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_one.one_two}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_one.one_three}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_one.one_four}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_one.one_five}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_one.one_six}}</p>
+				</div>
+				<div class="evalcont" v-if="score==2">
+					<p @click="seled($event)">{{starcont.settingArray.value.star_two.two_one}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_two.two_two}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_two.two_three}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_two.two_four}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_two.two_five}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_two.two_six}}</p>
+				</div>
+				<div class="evalcont" v-if="score==3">
+					<p @click="seled($event)">{{starcont.settingArray.value.star_three.three_one}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_three.three_two}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_three.three_three}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_three.three_four}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_three.three_five}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_three.three_six}}</p>
+				</div>
+				<div class="evalcont" v-if="score==4">
+					<p @click="seled($event)">{{starcont.settingArray.value.star_four.four_one}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_four.four_two}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_four.four_three}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_four.four_four}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_four.four_five}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_four.four_six}}</p>
+				</div>
+				<div class="evalcont" v-if="score==5">
+					<p @click="seled($event)">{{starcont.settingArray.value.star_five.five_one}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_five.five_two}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_five.five_three}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_five.five_four}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_five.five_five}}</p>
+					<p @click="seled($event)">{{starcont.settingArray.value.star_five.five_six}}</p>
 				</div>
 				<div id="customtalk">
-					<textarea type="text" placeholder="说说你的评价或者建议吧！"></textarea>
+					<textarea type="text" placeholder="说说你的评价或者建议吧！" v-model="content"></textarea>
 				</div>
 				
 			</div>
 		</div>
-		<div class="sendtalk">
+		<div class="sendtalk" @click="sendtalk">
 			提交
 		</div>
 	</div>
@@ -50,40 +134,103 @@
 		name:'assess',
 		data(){
 			return{
-				starnum:5,
-				issel:[
-					{
-						connet:"热情健谈",
-						selc:false,
-					},{
-						connet:"热情健谈",
-						selc:false,
-					},{
-						connet:"热情健谈",
-						selc:false,
+				commentid:null,
+				comment_label:[],
+				content:"",
+				showdm:false,
+				starcont:null,
+				score:5,
+				starcont:{
+					preorders:{
+						skus:[]
 					}
-				],
+				},
+				formData:{
+					score:null,
+					comment_label:null,
+					content:""
+				}
 			}
 		},
 		route:{
-			data:function(){
-				return Promise.all([])
+			data:function(){	
+				var self =this
+				return Promise.all([this.$http.get('/comments/clientComments/2?preorderId='+ this.$route.params.order_no)]).then(function([starcont]){
+					
+					return {
+						commentid:starcont.data.comment_type,
+						starcont:starcont.data
+					}
+				})
 			}
 		},
-		
+		watch:{
+			score(){
+				var self=this;
+				self.comment_label=[];
+			}
+		},
 		methods:{
 			setStar(num){
 				var self=this;
-				self.starnum=num;
+				self.score=num;
+			},
+//			删除数组中值
+			del(obj,str){
+				var index = obj.indexOf(str); 
+				if (index > -1) { 
+					obj.splice(index, 1); 
+				} 
+				return false;
 			},
 			seled(index){
 				var self=this
-				self.issel[index].selc=!self.issel[index].selc
+				var el = event.currentTarget;
+				if(el.getAttribute("class")!='seleced'){
+					el.className='seleced'
+					self.comment_label.push(el.innerHTML)
+				}else{
+					el.className=''
+					self.del(self.comment_label,el.innerHTML)
+				}
+				
+			},
+			showmore(){
+				this.showdm=!this.showdm
+			},
+			sendtalk(){
+				var self =this
+				self.formData.score=self.score,
+				self.formData.comment_label=self.comment_label,
+				self.formData.content=self.content,		
+				self.$http.patch('/comments/clientComments/'+self.commentid_type, self.formData).then(function(data){
+					window.alert('评价成功!')
+            		self.$route.router.go('/subscribe/assessSuccess')
+				},function(data){
+					 window.alert('评价失败，请重试')
+				})
 			}
-			
+//			self.$http.post('/subscribe/address', self.formData).then(
+//        function (data) {
+//          // 成功，提交订单
+//          self.orderData.address_id = data.data.data.id
+//          self.selectedAdr = data.data.data
+//          self.addresses.push(data.data.data)
+//          self.createOrder()
+//        },
+//        function (data) {
+//          // 失败，该地址不支持
+//          window.alert('对不起，该地址暂未开通线上订奶服务')
+//          self.adrProcess = false
+//          self.working = false
+//          return false
+//        }
+        
 		},
 	}
-	
+//	comments/clientComments/评论id
+//
+//请求方式：patch
 </script>
 
 <style scoped>
@@ -112,11 +259,11 @@
 	.imgcont,.orderdetail{float:left}
 	.imgcont{width:6.7rem;height:6.7rem;border:1px solid #bfbfbf;border-radius: 21px;text-align: center;}
 	.imgcont img{width:3.2rem;}
-	.protit{font-size:1.5rem;color:#000;margin-left:1rem;}
+	.protit{font-size:1.5rem;color:#000;margin-left:1rem;width:90%;}
 	.status{font-size:1.4rem;color:#1ab500;    position: absolute;
     right: 22px;}
 	.ordernum,.time{color:#a1a1a1;font-size:1.3rem;margin-left:1rem}
-	.ordernum{margin:0.5rem 1rem;margin-right: 0;}
+	.ordernum{margin:0.5rem 1rem;margin-right: 0;margin-top:0.8rem}
 	.num{position: absolute;
     right: 22px;font-size:1.6rem}
     
@@ -171,4 +318,5 @@
 	   
    		}
 	}
+	.showmore{text-align: center;font-size:15px;}
 </style>

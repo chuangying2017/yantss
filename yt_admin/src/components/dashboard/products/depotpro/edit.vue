@@ -63,6 +63,12 @@
                       </div>
                     </div>
                     <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-2 control-label">广告语</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" v-model="sku.product_row">
+                      </div>
+                    </div>
+                    <div class="form-group">
                       <label for="inputPassword3" class="col-sm-2 control-label">配送方式</label>
                     	<div class="col-sm-6 clearfix"> 
                         	<div class="disbtn mb20" @click.prevent="sku.dismode=2" v-bind:class="{'distype':sku.dismode==2}">多次配送<i v-show="sku.dismode==2">√</i></div>
@@ -231,7 +237,8 @@
         coverimgs:"",
         categories: [],
         groups: [],
-        dismode:null //0为单次配送 1为多次配送
+        dismode:null, //0为单次配送 1为多次配送
+       
       }
     },
     route: {
@@ -273,7 +280,8 @@
               tags: product.info.tags,
               open_time: product.open_time,
               end_time: product.end_time,
-              skus: []
+              skus: [],
+             
             },
             sku: {
               name: product['skus']['name'],
@@ -287,7 +295,8 @@
               income_price: product['skus']['income_price'],
               settle_price: product['skus']['settle_price'],
               attr_value_ids: [],
-              dismode:product.dismode
+              dismode:product.dismode,
+              product_row:product.skus.product_row
             }
           }
         })

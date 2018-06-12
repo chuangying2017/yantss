@@ -59,7 +59,8 @@
              </div>
              <div class="pure-u-1-3">
               <p class="tr wcs">
-              	<a v-if="order.comment_type==='ToBeUsed'" class="wc" v-link="{ path: '/subscribe/assess/' + order.id }">去评价</a>
+              	<!--<a v-if="order.comment_type==='ToBeUsed'" class="wc" v-link="{ path: '/subscribe/assess/' + order.id }">待评价</a>-->
+              	<a class="wc" v-link="{ path: '/subscribe/assess/' + order.id }">待评价</a>
             	</p>
             </div>
             <div class="pure-u-1-3">
