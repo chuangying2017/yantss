@@ -13,9 +13,9 @@ export default {
   },
 
   token: function () {
-    var token = window.localStorage.getItem('jwt-token')
-
-    if (token !== null && token !== undefined) {
+    //var token = window.localStorage.getItem('jwt-token')
+var token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjk0MzU2LCJpc3MiOiJodHRwOi8veXQyLmw0My5jbi93ZWF6bS15dC1hcGktZmNhNjQ4ZWEwMGU3L3NlcnZlci5waHAvYXBpL2F1dGgvbG9naW4vd2VpeGluIiwiaWF0IjoxNTI4NzY2NjEwLCJleHAiOjE1Mjg3OTU0MTAsIm5iZiI6MTUyODc2NjYxMCwianRpIjoiNVRRclhZd1ZiaWVwU0V4QiJ9.O9NHO5uHOs5j4DKkEpej_K9tyxrJPKDNc4-pMZ99Utg"
+  if (token !== null && token !== undefined) {
       if (this.isTokenExpired(token)) {
         return 'expired'
       } else {

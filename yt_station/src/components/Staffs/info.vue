@@ -43,6 +43,18 @@
           </div>
         </div>
       </div>
+      <div class="pure-g">
+        <div class="pure-u-1-3">
+          <span class="title">所有评价</span>
+        </div>
+        <div class="pure-u-2-3">
+          <div class="content">
+          	<a v-link="{ path: '/station/subscribes/allAssess' }">
+            	查看
+          	</a>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="qrcode">
       {{{qrcode}}}

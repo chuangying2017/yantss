@@ -47,7 +47,7 @@
         </div>
         <div class="milk-status">
           <div class="pure-g">
-            <div class="pure-u-1-2">
+            <div class="pure-u-1-3">
               <p>
                 <span>状态:</span>
                 <span v-if="order.status === 'shipping'">正常派送</span>
@@ -56,21 +56,28 @@
                 <span v-if="order.status === 'cancel'">订单取消</span>
                 <span v-if="order.status === 'unpaid'">未支付</span>
               </p>
+             </div>
+             <div class="pure-u-1-3">
+              <p class="tr wcs">
+              	<a v-if="order.comment_type==='ToBeUsed'" class="wc" v-link="{ path: '/subscribe/assess/' + order.id }">去评价</a>
+            	</p>
             </div>
-            <div class="pure-u-1-2">
+            <div class="pure-u-1-3">
               <p class="tr">
                 <a v-link="{ path: '/subscribe/orders/' + order.id }">查看详情</a>
               </p>
             </div>
+            
           </div>
-          <div v-if="order.status === 'shipping'" class="pure-g">
+          
+          <!--<div v-if="order.status === 'shipping'" class="pure-g">
             <p v-if="order.assess === 'null'" class="tr">
               <a class="wc" v-link="{ path: '/subscribe/assess/' + order.id }">评价</a>
             </p>
             <p v-if="order.assess === '1'" class="tr">
               <a class="wc">已评价</a>
             </p>
-          </div>
+          </div>-->
         </div>
       </div>
     </li>
@@ -289,6 +296,10 @@
     padding-left: 2rem;
   }
   .wc{
-    color: white!important;
+    color: #000!important;
+    text-align: center;
+  }
+  .wcs{
+    text-align: center;
   }
 </style>

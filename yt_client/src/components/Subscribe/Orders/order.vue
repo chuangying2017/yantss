@@ -188,6 +188,11 @@
           </div>
         </div>
       </div>
+      <div class="pure-g">
+        <div class="pure-u-2-5">
+          <span class="title"><a class="wc" v-link="{ path: '/subscribe/assess/' + order.id }">评价详情</a></span>
+        </div>
+      </div>
     </div>
     <button href="#" class="ios-btn ios-btn-success mt20" @click.prevent="payOrder"
             v-show="order.status === 'unpaid'" :disabled="payProcess">
