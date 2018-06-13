@@ -163,7 +163,7 @@
 				return Promise.all([this.$http.get('/comments/clientComments/2?preorderId='+ this.$route.params.order_no)]).then(function([starcont]){
 					
 					return {
-						commentid:starcont.data.comment_type,
+						commentid:starcont.data.comment_type.id,
 						starcont:starcont.data
 					}
 				})
