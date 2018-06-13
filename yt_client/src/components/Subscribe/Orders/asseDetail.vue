@@ -80,8 +80,8 @@
    .star{margin-top:1.5rem;text-align: center;}
    .star input{opacity:0;}
    /*.star span{color:#ffbb2a}*/
-   .star span i{color:#999}
-   .star .noselct i{color:#999}
+   .star span i{color:#ffbb2a}
+   .star .noselct i{color:#999 !important}
    .evalcont p{
    		width: 47%;
 	    float: left;
