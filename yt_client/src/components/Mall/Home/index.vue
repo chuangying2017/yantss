@@ -449,7 +449,8 @@
   }
   .m-home-grid{padding:0 !important;}
   .pure-u-1-1>a>img{width:1.5rem;vertical-align: middle;}
-  .by{color:#c3c1c1;position: absolute;
+  .by{color:#989898;position: absolute;
+    font-size: 13px;
     z-index: 1;
     margin: 1rem;}
 </style>

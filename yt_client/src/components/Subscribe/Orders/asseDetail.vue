@@ -14,21 +14,21 @@
 			<div class="evaluate">
 				<p class="stationeval">服务评价</p>
 				<div class="star">
-		          	<span @click="setStar(1)" :class="{noselct:starcont.comment.score<1}"><i class="ciconfont" v-if="starcont.comment.score>=1">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(2)" :class="{noselct:starcont.comment.score<2}"><i class="ciconfont" v-if="starcont.comment.score>=2">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(3)" :class="{noselct:starcont.comment.score<3}"><i class="ciconfont" v-if="starcont.comment.score>=3">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(4)" :class="{noselct:starcont.comment.score<4}"><i class="ciconfont" v-if="starcont.comment.score>=4">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(5)" :class="{noselct:starcont.comment.score<5}"><i class="ciconfont" v-if="starcont.comment.score>=5">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(1)" :class="{noselct:starcont.comment_type.score<1}"><i class="ciconfont" v-if="starcont.comment_type.score>=1">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(2)" :class="{noselct:starcont.comment_type.score<2}"><i class="ciconfont" v-if="starcont.comment_type.score>=2">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(3)" :class="{noselct:starcont.comment_type.score<3}"><i class="ciconfont" v-if="starcont.comment_type.score>=3">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(4)" :class="{noselct:starcont.comment_type.score<4}"><i class="ciconfont" v-if="starcont.comment_type.score>=4">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(5)" :class="{noselct:starcont.comment_type.score<5}"><i class="ciconfont" v-if="starcont.comment_type.score>=5">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
 				</div>
 				<div class="evalcont">
-					<p v-for="concont in starcont.comment.comment_label">{{concont}}</p>
+					<p v-for="concont in starcont.comment_type.comment_label">{{concont}}</p>
 				</div>
 			</div>
 		</div>
 		<div class="comments">
 			<h2>留言评价</h2>
 			<div class="comcont">
-				{{starcont.comment.content}}
+				{{starcont.comment_type.content}}
 			</div>
 		</div>
 	</div>

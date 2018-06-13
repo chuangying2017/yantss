@@ -23,7 +23,7 @@
           }
         }, 1000)
         setTimeout(function () {
-        	window.location.href = 'http://yt.l43.cn/yt-client/?#!/mall/user'
+        	window.location.href = 'http://yt2.l43.cn/yt-client/?#!/mall/user'
         }, 2000)
       }
     }
