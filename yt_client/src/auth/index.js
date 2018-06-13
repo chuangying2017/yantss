@@ -13,9 +13,9 @@ export default {
   },
 
   token: function () {
-    //var token = window.localStorage.getItem('jwt-token')
-var token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjk0MzU2LCJpc3MiOiJodHRwOi8veXQyLmw0My5jbi93ZWF6bS15dC1hcGktZmNhNjQ4ZWEwMGU3L3NlcnZlci5waHAvYXBpL2F1dGgvbG9naW4vd2VpeGluIiwiaWF0IjoxNTI4ODUxOTM2LCJleHAiOjE1Mjg4ODA3MzYsIm5iZiI6MTUyODg1MTkzNiwianRpIjoiVzNKcUhUTk5jSkVXa3ZRaCJ9.MPWzPJM_bUy2YANLuUFN9jAm2nm1dA08q703TiqOc-c"
- if (token !== null && token !== undefined) {
+    var token = window.localStorage.getItem('jwt-token')
+//var token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjk0MzU2LCJpc3MiOiJodHRwOi8veXQyLmw0My5jbi93ZWF6bS15dC1hcGktZmNhNjQ4ZWEwMGU3L3NlcnZlci5waHAvYXBpL2F1dGgvbG9naW4vd2VpeGluIiwiaWF0IjoxNTI4ODc1Mjk5LCJleHAiOjE1Mjg5MDQwOTksIm5iZiI6MTUyODg3NTI5OSwianRpIjoiQlhVRjl6YXh5SU84cVdURCJ9.52u0kkBhYLV1HgDaa6LG3CxI3m7rvnirHVWnJsH7x-o"
+if (token !== null && token !== undefined) {
       if (this.isTokenExpired(token)) {
         return 'expired'
       } else {

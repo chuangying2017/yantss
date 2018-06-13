@@ -161,7 +161,7 @@
 			data:function(){	
 				var self =this
 				return Promise.all([this.$http.get('/comments/clientComments/2?preorderId='+ this.$route.params.order_no)]).then(function([starcont]){
-					
+
 					return {
 						commentid:starcont.data.comment_type.id,
 						starcont:starcont.data
@@ -208,7 +208,7 @@
 				self.formData.score=self.score,
 				self.formData.comment_label=self.comment_label,
 				self.formData.content=self.content,		
-				self.$http.patch('/comments/clientComments/'+self.commentid_type, self.formData).then(function(data){
+				self.$http.patch('/comments/clientComments/'+self.commentid, self.formData).then(function(data){
 					window.alert('评价成功!')
             		self.$route.router.go('/subscribe/assessSuccess')
 				},function(data){
