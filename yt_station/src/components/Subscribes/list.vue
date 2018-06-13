@@ -206,11 +206,10 @@
 		},
 
 		methods: {
-			export: function () {
-				console.log(1)
+			exports: function () {
+			
 				window.location.href = this.downurl; 
-//				window.open("www.baidu.com")
-//		        window.open(self.downurl)
+
 
 		    },
 			pre() {

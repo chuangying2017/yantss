@@ -297,7 +297,7 @@
     padding-left: 2rem;
   }
   .wc{
-    color: #000!important;
+    color: #3bab5e!important;
     text-align: center;
   }
   .wcs{

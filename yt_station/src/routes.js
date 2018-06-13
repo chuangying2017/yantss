@@ -189,31 +189,31 @@ export default {
         }
       }
     })
-//  router.beforeEach(function (transition) {
-//    if (transition.to.auth) {
-//      if (window.localStorage.getItem('backURL')) {
-//      
-//        var url = window.localStorage.getItem('backURL')
-//        window.localStorage.removeItem('backURL')
-//        transition.redirect(url)
-//      }
-//     
-//      if (!Auth.check() && Auth.check() !== 'expired') {
-//        // 检查该条链接是否需要登录后再跳转
-//        window.localStorage.setItem('backURL', transition.to.path)
-//        transition.redirect('/auth/wechat')
-//      }
-//    }
-//   
-//    if (transition.to.guest) {
-//    
-//      if (Auth.check()) {
-// 
-//        transition.redirect('/station/exchange')
-//      }
-//    }
-//  
-//    transition.next()
-//  })
+    router.beforeEach(function (transition) {
+      if (transition.to.auth) {
+        if (window.localStorage.getItem('backURL')) {
+        
+          var url = window.localStorage.getItem('backURL')
+          window.localStorage.removeItem('backURL')
+          transition.redirect(url)
+        }
+       
+        if (!Auth.check() && Auth.check() !== 'expired') {
+          // 检查该条链接是否需要登录后再跳转
+          window.localStorage.setItem('backURL', transition.to.path)
+          transition.redirect('/auth/wechat')
+        }
+      }
+     
+      if (transition.to.guest) {
+      
+        if (Auth.check()) {
+   
+          transition.redirect('/station/exchange')
+        }
+      }
+    
+      transition.next()
+    })
   }
 }

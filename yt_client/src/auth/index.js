@@ -13,8 +13,8 @@ export default {
   },
 
   token: function () {
-    var token = window.localStorage.getItem('jwt-token')
-//var token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjk0MzU2LCJpc3MiOiJodHRwOi8veXQyLmw0My5jbi93ZWF6bS15dC1hcGktZmNhNjQ4ZWEwMGU3L3NlcnZlci5waHAvYXBpL2F1dGgvbG9naW4vd2VpeGluIiwiaWF0IjoxNTI4ODAxOTAwLCJleHAiOjE1Mjg4MzA3MDAsIm5iZiI6MTUyODgwMTkwMCwianRpIjoiTXhNZ2FIcHF1RUFyRERvaSJ9.1O5juBGtq44pZaEF4x3W-Ho6oyMdwag8qYas9bi9OiU"
+    //var token = window.localStorage.getItem('jwt-token')
+var token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjk0MzU2LCJpc3MiOiJodHRwOi8veXQyLmw0My5jbi93ZWF6bS15dC1hcGktZmNhNjQ4ZWEwMGU3L3NlcnZlci5waHAvYXBpL2F1dGgvbG9naW4vd2VpeGluIiwiaWF0IjoxNTI4ODUxOTM2LCJleHAiOjE1Mjg4ODA3MzYsIm5iZiI6MTUyODg1MTkzNiwianRpIjoiVzNKcUhUTk5jSkVXa3ZRaCJ9.MPWzPJM_bUy2YANLuUFN9jAm2nm1dA08q703TiqOc-c"
  if (token !== null && token !== undefined) {
       if (this.isTokenExpired(token)) {
         return 'expired'

@@ -1,5 +1,6 @@
 <template>
-	<div class="assess">
+	 <loader v-show="$loadingRouteData"></loader>
+	<div class="assess" v-show="!$loadingRouteData">
 		<div v-for="orderpro in starcont.preorders.skus" class="orderinfo">
 			<div class="imgcont">
 				<img :src="orderpro.cover_image" alt="" />
@@ -130,8 +131,12 @@
 </template>
 
 <script>
+	import Loader from './../../Share/loader.vue'
 	export default{
 		name:'assess',
+		components: {
+      		Loader,
+    	},
 		data(){
 			return{
 				commentid:null,
@@ -210,27 +215,10 @@
 					 window.alert('评价失败，请重试')
 				})
 			}
-//			self.$http.post('/subscribe/address', self.formData).then(
-//        function (data) {
-//          // 成功，提交订单
-//          self.orderData.address_id = data.data.data.id
-//          self.selectedAdr = data.data.data
-//          self.addresses.push(data.data.data)
-//          self.createOrder()
-//        },
-//        function (data) {
-//          // 失败，该地址不支持
-//          window.alert('对不起，该地址暂未开通线上订奶服务')
-//          self.adrProcess = false
-//          self.working = false
-//          return false
-//        }
         
 		},
 	}
-//	comments/clientComments/评论id
-//
-//请求方式：patch
+
 </script>
 
 <style scoped>
@@ -255,13 +243,14 @@
 	i{font-style:normal}
 	.assess{background:#ecf3ff;width:100%;min-height:100%;overflow: hidden;}
 	.orderinfo{overflow: hidden;background:#fff;margin:12px;border-radius: 5px;
-	padding:15px}
+	padding:15px;position: relative;}
 	.imgcont,.orderdetail{float:left}
+	.orderdetail{    width: 66%;}
 	.imgcont{width:6.7rem;height:6.7rem;border:1px solid #bfbfbf;border-radius: 21px;text-align: center;}
 	.imgcont img{width:3.2rem;}
 	.protit{font-size:1.5rem;color:#000;margin-left:1rem;width:90%;}
 	.status{font-size:1.4rem;color:#1ab500;    position: absolute;
-    right: 22px;}
+    right: 22px;top:1.15rem;    right: 1.2rem;}
 	.ordernum,.time{color:#a1a1a1;font-size:1.3rem;margin-left:1rem}
 	.ordernum{margin:0.5rem 1rem;margin-right: 0;margin-top:0.8rem}
 	.num{position: absolute;
