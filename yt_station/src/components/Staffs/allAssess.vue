@@ -6,102 +6,36 @@
           <a href="javascript:history.back()"><i class="iconfont">&#xe628;</i></a>
         </div>
         <div class="pure-u-3-5">
-          <h1>张三</h1>
+          <h1>{{comment[0].staff.name}}</h1>
         </div>
         <div class="pure-u-1-5"></div>
       </div>
     </div>
-    <div class="allAssess">
+    <div class="allAssess" v-for="cont in comment">
       <div class="fl">
         <div id="shoplist">
           <p class="all" >
-            <input type="radio" name="b" value="0"  v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
-            <input type="radio" name="b" value="1" v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
-            <input type="radio" name="b" value="2" v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
-            <input type="radio" name="b" value="3" v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
-            <input type="radio" name="b" value="4" v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
-            <input type="radio" name="b" value="5" v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
+            <div class="star">
+		          	<span @click="setStar(1)" :class="{noselct:cont.comments[0].score<1}"><i class="iconfont" v-if="cont.comments[0].score>=1">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(2)" :class="{noselct:cont.comments[0].score<2}"><i class="iconfont" v-if="cont.comments[0].score>=2">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(3)" :class="{noselct:cont.comments[0].score<3}"><i class="iconfont" v-if="cont.comments[0].score>=3">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(4)" :class="{noselct:cont.comments[0].score<4}"><i class="iconfont" v-if="cont.comments[0].score>=4">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(5)" :class="{noselct:cont.comments[0].score<5}"><i class="iconfont" v-if="cont.comments[0].score>=5">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+						</div>
           </p>
         </div>
-        <div class="date">
-          dsafsdfsdfsdsfsfsdadfsfsdafdsafsdfsdfsdsfsfsdadfsfsdafdsafsdfsdfsdsfsfsdadfsfsdaf
-         
+        <div class="breckw">
+         {{cont.comments[0].content}}
         </div>
       </div>
       <div class="fr">
         <div class="date">
-          2018-01-04
+          {{cont.comments[0].created_at|formatDate}}
         </div>
       </div>
     </div>
-      <div class="allAssess">
-      <div class="fl">
-        <div id="shoplist">
-          <p class="all" >
-            <input type="radio" name="b" value="0"  v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
-            <input type="radio" name="b" value="1" v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
-            <input type="radio" name="b" value="2" v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
-            <input type="radio" name="b" value="3" v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
-            <input type="radio" name="b" value="4" v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
-            <input type="radio" name="b" value="5" v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
-          </p>
-        </div>
-        <div class="date">
-          dsafsdfsdfsdsfsfsdadfsfsdafdsafsdfsdfsdsfsfsdadfsfsdafdsafsdfsdfsdsfsfsdadfsfsdaf
-          
-          dsafsdfsdfsdsfsfsdadfsfsdaf
-          dsafsdfsdfsdsfsfsdadfsfsdaf
-        </div>
-      </div>
-      <div class="fr">
-        <div class="date">
-          2018-01-04
-        </div>
-      </div>
-    </div>
-      <div class="allAssess">
-      <div class="fl">
-        <div id="shoplist">
-          <p class="all" >
-            <input type="radio" name="b" value="0"  v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
-            <input type="radio" name="b" value="1" v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
-            <input type="radio" name="b" value="2" v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
-            <input type="radio" name="b" value="3" v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
-            <input type="radio" name="b" value="4" v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
-            <input type="radio" name="b" value="5" v-model="inputdata" disabled/>
-            <span><i class="iconfont">&#xe72a;</i></span>
-          </p>
-        </div>
-        <div class="date">
-          dsafsdfsdfsdsfsfsdadfsfsdaf
-          dsafsdfsdfsdsfsfsdadfsfsdaf
-          dsafsdfsdfsdsfsfsdadfsfsdaf
-          dsafsdfsdfsdsfsfsdadfsfsdaf
-        </div>
-      </div>
-      <div class="fr">
-        <div class="date">
-          2018-01-04
-        </div>
-      </div>
-    </div>
+      
+     
     <div class="hr20"></div>
   </div>
 </template>
@@ -110,38 +44,45 @@
     export default {
       data () {
         return {
-          inputdata: '3'
+          comment: []
         }
-      }
-      // route: {
-      //   data: function () {
-      //     return this.$http.get('/staffs/preorders/' + this.$route.params.order_id).then(
-      //       function ({data: {data: order}}) {
-      //         return {
-      //           order: order
-      //         }
-      //       },
-      //       function (data) {
-      //         console.log(data)
-      //       }
-      //     )
-      //   }
-      // }
+      },
+     filters: {
+			formatDate(time) {
+			  var time = time.split(" ")[0]
+				return time
+			}
+		},
+     route: {
+       data: function (transition) {
+       	console.log(transition)
+         return this.$http.put('/stations/all/staff/comment/'+ transition.to.params.staffid).then(
+           function ({data: {preorders:comment}}) {       
+             return {
+               comment
+             }
+           },
+           function (data) {
+             console.log(data)
+           }
+         )
+       }
+     }
     }
 </script>
 
 <style scoped>
-  @font-face {
-    font-family: 'iconfont';  /* project id 552280 */
-    src: url('//at.alicdn.com/t/font_552280_gxxpzcu4xx39pb9.eot');
-    src: url('//at.alicdn.com/t/font_552280_gxxpzcu4xx39pb9.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_552280_gxxpzcu4xx39pb9.woff') format('woff'),
-    url('//at.alicdn.com/t/font_552280_gxxpzcu4xx39pb9.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_552280_gxxpzcu4xx39pb9.svg#iconfont') format('svg');
+ @font-face {
+  font-family: 'iconfont';  /* project id 686760 */
+  src: url('//at.alicdn.com/t/font_686760_c2gf0itspyfd2t9.eot');
+  src: url('//at.alicdn.com/t/font_686760_c2gf0itspyfd2t9.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_686760_c2gf0itspyfd2t9.woff') format('woff'),
+  url('//at.alicdn.com/t/font_686760_c2gf0itspyfd2t9.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_686760_c2gf0itspyfd2t9.svg#iconfont') format('svg');
   }
   .iconfont {
     font-family: "iconfont";
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-style: normal;
   }
 .allAssess{
@@ -161,13 +102,20 @@
   -webkit-transition:color .2s;
   transition:color .2s;
 }
+.breckw{overflow-wrap: break-word;}
 .all>input:checked~span{color:#666;}
 .all>input:checked+span{color:gold;}
   .date{
     font-size: 1.3rem;
-    padding-left: 0.5rem;
-    margin-top: 0.5rem;
+    height: 1rem;
     word-wrap:break-word;
+    position: absolute;
+    margin:auto;
+    top:0;
+    bottom:0;
+    left: 0;
+    right: 0;
+    text-align: center;
   }
   .fr p{
     font-size: 1.5rem;
@@ -177,7 +125,8 @@
     color: #999999;
   }
   .fr{
-    width: 22%;
+  	position: relative;
+    width: 32%;
   }
   .gc{
     background: #F5F5F5;
@@ -193,4 +142,6 @@
     font-size: 1.75rem;
   }
   .fl{width:69%}
+  .star span i{color:#ffbb2a}
+  .star .noselct i{color:#999}
 </style>

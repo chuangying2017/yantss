@@ -15,7 +15,7 @@
     <div class="m-order-list">
       <div class="pure-g" v-for="sku in order.skus">
         <div class="pure-u-1-2">
-          <span class="title">{{sku.name}}</span>
+          <span class="title">{{sku.name|filtproductit}}</span>
         </div>
         <div class="pure-u-1-2">
           <span class="content">剩余{{sku.remain}}{{sku.show_unit}}/日送{{sku.per_day}}{{sku.show_unit}}</span>

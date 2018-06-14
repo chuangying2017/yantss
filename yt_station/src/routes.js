@@ -94,7 +94,7 @@ export default {
               '/list': {
                 component: require('./components/Subscribes/listIndex.vue')
               },
-              '/allAssess': {
+              '/allAssess/:staffid': {
                 component: AllAssess
               },
               '/assessInfo': {

@@ -49,7 +49,7 @@
         </div>
         <div class="pure-u-2-3">
           <div class="content">
-          	<a v-link="{ path: '/station/subscribes/allAssess' }">
+          	<a v-link="{ path: '/station/subscribes/allAssess/'+$route.params.staff_id }">
             	查看
           	</a>
           </div>

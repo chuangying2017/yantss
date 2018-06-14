@@ -13,7 +13,7 @@ export default {
   },
 
   token: function () {
-    var token = window.localStorage.getItem('jwt-token')
+   var token = window.localStorage.getItem('jwt-token')
 
     if (token !== null && token !== undefined) {
       if (this.isTokenExpired(token)) {
