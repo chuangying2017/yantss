@@ -232,11 +232,12 @@
           this.query = tempQuery
           return this.search(tempPage)
         } else {
-          return Promise.all([api.assess.getstation()]).then(function ([stations,]) {
+          return Promise.all([api.assess.getstation(),this.getItems()]).then(function ([stations,assessData]) {
+          	console.log(assessData)
             var temp = {}
             if (window._user.roles.indexOf('StationContact') > -1) {
               var associateStations = window._user.associateStations.split(',')
-              console.log(associateStations)
+           
               stations.forEach(function (val) {
                 if (associateStations.indexOf(val.id.toString()) > -1) {
                   temp[val.id] = val
@@ -250,8 +251,9 @@
 						self.filterStations=temp;
             return {
             	 filterStations: temp,
+            	 evaluates:assessData
 //            orders: orderData.data,
-//            pagination: orderData.meta.pagination,
+              pagination: orderData.meta.pagination,
 //            stations: stations,
              
 //              stationsObj: stationsObj,
@@ -272,7 +274,7 @@
     　
     methods: {
       changeStation (order) {
-        console.log(order)
+        
         this.$broadcast('changeStation', order)
       },
       overtime: function (timeBefore) {
@@ -317,7 +319,7 @@
      
 //        self.pagination = data.meta.pagination
           self.evaluates = data
-          console.log( self.evaluates)
+          
         })
       },
       reset: function () {

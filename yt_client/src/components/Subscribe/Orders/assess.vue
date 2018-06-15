@@ -159,11 +159,13 @@
 		},
 		route:{
 			data:function(){	
-				var self =this		
+				var self =this	
+				alert(11)
 				return Promise.all([this.$http.get('/comments/clientComments/2?preorderId='+ this.$route.params.order_no)]).then(function([starcont]){
+					alert(12)
 					if(starcont.data.comment_type.comment_type=="HaveUses"){
+							alert(13)
 						self.$router.push('/subscribe/asseDetail/' + starcont.data.preorders.skus[0].preorder_id)
-						return false
 					}
 					return {
 						commentid:starcont.data.comment_type.id,
