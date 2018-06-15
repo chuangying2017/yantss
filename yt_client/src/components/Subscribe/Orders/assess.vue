@@ -160,6 +160,7 @@
 		route:{
 			data:function(){	
 				var self =this
+				alert("fes")
 				return Promise.all([this.$http.get('/comments/clientComments/2?preorderId='+ this.$route.params.order_no)]).then(function([starcont]){
 					alert(starcont.data.comment_type.comment_type)
 					if(starcont.data.comment_type.comment_type=="HaveUses"){
