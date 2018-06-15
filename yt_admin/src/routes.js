@@ -277,7 +277,14 @@ export default {
 							},
 							'/ranklist': {
 								component: require('./components/dashboard/assess/ranklist.vue')
+							},
+							'/staffassdetail': {
+								component: require('./components/dashboard/assess/staffassdetail.vue')
+							},
+							'/stationassdetail/:stationid': {
+								component: require('./components/dashboard/assess/stationassdetail.vue')
 							}
+							
 						}
 					},
 					'/integral': {

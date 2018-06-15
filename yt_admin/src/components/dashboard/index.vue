@@ -230,7 +230,7 @@
             <ul class="treeview-menu">
               <li><a v-link="{path: '/dashboard/assess/list'}"><i class="fa fa-navicon"></i> 用户评价</a></li>
               <li><a v-link="{path: '/dashboard/assess/starTag'}"><i class="fa fa-cubes"></i> 评价设置</a></li>
-              <li><a v-link="{path: '/dashboard/assess/ranklist'}"><i class="fa fa-sitemap"></i> 好友率排行</a></li>
+              <li><a v-link="{path: '/dashboard/assess/ranklist'}"><i class="fa fa-sitemap"></i> 好评率排行</a></li>
             </ul>
           </li>
         </ul>

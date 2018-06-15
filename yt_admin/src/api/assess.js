@@ -19,6 +19,28 @@ export default {
 				reject(data)
 			})
 		})
+	},
+	getstation:function(){
+		return new Promise(function(resolve,reject){
+			Vue.http.get('/admin/comments/stationShow').then(function({data:{stations}}){
+				resolve(stations)
+			}).then(function(data){
+				reject(data)
+			})
+		})
+	},
+//	获取评论内容
+	getalgetcont:function(getalcont){
+		console.log(getalcont)
+		return new Promise(function(resolve,reject){
+			Vue.http.get('/admin/comments/AdminComments',{
+        		params: getalcont
+      		}).then(function({data:{data}}){
+				resolve(data)
+			}).then(function(data){
+				reject(data)
+			})
+		})
 	}
 //get: function (residenceId) {
 //  return new Promise(function (resolve, reject) {

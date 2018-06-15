@@ -161,7 +161,10 @@
 			data:function(){	
 				var self =this
 				return Promise.all([this.$http.get('/comments/clientComments/2?preorderId='+ this.$route.params.order_no)]).then(function([starcont]){
-
+					if(starcont.data.comment_type.comment_type=="HaveUses"){
+						$router.push('/subscribe/asseDetail/' + starcont.data.preorders.skus[0].preorder_id)
+						return false
+					}
 					return {
 						commentid:starcont.data.comment_type.id,
 						starcont:starcont.data

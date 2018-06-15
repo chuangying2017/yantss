@@ -450,7 +450,8 @@
   .m-home-grid{padding:0 !important;}
   .pure-u-1-1>a>img{width:1.5rem;vertical-align: middle;}
   .by{color:#989898;position: absolute;
-    font-size: 13px;
+  	font-size: 12px;
+    font-size: 12.5px;
     z-index: 1;
     margin: 1rem;}
 </style>
