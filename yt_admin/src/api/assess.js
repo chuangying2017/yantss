@@ -35,7 +35,7 @@ export default {
 		return new Promise(function(resolve,reject){
 			Vue.http.get('/admin/comments/AdminComments',{
         		params: getalcont
-      		}).then(function({data:{data}}){
+      		}).then(function({data}){
 				resolve(data)
 			}).then(function(data){
 				reject(data)

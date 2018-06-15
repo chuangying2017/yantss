@@ -47,7 +47,7 @@
                 <div class="form-group">
                   <label for="groupRadios" class="col-sm-4 control-label">送奶工</label>
                   <div class="col-sm-8">
-                    <select class="form-control" v-model="query.user_id">
+                    <select class="form-control" v-model="query.staff_id">
                       <option v-for="user in users" value="{{user.id}}">{{user.name}}</option>
                     </select>
                   </div>
@@ -117,7 +117,7 @@
 	            <tr v-for="evaluate in evaluates">
 	              <td>{{$index+1}}</td>
 	              <td width="25%">
-	                <p>谢小姐 - {{evaluate.preorders[0].phone}}</p>
+	                <p>{{evaluate.preorders[0].name}} - {{evaluate.preorders[0].phone}}</p>
 	                <p>{{evaluate.preorders[0].address}}</p>
 	                <p>订单号: {{evaluate.preorders[0].order_no}}</p>
 	              </td>
@@ -128,8 +128,8 @@
 	              </td>
 	              <td>
 	                <p></p>
-	                <p>汪小平</p>
-	                <p>电话: 13620812844</p>
+	                <p>{{evaluate.preorders[0].staff.name}}</p>
+	                <p>电话: {{evaluate.preorders[0].staff.phone}}</p>
 	              </td>
 	              <td>
 	                <p class="all">
@@ -143,12 +143,12 @@
 						</div>
 	                  {{evaluate.content}}
 	                </p>
-	                <p class="tag">评价标签: 态度好、送奶准时、有礼貌,送奶服务很好，送奶时间很准确，下次还会继续选择</p>
+	                <p class="tag">评价标签: <i v-for="tag in evaluate.comment_label">{{tag}}&nbsp;&nbsp;</i></p>
 	                <p></p>
 	              </td>
 	              <td>
 	                <p></p>
-	                <p>2018-1-24 17:33:46</p>
+	                <p>{{evaluate.updated_at.date}}</p>
 	                <p></p>
 	              </td>
 	            </tr>
@@ -181,6 +181,7 @@
     font-size: 2.5rem;
     font-style: normal;
   }
+  .tag i{font-style: normal;}
    .star span i{color:#ffbb2a}
   .star .noselct i{color:#999}
 </style>
@@ -220,7 +221,7 @@
           phone: null,
           order_no: null,
          	station_id: null,
-          user_id:null,
+          staff_id:null,
  				  score:null
         }
       }
@@ -251,9 +252,9 @@
 						self.filterStations=temp;
             return {
             	 filterStations: temp,
-            	 evaluates:assessData
+            	 evaluates:assessData.data,
 //            orders: orderData.data,
-              pagination: orderData.meta.pagination,
+            pagination: assessData.meta.pagination,
 //            stations: stations,
              
 //              stationsObj: stationsObj,
@@ -317,8 +318,8 @@
         var self = this
         this.getItems(this.getQuery(page)).then(function (data) {
      
-//        self.pagination = data.meta.pagination
-          self.evaluates = data
+        self.pagination = data.meta.pagination
+          self.evaluates = data.data
           
         })
       },
