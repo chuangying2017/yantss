@@ -23,14 +23,6 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="optionsRadios" class="col-sm-4 control-label">送奶工</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" v-model="query.milkman">
-                  </div>
-                </div>  
-              </div>
-              <div class="col-md-4">
-              	<div class="form-group">
                   <label for="groupRadios" class="col-sm-4 control-label">星级</label>
                   <div class="col-sm-8">
                     <select class="form-control" v-model="score">
@@ -42,11 +34,22 @@
                     </select>
                   </div>
                 </div>
+              </div>
+              <div class="col-md-4">
+              	
                	<div class="form-group">
                   <label for="groupRadios" class="col-sm-4 control-label">服务部</label>
                   <div class="col-sm-8">
-                    <select class="form-control" v-model="query.station_id">
+                    <select class="form-control" v-model="sid">
                       <option v-for="station in filterStations" value="{{station.id}}">{{station.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="groupRadios" class="col-sm-4 control-label">送奶工</label>
+                  <div class="col-sm-8">
+                    <select class="form-control" v-model="query.staff_id">
+                      <option v-for="user in users" value="{{user.id}}">{{user.name}}</option>
                     </select>
                   </div>
                 </div>
@@ -145,7 +148,8 @@
              
               <th></th>
             </tr>
-            <tr v-for="order in orders">
+            <tr>
+            <!--<tr v-for="order in orders">-->
               <td>{{$index + 1}}</td>
               
               <td>
@@ -170,7 +174,7 @@
               </td>
               
               <td>
-                <a v-link="{path: '/dashboard/assess/stationassdetail/' + order.id}">查看详情 </a>    
+                <a v-link="{path: '/dashboard/assess/stationassdetail/'}">查看详情 </a>    
               </td>
             </tr>
             </tbody>
@@ -202,22 +206,18 @@
     },
     data () {
       return {
-        orders: [],
         stations: [],
-       
         filterStations: [],
         newStation: 'no',
         pagination: {},
+        users:[],
+        sid:null,
         query: {
-          station_id: null,
-          residence_id: null,
-          phone: null,
-          order_no: null,
-          pay_order_no: null,
-          status: null,
           start_time: null,
           end_time: null,
-          score:5
+         	station_id: null,
+          staff_id:null,
+ 				  score:null
         }
       }
     },
@@ -227,7 +227,7 @@
           this.query = tempQuery
           return this.search(tempPage)
         } else {
-          return Promise.all([this.getItems(), api.stations.getAll()]).then(function ([orderData, stations]) {
+          return Promise.all([api.assess.getstation(),this.getItems()]).then(function ([stations,assessData]) {
             var temp = {}
             if (window._user.roles.indexOf('StationContact') > -1) {
               var associateStations = window._user.associateStations.split(',')
@@ -242,16 +242,24 @@
                 temp[val.id] = val
               })
             }
+            self.filterStations=temp;
             return {
-              orders: orderData.data,
-              pagination: orderData.meta.pagination,
-              stations: stations,
+              filterStations: temp,
+            	evaluates:assessData.data,
+            	pagination: assessData.meta.pagination,
              
-              filterStations: temp
             }
           })
         }
       }
+    },
+    watch:{
+    	sid(val,oldVal){
+    		var self=this
+    		self.query.station_id=val
+    		self.users=[]
+        self.users=self.filterStations[val].staffs
+    	}
     },
     methods: {
     	milklist:function(){
@@ -286,7 +294,7 @@
         if (!query.station_id && window._user.roles.indexOf('StationContact') > -1) {
           query.station_id = window._user.associateStations
         }
-        return api.stations.orders.getAll(query)
+        return api.assess.getalgetcont(query)
       },
       export: function () {
         var query = this.query
@@ -319,7 +327,7 @@
         var self = this
         this.getItems(this.getQuery(page)).then(function (data) {
           self.pagination = data.meta.pagination
-          self.orders = data.data
+          self.evaluates = data.data
         })
       },
       reset: function () {

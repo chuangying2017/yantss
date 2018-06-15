@@ -163,8 +163,8 @@
 				
 				return Promise.all([this.$http.get('/comments/clientComments/2?preorderId='+ this.$route.params.order_no)]).then(function([starcont]){
 					
-					if(starcont.data.comment_type.comment_type=='HaveUses'){
-						self.$router.push({path:'/subscribe/asseDetail',params:{order_no:starcont.data.preorders.skus[0].preorder_id}})
+					if(starcont.data.comment_type.comment_type!='HaveUses'){
+						self.$router.go({name: 'asseDetail', params: {order_no:starcont.data.preorders.skus[0].preorder_id}});			
 					}
 					return {
 						commentid:starcont.data.comment_type.id,
