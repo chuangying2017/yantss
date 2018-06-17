@@ -88,7 +88,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">订单管理 ({{pagination.total}})</h3>
+          <h3 class="box-title">用户评价列表 ({{pagination.total}})</h3>
           <!--<div class="box-tools">-->
           <!--<div class="input-group input-group-sm" style="width: 150px;">-->
           <!--<input type="text" name="table_search" class="form-control pull-right" placeholder="微信昵称">-->
@@ -135,11 +135,11 @@
 	                <p class="all">
 	                  
 	                  <div class="star">
-		          	<span @click="setStar(1)" :class="{noselct:evaluate.score<1"><i class="iconfont" v-if="evaluate.score>=1">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(2)" :class="{noselct:evaluate.score<2}"><i class="iconfont" v-if="evaluate.score>=2">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(3)" :class="{noselct:evaluate.score<3}"><i class="iconfont" v-if="evaluate.score>=3">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(4)" :class="{noselct:evaluate.score<4}"><i class="iconfont" v-if="evaluate.score>=4">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(5)" :class="{noselct:evaluate.score<5}"><i class="iconfont" v-if="evaluate.score>=5">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span :class="{noselct:evaluate.score<1"><i class="iconfont" v-if="evaluate.score>=1">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span :class="{noselct:evaluate.score<2}"><i class="iconfont" v-if="evaluate.score>=2">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span :class="{noselct:evaluate.score<3}"><i class="iconfont" v-if="evaluate.score>=3">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span :class="{noselct:evaluate.score<4}"><i class="iconfont" v-if="evaluate.score>=4">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span :class="{noselct:evaluate.score<5}"><i class="iconfont" v-if="evaluate.score>=5">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
 						</div>
 	                  {{evaluate.content}}
 	                </p>
@@ -148,7 +148,7 @@
 	              </td>
 	              <td>
 	                <p></p>
-	                <p>{{evaluate.updated_at.date}}</p>
+	                <p>{{evaluate.updated_at.date|date}}</p>
 	                <p></p>
 	              </td>
 	            </tr>

@@ -31,10 +31,21 @@ export default {
 	},
 //	获取评论内容
 	getalgetcont:function(getalcont){
-		console.log(getalcont)
 		return new Promise(function(resolve,reject){
 			Vue.http.get('/admin/comments/AdminComments',{
         		params: getalcont
+      		}).then(function({data}){
+				resolve(data)
+			}).then(function(data){
+				reject(data)
+			})
+		})
+	},
+	//根据服务部id或者配送员id获取详情
+	getdetail:function(getid){
+		return new Promise(function(resolve,reject){
+			Vue.http.get('/admin/comments/AdminComments',{
+        		params: getid
       		}).then(function({data}){
 				resolve(data)
 			}).then(function(data){

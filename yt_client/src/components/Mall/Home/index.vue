@@ -452,6 +452,6 @@
   .by{color:#989898;position: absolute;
   	font-size: 12px;
     font-size: 12.5px;
-    z-index: 1;
+   
     margin: 1rem;}
 </style>

@@ -2,7 +2,7 @@
   <station-select :stations="stations"></station-select>
   <div class="row">
     <div class="col-md-12">
-      <div class="box">
+      <!--<div class="box">
         <div class="box-header">
           <h3 class="box-title">筛选</h3>
         </div>
@@ -81,14 +81,14 @@
             <button type="button" class="btn btn-danger" @click.prevent="reset">重置</button>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">订单管理 ({{pagination.total}})</h3>
+          <h3 class="box-title">评价管理 ({{pagination.total}})</h3>
           <!--<div class="box-tools">-->
           <!--<div class="input-group input-group-sm" style="width: 150px;">-->
           <!--<input type="text" name="table_search" class="form-control pull-right" placeholder="微信昵称">-->
@@ -112,42 +112,42 @@
 	              <th>评价内容</th>
 	              <th>评价时间</th>
 	            </tr>
-	            <tr>
-	            <!--<tr v-for="order in orders">-->
-	              <td>1</td>
+	            
+	            <tr v-for="evaluate in evaluates">
+	              <td>{{$index+1}}</td>
 	              <td width="25%">
-	                <p>谢小姐 - 13822282671</p>
-	                <p>海珠区南泰路珠江医院宿舍39栋A2202</p>
-	                <p>订单号: 108180124846733705788</p>
+	                <p>{{evaluate.preorders[0].name}} - {{evaluate.preorders[0].phone}}</p>
+	                <p>{{evaluate.preorders[0].address}}</p>
+	                <p>订单号:{{evaluate.preorders[0].order_no}}</p>
 	              </td>
 	              <td>
-	                <p>名称: 昌岗中服务部</p>
-	                <p>负责人: 汪小平</p>
-	                <p>电话：13620812844</p>
+	                <p>名称: {{evaluate.preorders[0].station.name}}</p>
+	                <p>负责人: {{evaluate.preorders[0].station.director}}</p>
+	                <p>电话：{{evaluate.preorders[0].station.phone}}</p>
 	              </td>
 	              <td>
 	                <p></p>
-	                <p>汪小平</p>
-	                <p>电话: 13620812844</p>
+	                <p>{{evaluate.preorders[0].staff.name}}</p>
+	                <p>电话: {{evaluate.preorders[0].staff.phone}}</p>
 	              </td>
 	              <td>
 	                <p class="all">
 	                  
 	                  <div class="star">
-		          	<span @click="setStar(1)" :class="{noselct:true"><i class="iconfont" v-if="cont.comments[0].score!=1">&#xe712;</i><i class="iconfont" v-else>&#xe711;</i></span>
+		          	<span @click="setStar(1)" :class="{noselct:cont.comments[0].score<1"><i class="iconfont" v-if="cont.comments[0].score>=1">&#xe712;</i><i class="iconfont" v-else>&#xe711;</i></span>
 		          	<span @click="setStar(2)" :class="{noselct:cont.comments[0].score<2}"><i class="iconfont" v-if="cont.comments[0].score>=2">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
 		          	<span @click="setStar(3)" :class="{noselct:cont.comments[0].score<3}"><i class="iconfont" v-if="cont.comments[0].score>=3">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
 		          	<span @click="setStar(4)" :class="{noselct:cont.comments[0].score<4}"><i class="iconfont" v-if="cont.comments[0].score>=4">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
 		          	<span @click="setStar(5)" :class="{noselct:cont.comments[0].score<5}"><i class="iconfont" v-if="cont.comments[0].score>=5">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
 						</div>
-	                  比较满意，但仍可改善
+	                {{evaluate.content}}
 	                </p>
-	                <p class="tag">评价标签: 态度好、送奶准时、有礼貌,送奶服务很好，送奶时间很准确，下次还会继续选择</p>
+	                 <p class="tag">评价标签: <i v-for="tag in evaluate.comment_label">{{tag}}&nbsp;&nbsp;</i></p>
 	                <p></p>
 	              </td>
 	              <td>
 	                <p></p>
-	                <p>2018-1-24 17:33:46</p>
+	                <p>{{evaluate.updated_at.date|date}}</p>
 	                <p></p>
 	              </td>
 	            </tr>
@@ -180,6 +180,7 @@
     font-size: 2.5rem;
     font-style: normal;
   }
+  .tag i{font-style: normal;}
 </style>
 <script>
   import api from 'api/index.js'
@@ -204,68 +205,32 @@
     },
     data () {
       return {
-        evaluate: [],
-        stations: [],
-				users:[],
-        filterStations: [],
-        newStation: 'no',
-        pagination: {},
-        sid:null,
+        evaluates: [],
         query: {
-        	start_time: null,
-          end_time: null,
-          phone: null,
-          order_no: null,
-         	station_id: null,
-          user_id:null,
- 				  score:null
+        	staffid:null
         }
       }
     },
     route: {
-      data () {
+      data (transition) {
       	var self = this
-        if (tempQuery) {
-          this.query = tempQuery
-          return this.search(tempPage)
-        } else {
-          return Promise.all([api.assess.getstation()]).then(function ([stations,]) {
-            var temp = {}
-            if (window._user.roles.indexOf('StationContact') > -1) {
-              var associateStations = window._user.associateStations.split(',')
-              console.log(associateStations)
-              stations.forEach(function (val) {
-                if (associateStations.indexOf(val.id.toString()) > -1) {
-                  temp[val.id] = val
-                }
-              })
-            } else {
-              stations.forEach(function (val, key) {
-                temp[val.id] = val
-              })
-            }
-						self.filterStations=temp;
+  	  self.query.staffid=transition.to.params.staffid 	 
+       
+          return Promise.all([api.assess.getdetail(self.query)]).then(function ([details]) {
+           
+						
             return {
-            	 filterStations: temp,
-//            orders: orderData.data,
+            	 evaluates:details.data
+
 //            pagination: orderData.meta.pagination,
-//            stations: stations,
-             
-//              stationsObj: stationsObj,
+
              
             }
           })
         }
-      }
+      
     },
-    watch:{
-    	sid(val,oldVal){
-    		var self=this
-    		self.query.station_id=val
-    		self.users=[]
-        self.users=self.filterStations[val].staffs
-    	}
-    },
+  
     　
     methods: {
       changeStation (order) {
@@ -279,7 +244,7 @@
         if (!query.station_id && window._user.roles.indexOf('StationContact') > -1) {
           query.station_id = window._user.associateStations
         }
-        return api.assess.getalgetcont(query)
+        return api.assess.getdetail(query)
       },
       export: function () {
         var query = this.query

@@ -85,7 +85,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">订单管理 ({{pagination.total}})</h3>
+          <h3 class="box-title">评价管理 ({{pagination.total}})</h3>
           
         </div>
         <!-- /.box-header -->
@@ -99,39 +99,36 @@
 	              <th>服务部信息</th>
 	              <th>综合星级评分</th>
 	              <th></th>
-	            
 	            </tr>
-	            <tr>
-	            <!--<tr v-for="order in orders">-->
-	              <td>1</td>
-	              
+	            
+	            <tr v-for="evaluate in evaluates">
+	              <td>{{$index+1}}</td>
 	              <td>
-	                
-	                <p>汪小平</p>
-	                <p>电话：13620812844</p>
+	                <p>{{evaluate.preorders[0].staff.name}}</p>
+	                <p>电话：{{evaluate.preorders[0].staff.phone}}</p>
 	              </td>
 	               <td>
-	                <p>名称: 昌岗中服务部</p>
-	                <p>负责人: 汪小平</p>
-	                <p>电话：13620812844</p>
+	                <p>名称:  {{evaluate.preorders[0].station.name}}</p>
+	                <p>负责人:{{evaluate.preorders[0].station.director}}</p>
+	                <p>电话：{{evaluate.preorders[0].station.phone}}</p>
 	              </td>
 	              <td>
 	                <p>
 	                	  <div class="star">
-						          	<span @click="setStar(1)" :class="{noselct:true"><i class="iconfont" v-if="cont.comments[0].score!=1">&#xe712;</i><i class="iconfont" v-else>&#xe711;</i></span>
-						          	<span @click="setStar(2)" :class="{noselct:cont.comments[0].score<2}"><i class="iconfont" v-if="cont.comments[0].score>=2">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-						          	<span @click="setStar(3)" :class="{noselct:cont.comments[0].score<3}"><i class="iconfont" v-if="cont.comments[0].score>=3">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-						          	<span @click="setStar(4)" :class="{noselct:cont.comments[0].score<4}"><i class="iconfont" v-if="cont.comments[0].score>=4">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-						          	<span @click="setStar(5)" :class="{noselct:cont.comments[0].score<5}"><i class="iconfont" v-if="cont.comments[0].score>=5">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+						          	<span :class="{noselct:evaluate.scores<1"><i class="iconfont" v-if="evaluate.scores>=1">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+						          	<span :class="{noselct:evaluate.scores<2}"><i class="iconfont" v-if="evaluate.scores>=2">&#xe711;</i><i class="iconfont" v-else="1<evaluate.scores">&#xe713;</i></span>
+							         	<span :class="{noselct:evaluate.scores<3}"><i class="iconfont" v-if="evaluate.scores>=3">&#xe711;</i><i class="iconfont" v-else="2<evaluate.scores">&#xe713;</i></span>
+							         	<span :class="{noselct:evaluate.scores<4}"><i class="iconfont" v-if="evaluate.scores>=4">&#xe711;</i><i class="iconfont" v-else="3<evaluate.scores">&#xe713;</i></span>
+							         	<span :class="{noselct:evaluate.scores<5,parselct:4<evaluate.scores}"><i class="iconfont" v-if="evaluate.scores>=5">&#xe711;</i><i class="iconfont" v-else="4<evaluate.scores">&#xe713;</i></span>
 											</div>
 	                </p>
 	                <p></p>
-	                <p>4.9分</p>
+	                <p>{{evaluate.scores|starf}}分</p>
 	              </td>
 	             
 	              <td>
 	              	<!--送奶工-->
-	                 <a v-link="{path: '/dashboard/assess/staffassdetail/'}">查看详情 </a> 
+	                 <a v-link="{path: '/dashboard/assess/staffassdetail/'+evaluate.preorders[0].staff.id}">查看详情 </a> 
 	              </td>
 	            </tr>
 	            </tbody>
@@ -148,33 +145,33 @@
              
               <th></th>
             </tr>
-            <tr>
-            <!--<tr v-for="order in orders">-->
-              <td>{{$index + 1}}</td>
+            
+            <tr v-for="evaluate in evaluates">
+              <td>{{$index+1}}</td>
               
               <td>
-              	<p>名称：昌岗中服务部</p>
-              	<p>负责人：方式的萨芬撒</p>
-              	<p>电话：1232434324</p>
+              	<p>名称：{{evaluate.preorders[0].station.name}}</p>
+              	<p>负责人：{{evaluate.preorders[0].station.director}}</p>
+              	<p>电话：{{evaluate.preorders[0].station.phone}}</p>
               	
               </td>
               <td>
                 <p>
                 	   
 	                  <div class="star">
-		          	<span @click="setStar(1)" :class="{noselct:true"><i class="iconfont" v-if="cont.comments[0].score!=1">&#xe712;</i><i class="iconfont" v-else>&#xe711;</i></span>
-		          	<span @click="setStar(2)" :class="{noselct:cont.comments[0].score<2}"><i class="iconfont" v-if="cont.comments[0].score>=2">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(3)" :class="{noselct:cont.comments[0].score<3}"><i class="iconfont" v-if="cont.comments[0].score>=3">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(4)" :class="{noselct:cont.comments[0].score<4}"><i class="iconfont" v-if="cont.comments[0].score>=4">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(5)" :class="{noselct:cont.comments[0].score<5}"><i class="iconfont" v-if="cont.comments[0].score>=5">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(1)" :class="{noselct:evaluate.score<1"><i class="iconfont" v-if="evaluate.score>=1">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(2)" :class="{noselct:evaluate.score<2}"><i class="iconfont" v-if="evaluate.score>=2">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(3)" :class="{noselct:evaluate.score<3}"><i class="iconfont" v-if="evaluate.score>=3">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(4)" :class="{noselct:evaluate.score<4}"><i class="iconfont" v-if="evaluate.score>=4">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(5)" :class="{noselct:evaluate.score<5}"><i class="iconfont" v-if="evaluate.score>=5">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
 						</div>
                 </p>
                 
-                <p>4.9分</p>
+                <p>{{evaluate.scores|starf}}分</p>
               </td>
               
               <td>
-                <a v-link="{path: '/dashboard/assess/stationassdetail/'}">查看详情 </a>    
+                <a v-link="{path: '/dashboard/assess/stationassdetail/'+evaluate.preorders[0].station.id}">查看详情 </a>    
               </td>
             </tr>
             </tbody>
@@ -206,6 +203,7 @@
     },
     data () {
       return {
+      	evaluates:[],
         stations: [],
         filterStations: [],
         newStation: 'no',
@@ -267,7 +265,6 @@
     		self.tempPage=1
     		self.query = {
           station_id: null,
-          residence_id: null,
           phone: null,
           order_no: null,
           status: null,
@@ -281,7 +278,6 @@
     		self.tempPage=1
     		self.query = {
           station_id: null,
-          residence_id: null,
           phone: null,
           order_no: null,
           status: null,
@@ -294,6 +290,7 @@
         if (!query.station_id && window._user.roles.indexOf('StationContact') > -1) {
           query.station_id = window._user.associateStations
         }
+        query.seniority=1
         return api.assess.getalgetcont(query)
       },
       export: function () {
@@ -354,13 +351,13 @@
 </script>
 <style>
   @font-face {
-    font-family: 'iconfont';  /* project id 552280 */
-    src: url('//at.alicdn.com/t/font_552280_gxxpzcu4xx39pb9.eot');
-    src: url('//at.alicdn.com/t/font_552280_gxxpzcu4xx39pb9.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_552280_gxxpzcu4xx39pb9.woff') format('woff'),
-    url('//at.alicdn.com/t/font_552280_gxxpzcu4xx39pb9.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_552280_gxxpzcu4xx39pb9.svg#iconfont') format('svg');
-  }
+	  font-family: 'iconfont';  /* project id 686760 */
+	  src: url('//at.alicdn.com/t/font_686760_716gqcjnhla.eot');
+	  src: url('//at.alicdn.com/t/font_686760_716gqcjnhla.eot?#iefix') format('embedded-opentype'),
+	  url('//at.alicdn.com/t/font_686760_716gqcjnhla.woff') format('woff'),
+	  url('//at.alicdn.com/t/font_686760_716gqcjnhla.ttf') format('truetype'),
+	  url('//at.alicdn.com/t/font_686760_716gqcjnhla.svg#iconfont') format('svg');
+	}
   .iconfont {
     font-family: "iconfont";
     font-size: 2rem;
@@ -379,4 +376,8 @@
     width: 300px;
     flex-wrap: wrap;
   }
+   .star span i{color:#ffbb2a}
+  .star .noselct i{color:#999}
+   .star .parselct i{color:#d0ac5b}
+
 </style>

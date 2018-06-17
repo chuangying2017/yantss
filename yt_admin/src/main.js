@@ -29,7 +29,9 @@ Vue.filter('filtproductit', function productit(val){
 	if (val == null) return val
   return val.replace(/<br\/>/gi,'');
 })
-
+Vue.filter('starf', function productit(val){
+  return parseFloat(val)
+})
 
 /**
  * router

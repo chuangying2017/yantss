@@ -278,7 +278,7 @@ export default {
 							'/ranklist': {
 								component: require('./components/dashboard/assess/ranklist.vue')
 							},
-							'/staffassdetail': {
+							'/staffassdetail/:staffid': {
 								component: require('./components/dashboard/assess/staffassdetail.vue')
 							},
 							'/stationassdetail/:stationid': {
