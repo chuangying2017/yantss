@@ -104,7 +104,7 @@
 	            <tr v-for="evaluate in evaluates">
 	              <td>{{$index+1}}</td>
 	              <td>
-	                <p>{{evaluate.preorders[0].staff.name}}</p>
+	                <p>名字：{{evaluate.preorders[0].staff.name}}</p>
 	                <p>电话：{{evaluate.preorders[0].staff.phone}}</p>
 	              </td>
 	               <td>
@@ -158,13 +158,13 @@
               <td>
                 <p>
                 	   
-	                  <div class="star">
-		          	<span @click="setStar(1)" :class="{noselct:evaluate.score<1"><i class="iconfont" v-if="evaluate.score>=1">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(2)" :class="{noselct:evaluate.score<2}"><i class="iconfont" v-if="evaluate.score>=2">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(3)" :class="{noselct:evaluate.score<3}"><i class="iconfont" v-if="evaluate.score>=3">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(4)" :class="{noselct:evaluate.score<4}"><i class="iconfont" v-if="evaluate.score>=4">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(5)" :class="{noselct:evaluate.score<5}"><i class="iconfont" v-if="evaluate.score>=5">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-						</div>
+	                   <div class="star">
+						          	<span :class="{noselct:evaluate.scores<1"><i class="iconfont" v-if="evaluate.scores>=1">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+						          	<span :class="{noselct:evaluate.scores<2}"><i class="iconfont" v-if="evaluate.scores>=2">&#xe711;</i><i class="iconfont" v-else="1<evaluate.scores">&#xe713;</i></span>
+							         	<span :class="{noselct:evaluate.scores<3}"><i class="iconfont" v-if="evaluate.scores>=3">&#xe711;</i><i class="iconfont" v-else="2<evaluate.scores">&#xe713;</i></span>
+							         	<span :class="{noselct:evaluate.scores<4}"><i class="iconfont" v-if="evaluate.scores>=4">&#xe711;</i><i class="iconfont" v-else="3<evaluate.scores">&#xe713;</i></span>
+							         	<span :class="{noselct:evaluate.scores<5,parselct:4<evaluate.scores}"><i class="iconfont" v-if="evaluate.scores>=5">&#xe711;</i><i class="iconfont" v-else="4<evaluate.scores">&#xe713;</i></span>
+											</div>
                 </p>
                 
                 <p>{{evaluate.scores|starf}}分</p>
