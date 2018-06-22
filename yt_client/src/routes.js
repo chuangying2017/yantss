@@ -126,7 +126,9 @@ export default {
           '/assess/:order_no': {
             component: require('./components/Subscribe/Orders/assess.vue')
           },
-   				
+   				'/addassess/:order_no': {
+            component: require('./components/Subscribe/Orders/addassess.vue')
+          },
           '/asseDetail/:order_no':{
           	name:'asseDetail',
             component: require('./components/Subscribe/Orders/asseDetail.vue')

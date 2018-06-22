@@ -70,54 +70,7 @@
 					<!--<p class="givetime" v-if="starcont.preorders.weekday_type=='workday'">送奶时间:周一至周五&nbsp;&nbsp;上午9:00-11:00</p>-->
 					<p class="stationaddr">服务部:{{starcont.preorders.station.name}}</p>
 				</div>
-				<div id="star" class="star">
-		          	<span @click="setStar(1)" :class="{noselct:score<1}"><i class="ciconfont" v-if="score>=1">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(2)" :class="{noselct:score<2}"><i class="ciconfont" v-if="score>=2">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(3)" :class="{noselct:score<3}"><i class="ciconfont" v-if="score>=3">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(4)" :class="{noselct:score<4}"><i class="ciconfont" v-if="score>=4">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(5)" :class="{noselct:score<5}"><i class="ciconfont" v-if="score>=5">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
-				</div>
-				<p class="stationeval">感谢您的高评价！</p>
-				<div class="evalcont" v-if="score==1">
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_one.one_one!=''">{{starcont.settingArray.value.star_one.one_one}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_one.one_two!=''">{{starcont.settingArray.value.star_one.one_two}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_one.one_three!=''">{{starcont.settingArray.value.star_one.one_three}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_one.one_four!=''">{{starcont.settingArray.value.star_one.one_four}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_one.one_five!=''">{{starcont.settingArray.value.star_one.one_five}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_one.one_six!=''">{{starcont.settingArray.value.star_one.one_six}}</p>
-				</div>
-				<div class="evalcont" v-if="score==2">
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_two.two_one!=''">{{starcont.settingArray.value.star_two.two_one}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_two.two_two!=''">{{starcont.settingArray.value.star_two.two_two}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_two.two_three!=''">{{starcont.settingArray.value.star_two.two_three}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_two.two_four!=''">{{starcont.settingArray.value.star_two.two_four}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_two.two_five!=''">{{starcont.settingArray.value.star_two.two_five}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_two.two_six!=''">{{starcont.settingArray.value.star_two.two_six}}</p>
-				</div>
-				<div class="evalcont" v-if="score==3">
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_three.three_one!=''">{{starcont.settingArray.value.star_three.three_one}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_three.three_two!=''">{{starcont.settingArray.value.star_three.three_two}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_three.three_three!=''">{{starcont.settingArray.value.star_three.three_three}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_three.three_four!=''">{{starcont.settingArray.value.star_three.three_four}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_three.three_five!=''">{{starcont.settingArray.value.star_three.three_five}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_three.three_six!=''">{{starcont.settingArray.value.star_three.three_six}}</p>
-				</div>
-				<div class="evalcont" v-if="score==4">
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_four.four_one!=''">{{starcont.settingArray.value.star_four.four_one}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_four.four_two!=''">{{starcont.settingArray.value.star_four.four_two}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_four.four_three!=''">{{starcont.settingArray.value.star_four.four_three}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_four.four_four!=''">{{starcont.settingArray.value.star_four.four_four}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_four.four_five!=''">{{starcont.settingArray.value.star_four.four_five}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_four.four_six!=''">{{starcont.settingArray.value.star_four.four_six}}</p>
-				</div>
-				<div class="evalcont" v-if="score==5">
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_five.five_one!=''">{{starcont.settingArray.value.star_five.five_one}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_five.five_two!=''">{{starcont.settingArray.value.star_five.five_two}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_five.five_three!=''">{{starcont.settingArray.value.star_five.five_three}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_five.five_four!=''">{{starcont.settingArray.value.star_five.five_four}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_five.five_five!=''">{{starcont.settingArray.value.star_five.five_five}}</p>
-					<p @click="seled($event)" v-if="starcont.settingArray.value.star_five.five_six!=''">{{starcont.settingArray.value.star_five.five_six}}</p>
-				</div>
+				<p class="addcont">追加评价</p>		
 				<div id="customtalk">
 					<textarea type="text" placeholder="说说你的评价或者建议吧！" v-model="content"></textarea>
 				</div>
@@ -140,20 +93,19 @@
 		data(){
 			return{
 				commentid:null,
-				comment_label:[],
 				content:"",
 				showdm:false,
 				starcont:null,
-				score:5,
+				
 				starcont:{
 					preorders:{
 						skus:[]
 					}
 				},
 				formData:{
-					score:null,
-					comment_label:null,
-					content:""
+					
+				CommentType:'Additional',
+					additionalComments:""
 				}
 			}
 		},
@@ -162,10 +114,6 @@
 				var self =this	
 				
 				return Promise.all([this.$http.get('/comments/clientComments/2?preorderId='+ this.$route.params.order_no)]).then(function([starcont]){
-					
-					if(starcont.data.comment_type.comment_type=='HaveUses'){
-						self.$router.go({name: 'asseDetail', params: {order_no:starcont.data.preorders.skus[0].preorder_id}});			
-					}
 					return {
 						commentid:starcont.data.comment_type.id,
 						starcont:starcont.data
@@ -173,45 +121,19 @@
 				})
 			}
 		},
-		watch:{
-			score(){
-				var self=this;
-				self.comment_label=[];
-			}
-		},
+		
 		methods:{
-			setStar(num){
-				var self=this;
-				self.score=num;
-			},
-//			删除数组中值
-			del(obj,str){
-				var index = obj.indexOf(str); 
-				if (index > -1) { 
-					obj.splice(index, 1); 
-				} 
-				return false;
-			},
-			seled(index){
-				var self=this
-				var el = event.currentTarget;
-				if(el.getAttribute("class")!='seleced'){
-					el.className='seleced'
-					self.comment_label.push(el.innerHTML)
-				}else{
-					el.className=''
-					self.del(self.comment_label,el.innerHTML)
-				}
-				
-			},
 			showmore(){
 				this.showdm=!this.showdm
 			},
 			sendtalk(){
 				var self =this
-				self.formData.score=self.score,
-				self.formData.comment_label=self.comment_label,
-				self.formData.content=self.content,		
+				if(self.content==""){
+					alert("追评不能为空!")
+					return false;
+				}
+				self.formData.additionalComments=self.content,		
+				console.log(self.formData)
 				self.$http.patch('/comments/clientComments/'+self.commentid, self.formData).then(function(data){
 					window.alert('评价成功!')
             		self.$route.router.go('/subscribe/assessSuccess')
@@ -314,4 +236,5 @@
    		}
 	}
 	.showmore{text-align: center;font-size:15px;}
+	.addcont{font-size: 15px;padding: 2rem 0 1rem 0;}
 </style>

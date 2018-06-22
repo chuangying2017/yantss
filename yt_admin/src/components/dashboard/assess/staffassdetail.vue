@@ -134,11 +134,11 @@
 	                <p class="all">
 	                  
 	                  <div class="star">
-		          	<span @click="setStar(1)" :class="{noselct:cont.comments[0].score<1"><i class="iconfont" v-if="cont.comments[0].score>=1">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(2)" :class="{noselct:cont.comments[0].score<2}"><i class="iconfont" v-if="cont.comments[0].score>=2">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(3)" :class="{noselct:cont.comments[0].score<3}"><i class="iconfont" v-if="cont.comments[0].score>=3">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(4)" :class="{noselct:cont.comments[0].score<4}"><i class="iconfont" v-if="cont.comments[0].score>=4">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span @click="setStar(5)" :class="{noselct:cont.comments[0].score<5}"><i class="iconfont" v-if="cont.comments[0].score>=5">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span :class="{noselct:evaluate.score<1"><i class="iconfont" v-if="evaluate.score>=1">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span :class="{noselct:evaluate.score<2}"><i class="iconfont" v-if="evaluate.score>=2">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span :class="{noselct:evaluate.score<3}"><i class="iconfont" v-if="evaluate.score>=3">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span :class="{noselct:evaluate.score<4}"><i class="iconfont" v-if="evaluate.score>=4">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span :class="{noselct:evaluate.score<5}"><i class="iconfont" v-if="evaluate.score>=5">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
 						</div>
 	                {{evaluate.content}}
 	                </p>

@@ -188,7 +188,7 @@
           </div>
         </div>
       </div>
-      <div class="pure-g" v-if="order.comment_type=='HaveUses'">
+      <div class="pure-g" v-if="order.comment_type=='HaveUses'||order.comment_type=='Additional'">
       	<a class="wc" v-link="{ path: '/subscribe/asseDetail/' + order.id }">
       		<div class="pure-u-2-5">
           	<span class="title">评价详情</span>
