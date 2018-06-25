@@ -98,7 +98,7 @@
 	              <th>送奶工信息</th>
 	              <th>服务部信息</th>
 	              <th>综合星级评分</th>
-	              <th>订单数/平均数</th>
+	              <th class="text-center">订单数/评价次数</th>
 	              <th>综合评论时间</th>
 	              <th></th>
 	            </tr>
@@ -149,7 +149,7 @@
 	               
 	                <p>{{evaluate.scores|starf}}分</p>
 	              </td>
-	              <td>
+	              <td class="text-center">
 	             		{{evaluate.total_order}}/{{evaluate.have_comments_number}}
 	              </td>
 	             <td>
@@ -171,7 +171,7 @@
               <th>排名</th>
               <th>服务部信息</th>
               <th>综合星级评分</th>
-              <th>订单数/平均数</th>
+              <th class="text-center">订单数/评价次数</th>
 	            <th>综合评论时间</th>
               <th></th>
             </tr>
@@ -220,7 +220,7 @@
                 
                 <p>{{evaluate.scores|starf}}分</p>
               </td>
-              <td>
+              <td class="text-center">
 	             		{{evaluate.total_order}}/{{evaluate.have_comments_number}}
 	            </td>
 	            <td>
@@ -397,8 +397,10 @@
          this.showstartime=this.query.start_time
         this.showendtime=this.query.end_time==null?"至今":this.query.end_time
         this.getItems(this.getQuery(page)).then(function (data) {
-          self.pagination = data.data.paging,
-          self.evaluates = data.data.result
+        
+          self.pagination = data.paging,
+          self.evaluates = data.result
+          
         })
       },
       reset: function () {

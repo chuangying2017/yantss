@@ -2,7 +2,7 @@
   <div class="assessSuccess">
     <p class="imgC"><img src="../../../assets/success.jpg"/></p>
     <p class="successTitle">评价成功</p>
-    <p class="succcessScore">获得{{user_score}}积分</p>
+    <!--<p class="succcessScore">获得{{user_score}}积分</p>-->
     <p class="gc">{{timer}}秒后自动跳转到个人中心</p>
   </div>
 </template>

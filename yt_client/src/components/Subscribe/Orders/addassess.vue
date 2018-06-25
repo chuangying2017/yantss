@@ -136,7 +136,7 @@
 				console.log(self.formData)
 				self.$http.patch('/comments/clientComments/'+self.commentid, self.formData).then(function(data){
 					window.alert('评价成功!')
-            		self.$route.router.go('/subscribe/assessSuccess')
+            		window.location.href = 'http://yt2.l43.cn/yt-client/?#!/mall/user'
 				},function(data){
 					 window.alert('评价失败，请重试')
 				})

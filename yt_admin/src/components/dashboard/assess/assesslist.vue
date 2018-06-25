@@ -161,7 +161,7 @@
 	                <p></p>
 	              </td>
 	              <td>
-	              	{{evaluate.additionComment}}
+	              	{{evaluate.additionComment==0?"":evaluate.additionComment}}
 	              </td>
 	              <td>
 	                <p></p>

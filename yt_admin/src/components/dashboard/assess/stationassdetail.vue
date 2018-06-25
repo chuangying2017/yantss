@@ -130,19 +130,22 @@
 	                <p>{{evaluate.preorders[0].staff.name}}</p>
 	                <p>电话: {{evaluate.preorders[0].staff.phone}}</p>
 	              </td>
-	              <td>
+	             <td v-if="evaluate.comment_type=='ToBeUsed'">
+	              	<p></p>
+	              	待评论
+	              </td>
+	              <td v-else>
 	                <p class="all">
-	                  
 	                  <div class="star">
-		          	<span :class="{noselct:evaluate.score<1}"><i class="iconfont" v-if="evaluate.score>=1">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span :class="{noselct:evaluate.score<2}"><i class="iconfont" v-if="evaluate.score>=2">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span :class="{noselct:evaluate.score<3}"><i class="iconfont" v-if="evaluate.score>=3">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span :class="{noselct:evaluate.score<4}"><i class="iconfont" v-if="evaluate.score>=4">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span :class="{noselct:evaluate.score<5}"><i class="iconfont" v-if="evaluate.score>=5">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-						</div>
-	                {{evaluate.content}}
+					          	<span :class="{noselct:evaluate.score<1}"><i class="iconfont" v-if="evaluate.score>=1">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+					          	<span :class="{noselct:evaluate.score<2}"><i class="iconfont" v-if="evaluate.score>=2">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+					          	<span :class="{noselct:evaluate.score<3}"><i class="iconfont" v-if="evaluate.score>=3">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+					          	<span :class="{noselct:evaluate.score<4}"><i class="iconfont" v-if="evaluate.score>=4">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+					          	<span :class="{noselct:evaluate.score<5}"><i class="iconfont" v-if="evaluate.score>=5">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+										</div>
+	                  {{evaluate.content}}
 	                </p>
-	                 <p class="tag">评价标签: <i v-for="tag in evaluate.comment_label">{{tag}}&nbsp;&nbsp;</i></p>
+	                <p class="tag">评价标签: <i v-for="tag in evaluate.comment_label">{{tag}}&nbsp;&nbsp;</i></p>
 	                <p></p>
 	              </td>
 	              <td>
