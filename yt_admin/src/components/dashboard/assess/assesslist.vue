@@ -28,6 +28,16 @@
                     <input type="text" class="form-control" v-model="query.phone">
                   </div>
                 </div>
+                <div class="form-group">
+                  <label for="groupRadios" class="col-sm-4 control-label">评论状态</label>
+                  <div class="col-sm-8">
+                    <select class="form-control" v-model="query.commentType">
+                      <option :value="'HaveUses'">评论</option>
+                      <option :value="'ToBeUsed'">待评论</option>
+                      <option :value="'Additional'">追评</option>
+                    </select>
+                  </div>
+                </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
@@ -111,6 +121,7 @@
 	              <th>服务部信息</th>
 	              <th>送奶工信息</th>
 	              <th>评价内容</th>
+	              <th>追加评论</th>
 	              <th>评价时间</th>
 	            </tr>
 	            <tr>
@@ -131,20 +142,26 @@
 	                <p>{{evaluate.preorders[0].staff.name}}</p>
 	                <p>电话: {{evaluate.preorders[0].staff.phone}}</p>
 	              </td>
-	              <td>
+	              <td v-if="evaluate.comment_type=='ToBeUsed'">
+	              	<p></p>
+	              	待评论
+	              </td>
+	              <td v-else>
 	                <p class="all">
-	                  
 	                  <div class="star">
-		          	<span :class="{noselct:evaluate.score<1"><i class="iconfont" v-if="evaluate.score>=1">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span :class="{noselct:evaluate.score<2}"><i class="iconfont" v-if="evaluate.score>=2">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span :class="{noselct:evaluate.score<3}"><i class="iconfont" v-if="evaluate.score>=3">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span :class="{noselct:evaluate.score<4}"><i class="iconfont" v-if="evaluate.score>=4">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-		          	<span :class="{noselct:evaluate.score<5}"><i class="iconfont" v-if="evaluate.score>=5">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-						</div>
+					          	<span :class="{noselct:evaluate.score<1}"><i class="iconfont" v-if="evaluate.score>=1">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+					          	<span :class="{noselct:evaluate.score<2}"><i class="iconfont" v-if="evaluate.score>=2">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+					          	<span :class="{noselct:evaluate.score<3}"><i class="iconfont" v-if="evaluate.score>=3">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+					          	<span :class="{noselct:evaluate.score<4}"><i class="iconfont" v-if="evaluate.score>=4">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+					          	<span :class="{noselct:evaluate.score<5}"><i class="iconfont" v-if="evaluate.score>=5">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+										</div>
 	                  {{evaluate.content}}
 	                </p>
 	                <p class="tag">评价标签: <i v-for="tag in evaluate.comment_label">{{tag}}&nbsp;&nbsp;</i></p>
 	                <p></p>
+	              </td>
+	              <td>
+	              	{{evaluate.additionComment}}
 	              </td>
 	              <td>
 	                <p></p>
@@ -216,6 +233,7 @@
         pagination: {},
         sid:null,
         query: {
+        	commentType:"",
         	start_time: null,
           end_time: null,
           phone: null,
@@ -313,11 +331,12 @@
         return query
       },
       search: function (page = null) {
+      	 var self = this
+//    	console.log(self.query.assstate)
         tempQuery = this.query
         tempPage = page
-        var self = this
+       
         this.getItems(this.getQuery(page)).then(function (data) {
-     
         self.pagination = data.meta.pagination
           self.evaluates = data.data
           

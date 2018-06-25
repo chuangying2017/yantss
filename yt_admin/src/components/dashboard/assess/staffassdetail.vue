@@ -134,7 +134,7 @@
 	                <p class="all">
 	                  
 	                  <div class="star">
-		          	<span :class="{noselct:evaluate.score<1"><i class="iconfont" v-if="evaluate.score>=1">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
+		          	<span :class="{noselct:evaluate.score<1}"><i class="iconfont" v-if="evaluate.score>=1">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
 		          	<span :class="{noselct:evaluate.score<2}"><i class="iconfont" v-if="evaluate.score>=2">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
 		          	<span :class="{noselct:evaluate.score<3}"><i class="iconfont" v-if="evaluate.score>=3">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
 		          	<span :class="{noselct:evaluate.score<4}"><i class="iconfont" v-if="evaluate.score>=4">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>

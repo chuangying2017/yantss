@@ -25,7 +25,7 @@
                 <div class="form-group">
                   <label for="groupRadios" class="col-sm-4 control-label">星级</label>
                   <div class="col-sm-8">
-                    <select class="form-control" v-model="score">
+                    <select class="form-control" v-model="query.score">
                       <option value="1">一星</option>
                       <option value="2">二星</option>
                       <option value="3">三星</option>
@@ -98,19 +98,21 @@
 	              <th>送奶工信息</th>
 	              <th>服务部信息</th>
 	              <th>综合星级评分</th>
+	              <th>订单数/平均数</th>
+	              <th>综合评论时间</th>
 	              <th></th>
 	            </tr>
 	            
 	            <tr v-for="evaluate in evaluates">
 	              <td>{{$index+1}}</td>
 	              <td>
-	                <p>名字：{{evaluate.preorders[0].staff.name}}</p>
-	                <p>电话：{{evaluate.preorders[0].staff.phone}}</p>
+	                <p>名字：{{evaluate[0].preorders[0].staff.name}}</p>
+	                <p>电话：{{evaluate[0].preorders[0].staff.phone}}</p>
 	              </td>
 	               <td>
-	                <p>名称:  {{evaluate.preorders[0].station.name}}</p>
-	                <p>负责人:{{evaluate.preorders[0].station.director}}</p>
-	                <p>电话：{{evaluate.preorders[0].station.phone}}</p>
+	                <p>名称:  {{evaluate[0].preorders[0].station.name}}</p>
+	                <p>负责人:{{evaluate[0].preorders[0].station.director}}</p>
+	                <p>电话：{{evaluate[0].preorders[0].station.phone}}</p>
 	              </td>
 	              <td>
 	                <p>
@@ -120,33 +122,42 @@
 						          		<i class="iconfont" v-else>&#xe712;</i>
 						          	</span>
 						          	<span :class="{noselct:evaluate.scores<2}">
-						          		<i class="iconfont" v-if="1<evaluate.scores<2">&#xe713;</i>
-						          		<i class="iconfont" v-else-if="evaluate.scores==2">&#xe711;</i>
-						          		<i class="iconfont" v-else="1>=evaluate.scores">&#xe712;</i>
+						          		<i class="iconfont" v-if='1<evaluate.scores&&evaluate.scores<2'>&#xe713;</i>
+						          		<i class="iconfont" v-else='evaluate.scores==2'>&#xe711;</i>
+						          		<i class="iconfont" v-if='evaluate.scores<=1'>&#xe712;</i>
 						          	</span>
 							         	<span :class="{noselct:evaluate.scores<3}">
-							         		<i class="iconfont" v-if="2<evaluate.scores<3">&#xe713;</i>
-						          		<i class="iconfont" v-else-if="evaluate.scores==3">&#xe711;</i>
-						          		<i class="iconfont" v-else="2>=evaluate.scores">&#xe712;</i>
+							         		<i class="iconfont" v-if="2<evaluate.scores&&evaluate.scores<3">&#xe713;</i>
+						          		<i class="iconfont" v-else="evaluate.scores==3">&#xe711;</i>
+						          		<i class="iconfont" v-if="evaluate.scores<=2">&#xe712;</i>
 							         	</span>
 							         	<span :class="{noselct:evaluate.scores<4}">
-							         			<i class="iconfont" v-if="1<evaluate.scores<">&#xe713;</i>
-						          		<i class="iconfont" v-else-if="evaluate.scores==2">&#xe711;</i>
-						          		<i class="iconfont" v-else="1>=evaluate.scores">&#xe712;</i>
+							         		<i class="iconfont" v-if="3<evaluate.scores&&evaluate.scores<4">&#xe713;</i>
+						          		<i class="iconfont" v-else="evaluate.scores==4">&#xe711;</i>
+						          		<i class="iconfont" v-if="evaluate.scores<=3">&#xe712;</i>
 							         	</span>
 							         	<span :class="{noselct:evaluate.scores<5}">
-							         		<i class="iconfont" v-if="evaluate.scores>=5">&#xe711;</i>
-							         		<i class="iconfont" v-else>&#xe712;</i>
+							         		<i class="iconfont" v-if="4<evaluate.scores&&evaluate.scores<5">&#xe713;</i>
+							         		<i class="iconfont" v-else></i>
+						          		<i class="iconfont" v-if="evaluate.scores==5">&#xe711;</i>
+						          		<i class="iconfont" v-else></i>
+						          		<i class="iconfont" v-if="evaluate.scores<=4">&#xe712;</i>
+						          		<i class="iconfont" v-else></i>
 							         	</span>
 											</div>
 	                </p>
-	                <p></p>
+	               
 	                <p>{{evaluate.scores|starf}}分</p>
 	              </td>
-	             
+	              <td>
+	             		{{evaluate.total_order}}/{{evaluate.have_comments_number}}
+	              </td>
+	             <td>
+	             	{{showstartime}}-{{showendtime}}
+	             </td>
 	              <td>
 	              	<!--送奶工-->
-	                 <a v-link="{path: '/dashboard/assess/staffassdetail/'+evaluate.preorders[0].staff.id}">查看详情 </a> 
+	                 <a v-link="{path: '/dashboard/assess/staffassdetail/'+evaluate[0].preorders[0].staff.id}">查看详情 </a> 
 	              </td>
 	            </tr>
 	            </tbody>
@@ -160,7 +171,8 @@
               <th>排名</th>
               <th>服务部信息</th>
               <th>综合星级评分</th>
-             
+              <th>订单数/平均数</th>
+	            <th>综合评论时间</th>
               <th></th>
             </tr>
             
@@ -168,28 +180,54 @@
               <td>{{$index+1}}</td>
               
               <td>
-              	<p>名称：{{evaluate.preorders[0].station.name}}</p>
-              	<p>负责人：{{evaluate.preorders[0].station.director}}</p>
-              	<p>电话：{{evaluate.preorders[0].station.phone}}</p>
+              	<p>名称：{{evaluate[0].preorders[0].station.name}}</p>
+              	<p>负责人：{{evaluate[0].preorders[0].station.director}}</p>
+              	<p>电话：{{evaluate[0].preorders[0].station.phone}}</p>
               	
               </td>
               <td>
                 <p>
-
-	                   <div class="star">
-						          	<span :class="{noselct:evaluate.scores<1"><i class="iconfont" v-if="evaluate.scores>=1">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
-						          	<span :class="{noselct:evaluate.scores<2}"><i class="iconfont" v-if="evaluate.scores>=2">&#xe711;</i><i class="iconfont" v-else="1<evaluate.scores">&#xe713;</i></span>
-							         	<span :class="{noselct:evaluate.scores<3}"><i class="iconfont" v-if="evaluate.scores>=3">&#xe711;</i><i class="iconfont" v-else="2<evaluate.scores">&#xe713;</i></span>
-							         	<span :class="{noselct:evaluate.scores<4}"><i class="iconfont" v-if="evaluate.scores>=4">&#xe711;</i><i class="iconfont" v-else="3<evaluate.scores">&#xe713;</i></span>
-							         	<span :class="{noselct:evaluate.scores<5}"><i class="iconfont" v-if="evaluate.scores>=5">&#xe711;</i><i class="iconfont" v-else="4<evaluate.scores">&#xe713;</i></span>
+                	<div class="star">
+						          	<span :class="{noselct:evaluate.scores<1">
+						          		<i class="iconfont" v-if="evaluate.scores>=1">&#xe711;</i>
+						          		<i class="iconfont" v-else>&#xe712;</i>
+						          	</span>
+						          	<span :class="{noselct:evaluate.scores<2}">
+						          		<i class="iconfont" v-if='1<evaluate.scores&&evaluate.scores<2'>&#xe713;</i>
+						          		<i class="iconfont" v-else='evaluate.scores==2'>&#xe711;</i>
+						          		<i class="iconfont" v-if='evaluate.scores<=1'>&#xe712;</i>
+						          	</span>
+							         	<span :class="{noselct:evaluate.scores<3}">
+							         		<i class="iconfont" v-if="2<evaluate.scores&&evaluate.scores<3">&#xe713;</i>
+						          		<i class="iconfont" v-else="evaluate.scores==3">&#xe711;</i>
+						          		<i class="iconfont" v-if="evaluate.scores<=2">&#xe712;</i>
+							         	</span>
+							         	<span :class="{noselct:evaluate.scores<4}">
+							         		<i class="iconfont" v-if="3<evaluate.scores&&evaluate.scores<4">&#xe713;</i>
+						          		<i class="iconfont" v-else="evaluate.scores==4">&#xe711;</i>
+						          		<i class="iconfont" v-if="evaluate.scores<=3">&#xe712;</i>
+							         	</span>
+							         	<span :class="{noselct:evaluate.scores<5}">
+							         		<i class="iconfont" v-if="4<evaluate.scores&&evaluate.scores<5">&#xe713;</i>
+							         		<i class="iconfont" v-else></i>
+						          		<i class="iconfont" v-if="evaluate.scores==5">&#xe711;</i>
+						          		<i class="iconfont" v-else></i>
+						          		<i class="iconfont" v-if="evaluate.scores<=4">&#xe712;</i>
+						          		<i class="iconfont" v-else></i>
+							         	</span>
 											</div>
                 </p>
                 
                 <p>{{evaluate.scores|starf}}分</p>
               </td>
-              
               <td>
-                <a v-link="{path: '/dashboard/assess/stationassdetail/'+evaluate.preorders[0].station.id}">查看详情 </a>    
+	             		{{evaluate.total_order}}/{{evaluate.have_comments_number}}
+	            </td>
+	            <td>
+	             	{{showstartime}}-{{showendtime}}
+	            </td>
+              <td>
+                <a v-link="{path: '/dashboard/assess/stationassdetail/'+evaluate[0].preorders[0].station.id}">查看详情 </a>    
               </td>
             </tr>
             </tbody>
@@ -228,7 +266,10 @@
         pagination: {},
         users:[],
         sid:null,
+        showstartime:null,
+        showendtime:null,
         query: {
+        	type_role:'staff_id',
           start_time: null,
           end_time: null,
          	station_id: null,
@@ -239,11 +280,16 @@
     },
     route: {
       data () {
+      	var self=this
         if (tempQuery) {
           this.query = tempQuery
           return this.search(tempPage)
         } else {
-          return Promise.all([api.assess.getstation(),this.getItems()]).then(function ([stations,assessData]) {
+        	
+        	this.query.start_time=moment().format('YYYY-MM-01')
+        	this.showstartime=this.query.start_time
+        	this.showendtime="至今"
+          return Promise.all([api.assess.getstation(),this.getItems({start_time:this.query.start_time,type_role:'staff_id'})]).then(function ([stations,assessData]) {
             var temp = {}
             if (window._user.roles.indexOf('StationContact') > -1) {
               var associateStations = window._user.associateStations.split(',')
@@ -259,10 +305,12 @@
               })
             }
             self.filterStations=temp;
+            console.log(typeof assessData.result[0].scores)
+            console.log(assessData.result[0].scores==5)
             return {
               filterStations: temp,
-            	evaluates:assessData.data,
-            	pagination: assessData.meta.pagination,
+            	evaluates:assessData.result,
+            	pagination: assessData.paging,
              
             }
           })
@@ -281,27 +329,33 @@
     	milklist:function(){
     		var self=this
     		self.tempPage=1
+    		self.sid=null
+        
     		self.query = {
-          station_id: null,
-          phone: null,
-          order_no: null,
-          status: null,
+    			type_role:'staff_id',
           start_time: null,
-          end_time: null
+          end_time: null,
+         	station_id: null,
+          staff_id:null,
+ 				  score:null
         }
+    		self.query.start_time=moment().format('YYYY-MM-01')
     		self.search(self.tempPage)
     	},
     	severlist:function(){
     		var self=this
     		self.tempPage=1
+    		self.sid=null
+    		
     		self.query = {
-          station_id: null,
-          phone: null,
-          order_no: null,
-          status: null,
+    			type_role:'station_id',
           start_time: null,
-          end_time: null
+          end_time: null,
+         	station_id: null,
+          staff_id:null,
+ 				  score:null
         }
+    		self.query.start_time=moment().format('YYYY-MM-01')
     		self.search(self.tempPage)
     	},    
       getItems: function (query = {}) {
@@ -340,20 +394,20 @@
         tempQuery = this.query
         tempPage = page
         var self = this
+         this.showstartime=this.query.start_time
+        this.showendtime=this.query.end_time==null?"至今":this.query.end_time
         this.getItems(this.getQuery(page)).then(function (data) {
-          self.pagination = data.meta.pagination
-          self.evaluates = data.data
+          self.pagination = data.data.paging,
+          self.evaluates = data.data.result
         })
       },
       reset: function () {
         this.query = {
-          station_id: null,
-          residence_id: null,
-          phone: null,
-          order_no: null,
-          status: null,
           start_time: null,
-          end_time: null
+          end_time: null,
+         	station_id: null,
+          staff_id:null,
+ 				  score:null
         }
       },
       select: function (format, week = false) {
@@ -361,11 +415,16 @@
         	
           this.query.start_time = moment().startOf('week').add(1, 'day').format(format)
           console.log(  this.query.start_time)
+          
         } else {
         	
           this.query.start_time = moment().format(format)
-          console.log(  this.query.start_time)
+          console.log( this.query.start_time)
+         
         }
+        this.query.end_time=null
+        this.showstartime=this.query.start_time
+        this.showendtime="至今"
         this.search()
       }
     }

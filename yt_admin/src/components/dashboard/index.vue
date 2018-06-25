@@ -144,7 +144,7 @@
             </ul>
           </li>
 
-          <!--<li class="treeview" v-if="permit('Integral')" :class="{active: route.nav == 'integral'}">
+          <li class="treeview" v-if="permit('Integral')" :class="{active: route.nav == 'integral'}">
             <a href="#">
               <i class="fa fa-gift"></i>
               <span>积分管理</span>
@@ -159,7 +159,7 @@
               <li><a v-link="{path: '/dashboard/integral/signRecord'}"><i class="fa fa-sitemap"></i> 签到记录</a></li>
               <li><a v-link="{path: '/dashboard/integral/exchangeList'}"><i class="fa fa-sitemap"></i> 兑换管理</a></li>
             </ul>
-          </li>-->
+          </li>
 
           <!--<li class="treeview">-->
           <!--<a href="#">-->

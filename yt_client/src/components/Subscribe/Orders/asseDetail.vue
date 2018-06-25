@@ -31,6 +31,12 @@
 				{{starcont.comment_type.content}}
 			</div>
 		</div>
+		<div class="comments">
+			<h2>追加评价</h2>
+			<div class="comcont">
+				{{starcont.comment_type.additional_comments}}
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -97,7 +103,7 @@
    	}
    .evalcont p:nth-child(2n+2){margin-left:5.9%}
    .evalcont{width: 86%;margin: auto;overflow: hidden;margin-top:1.5rem; padding-bottom: 2.5rem;}
-   .comments h2{padding:0.8rem;text-align: center;font-size:1.7rem;color:#999;border-bottom:1px solid #f5f5f5;}
+   .comments h2{padding:0.8rem;font-size:1.6rem;color:#000;border-bottom:1px solid #f5f5f5;}
 	.comcont{padding:1.3rem 2.1rem;color:#999;font-size:1.4rem}
 	i{font-style: normal;}
 </style>

@@ -23,11 +23,14 @@ import Staff from './components/Staffs/staff.vue'
 import StaffInfo from './components/Staffs/info.vue'
 import StaffPreorder from './components/Staffs/preorders.vue'
 import StaffEdit from './components/Staffs/edit.vue'
-import DelOrder from './components/DelOrder/index.vue'
+
+//import DelOrder from './components/DelOrder/index.vue'
+import Assess from './components/Assess/index.vue'
+import AssessList from './components/Assess/list.vue'
+import AllAssess from './components/Assess/allAssess.vue'
 
 import StaffsHome from './components/Staffs/listhome.vue'
 import StaffsCount from './components/Staffs/count.vue'
-import AllAssess from './components/Staffs/allAssess.vue'
 import AssessInfo from './components/Staffs/assessInfo.vue'
 export default {
   init: function (router) {
@@ -94,9 +97,7 @@ export default {
               '/list': {
                 component: require('./components/Subscribes/listIndex.vue')
               },
-              '/allAssess/:staffid': {
-                component: AllAssess
-              },
+             
               '/assessInfo': {
                 component: AssessInfo
               },
@@ -124,9 +125,21 @@ export default {
               }
             }
           },
-          '/deliveryOrder': {
-            component: DelOrder
+          '/assess':{
+          	component:Assess,
+          	subRoutes:{
+          		'/assesslist':{
+          			component:AssessList
+          		},
+          		'/allAssess/:staffid': {
+                component: AllAssess
+              }
+          	}
           },
+//        '/deliveryOrder': {
+//          component: DelOrder
+//        },
+				
           '/listhome': {
             component: StaffsHome,
             subRoutes: {
@@ -189,31 +202,31 @@ export default {
         }
       }
     })
-    router.beforeEach(function (transition) {
-      if (transition.to.auth) {
-        if (window.localStorage.getItem('backURL')) {
-        
-          var url = window.localStorage.getItem('backURL')
-          window.localStorage.removeItem('backURL')
-          transition.redirect(url)
-        }
-       
-        if (!Auth.check() && Auth.check() !== 'expired') {
-          // 检查该条链接是否需要登录后再跳转
-          window.localStorage.setItem('backURL', transition.to.path)
-          transition.redirect('/auth/wechat')
-        }
-      }
-     
-      if (transition.to.guest) {
-      
-        if (Auth.check()) {
-   
-          transition.redirect('/station/exchange')
-        }
-      }
-    
-      transition.next()
-    })
+//  router.beforeEach(function (transition) {
+//    if (transition.to.auth) {
+//      if (window.localStorage.getItem('backURL')) {
+//      
+//        var url = window.localStorage.getItem('backURL')
+//        window.localStorage.removeItem('backURL')
+//        transition.redirect(url)
+//      }
+//     
+//      if (!Auth.check() && Auth.check() !== 'expired') {
+//        // 检查该条链接是否需要登录后再跳转
+//        window.localStorage.setItem('backURL', transition.to.path)
+//        transition.redirect('/auth/wechat')
+//      }
+//    }
+//   
+//    if (transition.to.guest) {
+//    
+//      if (Auth.check()) {
+// 
+//        transition.redirect('/station/exchange')
+//      }
+//    }
+//  
+//    transition.next()
+//  })
   }
 }
