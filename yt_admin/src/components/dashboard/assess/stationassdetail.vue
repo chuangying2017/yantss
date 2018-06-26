@@ -194,7 +194,7 @@
   let tempQuery = false
   let tempPage = 1
   export default {
-    name: 'ListStationOrders',
+    name: 'stationassdetail',
     components: {
       Pagination,
       
@@ -209,23 +209,24 @@
     data () {
       return {
         evaluates: [],
+       
         query: {
-        	station_id:null
+        	
         }
       }
     },
     route: {
       data (transition) {
       	var self = this
-  	  self.query.station_id=transition.to.params.stationid 	 
-       
+    		self.query=transition.to.query
+
           return Promise.all([api.assess.getdetail(self.query)]).then(function ([details]) {
            
 						
             return {
-            	 evaluates:details.data
+            	 evaluates:details.data,
 
-//            pagination: orderData.meta.pagination,
+            pagination: details.meta.pagination,
 
              
             }
@@ -274,16 +275,16 @@
         })
         return query
       },
-      search: function (page = null) {
-        tempQuery = this.query
-        tempPage = page
-        var self = this
-        this.getItems(this.getQuery(page)).then(function (data) {
+   //   search: function (page = null) {
+//      tempQuery = this.query
+//      tempPage = page
+//      var self = this
+//      this.getItems(this.getQuery(page)).then(function (data) {
      
-//        self.pagination = data.meta.pagination
-          self.evaluate = data
-        })
-      },
+       // self.pagination = data.meta.pagination
+       //   self.evaluate = data
+     //   })
+      //},
       reset: function () {
         this.query = {
           station_id: null,

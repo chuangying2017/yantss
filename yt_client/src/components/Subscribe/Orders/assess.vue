@@ -214,7 +214,7 @@
 				self.formData.content=self.content,		
 				self.$http.patch('/comments/clientComments/'+self.commentid, self.formData).then(function(data){
 					window.alert('评价成功!')
-            		window.location.href = 'http://yt2.l43.cn/yt-client/?#!/mall/user'
+            		self.$route.router.go('/subscribe/assessSuccess')
 				},function(data){
 					 window.alert('评价失败，请重试')
 				})

@@ -194,7 +194,7 @@
   let tempQuery = false
   let tempPage = 1
   export default {
-    name: 'ListStationOrders',
+    name:'staffassdetail',
     components: {
       Pagination,
       
@@ -210,24 +210,18 @@
       return {
         evaluates: [],
         query: {
-        	staff_id:null
+        	
         }
       }
     },
     route: {
       data (transition) {
       	var self = this
-  	  self.query.staff_id=transition.to.params.staffid 	 
-       
-          return Promise.all([api.assess.getdetail(self.query)]).then(function ([details]) {
-           
-						
+    		self.query=transition.to.query
+          return Promise.all([api.assess.getdetail(self.query)]).then(function ([details]) {		
             return {
-            	 evaluates:details.data
-
-//            pagination: orderData.meta.pagination,
-
-             
+            	evaluates:details.data,
+            	pagination: details.meta.pagination,
             }
           })
         }
@@ -237,7 +231,6 @@
     　
     methods: {
       changeStation (order) {
-        console.log(order)
         this.$broadcast('changeStation', order)
       },
       overtime: function (timeBefore) {

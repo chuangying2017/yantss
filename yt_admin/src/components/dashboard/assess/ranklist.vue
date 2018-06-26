@@ -22,7 +22,7 @@
                     <input type="text" class="form-control" v-model="query.end_time">
                   </div>
                 </div>
-                <div class="form-group">
+                <!--<div class="form-group">
                   <label for="groupRadios" class="col-sm-4 control-label">星级</label>
                   <div class="col-sm-8">
                     <select class="form-control" v-model="query.score">
@@ -33,7 +33,7 @@
                       <option value="5">五星</option>
                     </select>
                   </div>
-                </div>
+                </div>-->
               </div>
               <div class="col-md-4">
               	
@@ -157,7 +157,8 @@
 	             </td>
 	              <td>
 	              	<!--送奶工-->
-	                 <a v-link="{path: '/dashboard/assess/staffassdetail/'+evaluate[0].preorders[0].staff.id}">查看详情 </a> 
+	                 <!--<a v-link="{path: '/dashboard/assess/staffassdetail/'+evaluate[0].preorders[0].staff.id}">查看详情 </a>--> 
+	                 <span @click="gostaff(evaluate[0].preorders[0].staff.id)">查看详情</span>
 	              </td>
 	            </tr>
 	            </tbody>
@@ -227,7 +228,8 @@
 	             	{{showstartime}}-{{showendtime}}
 	            </td>
               <td>
-                <a v-link="{path: '/dashboard/assess/stationassdetail/'+evaluate[0].preorders[0].station.id}">查看详情 </a>    
+                <!--<a v-link="{path: '/dashboard/assess/stationassdetail/'+evaluate[0].preorders[0].station.id}">查看详情 </a>-->    
+                <span @click="gostation(evaluate[0].preorders[0].station.id)">查看详情</span>
               </td>
             </tr>
             </tbody>
@@ -326,6 +328,14 @@
     	}
     },
     methods: {
+    	gostaff:function(staffid){
+    		var self=this;
+    		self.$router.go({name:'staffassdetail',query:{type_role:self.query.type_role, start_time:self.query.start_time, end_time:self.query.end_time, station_id:self.query.station_id,staff_id:self.query.staff_id,staff_id:staffid}});
+    	},
+    	gostation:function(stationid){
+    		var self=this;
+    		self.$router.go({name:'stationassdetail',query:{type_role:self.query.type_role, start_time:self.query.start_time, end_time:self.query.end_time, station_id:self.query.station_id,staff_id:self.query.staff_id,station_id:stationid}});
+    	},
     	milklist:function(){
     		var self=this
     		self.tempPage=1

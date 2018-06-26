@@ -278,10 +278,12 @@ export default {
 							'/ranklist': {
 								component: require('./components/dashboard/assess/ranklist.vue')
 							},
-							'/staffassdetail/:staffid': {
+							'/staffassdetail': {
+								name:'staffassdetail',
 								component: require('./components/dashboard/assess/staffassdetail.vue')
 							},
-							'/stationassdetail/:stationid': {
+							'/stationassdetail': {
+								name:'stationassdetail',
 								component: require('./components/dashboard/assess/stationassdetail.vue')
 							}
 							
