@@ -307,8 +307,6 @@
               })
             }
             self.filterStations=temp;
-            console.log(typeof assessData.result[0].scores)
-            console.log(assessData.result[0].scores==5)
             return {
               filterStations: temp,
             	evaluates:assessData.result,

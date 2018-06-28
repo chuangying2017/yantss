@@ -43,7 +43,7 @@
                 <div class="form-group">
                   <label for="groupRadios" class="col-sm-4 control-label">订单号</label>
                   <div class="col-sm-8">
-                  	 <input type="tel" class="form-control" v-model="query.phone">
+                  	 <input type="tel" class="form-control" v-model="query.order_no">
                   </div>
                 </div>
                 <div class="form-group">

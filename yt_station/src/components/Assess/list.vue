@@ -1,5 +1,5 @@
 <template>
-	<div class="m-user m-user-alert" v-show="!$loadingRouteData">
+	<div class="m-user m-user-alert">
 		<ul>
 			<li class="user-list">
 				<a>
@@ -9,16 +9,26 @@
 				     		<span>天平架服务部</span>
 				        </div>
 				        <!--<div class="white20"></div>-->
-				        <div class="dateC"><input @change="changeDate" style="padding-left:0.2rem" type="date" v-model="stime" @change="changeDate" value="2017-03-10"/><span class="to">至</span><input @change="changeDate" type="date" v-model="etime" @change="changeDate" value="2017-03-10"/><i class="iconfont iconC">&#xe658;</i></div>
+				        <div class="dateC">
+				        	<input @change="changeDate" style="padding-left:0.2rem" type="date" @change="changeDate" v-model="start_time"/>
+				        	<span class="to">至</span>
+				        	<input @change="changeDate" type="date" @change="changeDate" v-model="end_time"/><i class="iconfont iconC">&#xe658;</i></div>
 				      </div>
 		    		</div>
 				</a>
 			</li>
+			
+		</ul>
+
+	</div>
+	<div class="m-user m-user-alert" v-show="!$loadingRouteData&&showdata.length">
+		<ul>
+			
 			<li class="user-list">
 				<a>
 					<p class="clearfix">
 						<span class="fl">当月综合排名</span>
-						<span class="fr">第四名</span>
+						<span class="fr">第{{datas.ranking}}名</span>
 					</p>
 				</a>
 			</li>
@@ -26,7 +36,7 @@
 				<a>
 					<p class="clearfix">
 						<span class="fl">当月均分/评价次数</span>
-						<span class="fr">2.5/3333</span>
+						<span class="fr">{{datas.scores}}/{{datas.have_comments_number}}</span>
 					</p>
 				</a>
 			</li>
@@ -43,41 +53,34 @@
 			        </tr>
 			        </thead>
 			        <tbody>
-				        <tr>
-				          <td>独孤送奶</td>
-				          <td>3.4/223232332/23232232</td>
-				          <td>1111</td>
+				        <tr v-for="staff in datas.MilkMan">
+				          <td>{{staff.staff_name}}</td>
+				          <td>{{staff.scores}}/{{staff.have_comments_number}}/{{staff.total_order}}</td>
+				          <td>{{$index+1}}</td>
 				          <td>
-				          	<a v-link="{ path: '/station/assess/allAssess/'+$route.params.staff_id }">查看</a>
+				          	<span class="act-link" @click="godetail(staff[0].staff_id)">
+				          		<i class="iconfont">&#xe65c;</i> 
+				          		查看
+				          	</span>
+				           <!--<a v-link="{ path: '/station/assess/allAssess/' + staff[0].staff_id}" class="act-link">
+				          		<i class="iconfont">&#xe65c;</i> 
+		
+				          		查看
+				          	</a>-->
 				          </td>
 				        </tr>
-				        <tr>
-			          <td>独孤送奶</td>
-			          <td>3.4/223232332/23232232</td>
-			          <td>1111</td>
-			          <td>
-			          	<a v-link="">查看</a>
-			          </td>
-			        </tr>
-			        <tr>
-			          <td>独孤送奶</td>
-			          <td>3.4/223232332/23232232</td>
-			          <td>1111</td>
-			          <td>
-			          	<a v-link="">查看</a>
-			          </td>
-			        </tr>
+				       
 			        </tbody>
 			      </table>
 			</div>
-		
+
 	</div>
 	
-	<loader v-show="$loadingRouteData || renew"></loader>
+	<loader v-show="$loadingRouteData"></loader>
 	
-	<empty v-show="!$loadingRouteData && !subscribes.length" icon="&#xe651;">
-		当前没有任何订单
-	</empty>
+	<div class="msg" v-show="!$loadingRouteData &&!showdata.length" icon="&#xe651;">
+		此服务部{{start_time}}至{{end_time}}没有任何评价
+	</div>
 	
 </template>
 
@@ -86,19 +89,74 @@
 	export default{
 		name:'assesslist',
 		data(){
-			return{
-				
+			return {
+				start_time:"",
+				end_time:"",
+				datas:null,
+				showdata:null
+			}
+		},
+		route:{
+			data:function(){
+				var self=this;
+				self.start_time=self.gettime()
+				self.end_time=self.getnow()
+				return self.$http.get('/stations/station_comment_see',{start_time:self.start_time,end_time:self.end_time}).then(function(data){
+					return {
+						datas:data.data[0],
+						showdata:data.data
+					}
+				},function(data){
+					alert(data)
+				})
 			}
 		},
 		methods: {
+			gettime:function(){   		
+	    		var d = new Date(),
+		        month = '' + (d.getMonth() + 1),
+		        day = '' + d.getDate(),
+		        year = d.getFullYear();
+			    if (month.length < 2) month = '0' + month;
+			    day = '01';
+			    return [year, month, day].join('-');
+    		},
+    		getnow:function(){
+    			var d = new Date(),
+		        month = '' + (d.getMonth() + 1),
+		        day = '' + d.getDate(),
+		        year = d.getFullYear();
+			    if (month.length < 2) month = '0' + month;
+			    if (day.length < 2) month = '0' + day;
+			  
+			    return [year, month, day].join('-');
+    		},
+    		godetail:function(staffid){
+    			var self=this;
+    			self.$router.go({name:"assesslist",query:{start_time:self.start_time,end_time:self.end_time,staff_id:staffid}})
+    		},
 		    changeDate: function () {
 		        var self = this
-		        this.$http.get('/stations/distributormilk', {
-		            staff: this.selected,
-		            stime: this.stime,
-		            etime: this.etime
-		        }).then(
+		        var nowstr=new Date()
+		        var startstr = new Date(self.start_time.replace(/-/g,'/')); // 日期字符串
+		        var endstr = new Date(self.end_time.replace(/-/g,'/'));
+				if(startstr>nowstr){
+					alert("开始时间不能超过今天!")
+					return false
+				}
+				if(endstr>nowstr){
+					alert("结束时间不能超过今天!")
+					return false
+				}
+		        if(startstr>endstr){
+					alert("开始时间不能大于结束时间!")
+					return false
+				}
+		        
+		        
+		        this.$http.get('/stations/station_comment_see',{start_time:self.start_time,end_time:self.end_time}).then(
 		          function (data) {
+		          	self.showdata=data.data
 		            self.onestaffs = data.data.data
 		          },
 		          function (data) {
@@ -207,7 +265,9 @@
 		color: #ff9f29;
 		-webkit-font-smoothing: antialiased;
 	}
+	.act-link{color:#25ad25} 
 	/**/
+	
 	.tab1{margin-top:1rem}
 
   .u-table table {
@@ -291,5 +351,5 @@
     width: 2.5rem;
     height: 1.5rem;
   }
-	
+ .msg{text-align: center;}
 </style>

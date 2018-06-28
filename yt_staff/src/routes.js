@@ -78,9 +78,12 @@ export default {
           '/search': {
             component: require('./components/Deliver/search.vue')
           },
-          '/data': {
-            component: require('./components/Deliver/data.vue')
-          },
+//        '/data': {
+//          component: require('./components/Deliver/data.vue')
+//        },
+					'/allassess': {
+         		component: require('./components/Deliver/allAssess.vue')
+        	},
           '/orders': {
             component: require('./components/Deliver/orders.vue')
           },
@@ -96,12 +99,12 @@ export default {
           'operate': {
             component: require('./components/Deliver/operate.vue')
           },
-          '/allassess': {
-            component: require('./components/Deliver/allAssess.vue')
-          },
-          '/assessinfo': {
-            component: require('./components/Deliver/assessInfo.vue')
-          },
+//        '/allassess': {
+//          component: require('./components/Deliver/allAssess.vue')
+//        },
+//        '/assessinfo': {
+//          component: require('./components/Deliver/assessInfo.vue')
+//        },
           '/listall': {
             component: require('./components/Deliver/listall.vue'),
             subRoutes: {
@@ -114,25 +117,25 @@ export default {
       }
     })
 
-    router.beforeEach(function (transition) {
-      if (transition.to.auth) {
-        if (window.localStorage.getItem('backURL')) {
-          var url = window.localStorage.getItem('backURL')
-          window.localStorage.removeItem('backURL')
-          transition.redirect(url)
-        }
-        if (!Auth.check() && Auth.check() !== 'expired') {
-          // 检查该条链接是否需要登录后再跳转
-          window.localStorage.setItem('backURL', transition.to.path)
-          transition.redirect('/auth/wechat')
-        }
-      }
-      if (transition.to.guest) {
-        if (Auth.check()) {
-          transition.redirect('/')
-        }
-      }
-      transition.next()
-    })
+//  router.beforeEach(function (transition) {
+//    if (transition.to.auth) {
+//      if (window.localStorage.getItem('backURL')) {
+//        var url = window.localStorage.getItem('backURL')
+//        window.localStorage.removeItem('backURL')
+//        transition.redirect(url)
+//      }
+//      if (!Auth.check() && Auth.check() !== 'expired') {
+//        // 检查该条链接是否需要登录后再跳转
+//        window.localStorage.setItem('backURL', transition.to.path)
+//        transition.redirect('/auth/wechat')
+//      }
+//    }
+//    if (transition.to.guest) {
+//      if (Auth.check()) {
+//        transition.redirect('/')
+//      }
+//    }
+//    transition.next()
+//  })
   }
 }
