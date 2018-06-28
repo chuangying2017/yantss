@@ -115,7 +115,7 @@
 			next() {
 				var self = this
 				var page
-				if(self.current_page > self.totalPages) {
+				if(self.current_page >= self.totalPages) {
 					return
 				}
 				page = self.current_page
