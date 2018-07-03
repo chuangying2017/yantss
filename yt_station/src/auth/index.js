@@ -29,7 +29,7 @@ export default {
   },
 
   token: function () {
-// var token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEyMzY4NSwiaXNzIjoiaHR0cDpcL1wveXQubDQzLmNuXC93ZWF6bS15dC1hcGktZmNhNjQ4ZWEwMGU3XC9zZXJ2ZXIucGhwXC9hcGlcL2F1dGhcL2xvZ2luXC93ZWl4aW4iLCJpYXQiOjE1MzAxNzk1MzUsImV4cCI6MTUzMDIwODMzNSwibmJmIjoxNTMwMTc5NTM1LCJqdGkiOiJRZFVZbTJqVmhYTGlrNkVjIn0.9hGIVsOve6E_zhhm2FHecToOAlqGQJcW5zlRA9FOJnQ"
+// var token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjk0MzU2LCJpc3MiOiJodHRwOi8veXQyLmw0My5jbi93ZWF6bS15dC1hcGktZmNhNjQ4ZWEwMGU3L3NlcnZlci5waHAvYXBpL2F1dGgvbG9naW4vd2VpeGluIiwiaWF0IjoxNTMwNjA0NTAwLCJleHAiOjE1MzA2MzMzMDAsIm5iZiI6MTUzMDYwNDUwMCwianRpIjoicjROWmxWWUNmb1ZKelZDOCJ9.rVV1C_7Yeoldzu3HzaU8caFK7hHB2mf2QRLFth8kmb4"
 var token = window.localStorage.getItem('jwt-token')
 
  if (token !== null && token !== undefined) {
