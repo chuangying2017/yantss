@@ -39,7 +39,7 @@
           </span>
 					
 						
-					<a :href="downurl" class="fr importbtn" download>
+					<a :href="downurl" class="fr importbtn">
 						<i class="iconfont">&#xe639;</i>导出
 					</a>
 					<a class="fr" @click.prevent="renewData">
@@ -150,7 +150,7 @@
 				downurl:null,
 			}
 		},
-
+		
 		route: {
 			data: function(transition) {
 				var cpage
@@ -158,6 +158,7 @@
 				self.status = this.$route.params.status === 'all' ? '' : this.$route.params.status
 				var tokenstr = window.localStorage.getItem('jwt-token')
 		        var str = '?token='+tokenstr
+		        
 		        self.downurl=API_ROOT + '/stations/fetchall/'+self.status + str
 				if(self.status == '') {
 					cpage = self.allcurrentPage
@@ -205,17 +206,12 @@
 		},
 
 		methods: {
-//			export: function () {
-//				var self =this
-//		        var tokenstr = window.localStorage.getItem('jwt-token')
-//		        var str = '?token='+tokenstr
-//		        window.open(
-//		          API_ROOT + '/stations/fetchall/'+self.status + str
-//		          
-//		        )
-//		        alert( API_ROOT + '/stations/fetchall/'+self.status + str)
-////		        @click.prevent="export"
-//		    },
+			exports: function () {
+			
+				window.location.href = this.downurl; 
+
+
+		    },
 			pre() {
 				var self = this
 				var page
@@ -365,8 +361,11 @@
 <style scoped>
 	.pure-u-1-2 {
 		width: 33.3%;
+		border-right: 1px solid #25AD25;
 	}
-	
+	.pure-u-1-2:last-child{
+		border:none
+	}
 	#importData {
 		margin-left: 1rem
 	}

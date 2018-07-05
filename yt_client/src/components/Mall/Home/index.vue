@@ -1,5 +1,5 @@
 <template>
-  <div class="m-head">
+  <!--<div class="m-head">
     <div class="pure-g">
       <div class="pure-u-1-5 tl">
         <a v-link="{ path: '/mall/user' }"><i class="iconfont">&#xe629;</i></a>
@@ -8,10 +8,10 @@
         <h1 class="title">首页</h1>
       </div>
       <div class="pure-u-1-5 tr">
-        <!--<a href="#"><i class="iconfont">&#xe607;</i></a>-->
+        <a href="#"><i class="iconfont">&#xe607;</i></a>
       </div>
     </div>
-  </div>
+  </div>-->
   <swipe class="my-swipe" id="swh">
     <!-- <swipe-item>
       <a class="swipe-link" v-link="{ path: '/activities/activity_58faba78d78b8' }">
@@ -94,7 +94,7 @@
     <div class="pure-g">
     	<div class="pure-u-1-2" v-for="product in mallProducts | orderBy 'priority'">
        <a v-link="{ path: '/mall/subsproducts/' + product.id}" class="milk-box">
-      
+      <p class="by">{{product.product_row}}</p>
       <div class="milk-box">
        		<div class="milkl">
        			<p class="milktitle" style="-webkit-box-orient: vertical;" v-html="product.title"></p>
@@ -449,4 +449,9 @@
   }
   .m-home-grid{padding:0 !important;}
   .pure-u-1-1>a>img{width:1.5rem;vertical-align: middle;}
+  .by{color:#989898;position: absolute;
+  	font-size: 12px;
+    font-size: 12.5px;
+   
+    margin: 1rem;}
 </style>

@@ -11,6 +11,10 @@ import {API_ROOT} from './config'
 Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(VueForm)
+Vue.filter('filtproductit', function productit(val){
+	if (val == null) return val
+  return val.replace(/<br\/>/gi,'');
+})
 
 import Routes from './routes.js'
 

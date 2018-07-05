@@ -71,7 +71,7 @@
     <div class="m-order-list" v-show="!$loadingRouteData">
       <div class="pure-g" v-for="sku in preorder.skus">
         <div class="pure-u-1-2">
-          <span class="title">{{sku.name}}</span>
+          <span class="title">{{sku.name|filtproductit}}</span>
         </div>
         <div class="pure-u-1-2">
           <div class="content">

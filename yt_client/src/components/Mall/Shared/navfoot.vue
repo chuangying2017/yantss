@@ -60,4 +60,5 @@
   .icon-wrap {
     padding: .5rem;
   }
+  .m-foot{z-index: 1;}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <station-select :stations="stations"></station-select>
+  
   <div class="row">
     <div class="col-md-12">
       <div class="box">
@@ -8,9 +8,9 @@
         </div>
         <div class="box-body">
           <form action="" class="form-horizontal">
-            <div class="row">
+            <div class="row">             
               <div class="col-md-4">
-                <div class="form-group">
+              	 <div class="form-group">
                   <label for="optionsRadios" class="col-sm-4 control-label">开始时间</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control" v-model="query.start_time">
@@ -22,44 +22,34 @@
                     <input type="text" class="form-control" v-model="query.end_time">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="optionsRadios" class="col-sm-4 control-label">用户手机</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" v-model="query.phone">
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="groupRadios" class="col-sm-4 control-label">订单号</label>
-                  <div class="col-sm-8">
-                    <select class="form-control" v-model="query.order_no">
-                      <option value="0">未使用</option>
-                      <option value="1">已使用</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="groupRadios" class="col-sm-4 control-label">所属服务部</label>
-                  <div class="col-sm-8">
-                    <select class="form-control" v-model="query.station_id">
-                      <option v-for="station in filterStations" value="{{station.id}}">{{station.name}}</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="groupRadios" class="col-sm-4 control-label">送奶工</label>
-                  <div class="col-sm-8">
-                    <select class="form-control" v-model="query.station_id">
-                      <option v-for="station in filterStations" value="{{station.id}}">{{station.name}}</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
+                <!--<div class="form-group">
                   <label for="groupRadios" class="col-sm-4 control-label">星级</label>
                   <div class="col-sm-8">
-                    <select class="form-control" v-model="query.station_id">
+                    <select class="form-control" v-model="query.score">
+                      <option value="1">一星</option>
+                      <option value="2">二星</option>
+                      <option value="3">三星</option>
+                      <option value="4">四星</option>
+                      <option value="5">五星</option>
+                    </select>
+                  </div>
+                </div>-->
+              </div>
+              <div class="col-md-4">
+              	
+               	<div class="form-group">
+                  <label for="groupRadios" class="col-sm-4 control-label">服务部</label>
+                  <div class="col-sm-8">
+                    <select class="form-control" v-model="sid">
                       <option v-for="station in filterStations" value="{{station.id}}">{{station.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="groupRadios" class="col-sm-4 control-label">送奶工</label>
+                  <div class="col-sm-8">
+                    <select class="form-control" v-model="query.staff_id">
+                      <option v-for="user in users" value="{{user.id}}">{{user.name}}</option>
                     </select>
                   </div>
                 </div>
@@ -83,85 +73,169 @@
       </div>
     </div>
   </div>
+  <ul class="nav nav-tabs" role="tablist">
+		<li role="presentation"  class="active">
+	  	<a href="#zf" data-toggle="tab" aria-controls="zf" role="tab" @click="milklist">送奶工排行榜</a>
+	  </li>
+	  <li role="presentation">
+	  	<a href="#basic" data-toggle="tab" aria-controls="basic" role="tab" @click="severlist">服务部排行榜</a>
+	  </li>      
+  </ul>
   <div class="row">
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">订单管理 ({{pagination.total}})</h3>
-          <!--<div class="box-tools">-->
-          <!--<div class="input-group input-group-sm" style="width: 150px;">-->
-          <!--<input type="text" name="table_search" class="form-control pull-right" placeholder="微信昵称">-->
-
-          <!--<div class="input-group-btn">-->
-          <!--<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>-->
-          <!--</div>-->
-          <!--</div>-->
-          <!--</div>-->
+          <h3 class="box-title">评价管理 ({{pagination.total}})</h3>
+          
         </div>
         <!-- /.box-header -->
-        <div class="box-body table-responsive no-padding">
-          <table class="table table-hover table-striped">
+        <div class="tab-content">
+        	<div role="tabpanel" class="tab-pane in active" id="zf">
+	          <table class="table table-hover table-striped">
+	            <tbody>
+	            <tr>
+	              <th>排名</th>
+	              <th>送奶工信息</th>
+	              <th>服务部信息</th>
+	              <th>综合星级评分</th>
+	              <th class="text-center">订单数/评价次数</th>
+	              <th>综合评论时间</th>
+	              <th></th>
+	            </tr>
+	            
+	            <tr v-for="evaluate in evaluates">
+	              <td>{{$index+1}}</td>
+	              <td>
+	                <p>名字：{{evaluate[0].preorders[0].staff.name}}</p>
+	                <p>电话：{{evaluate[0].preorders[0].staff.phone}}</p>
+	              </td>
+	               <td>
+	                <p>名称:  {{evaluate[0].preorders[0].station.name}}</p>
+	                <p>负责人:{{evaluate[0].preorders[0].station.director}}</p>
+	                <p>电话：{{evaluate[0].preorders[0].station.phone}}</p>
+	              </td>
+	              <td>
+	                <p>
+	                	  <div class="star">
+						          	<span :class="{noselct:evaluate.scores<1}">
+						          		<i class="iconfont" v-if="evaluate.scores>=1">&#xe711;</i>
+						          		<i class="iconfont" v-else>&#xe712;</i>
+						          	</span>
+						          	<span :class="{noselct:evaluate.scores<=1}">
+						          		<i class="iconfont" v-if='1<evaluate.scores&&evaluate.scores<2'>&#xe713;</i>
+						          		<i class="iconfont" v-else='evaluate.scores==2'>&#xe711;</i>
+						          		<i class="iconfont" v-if='evaluate.scores<=1'>&#xe712;</i>
+						          	</span>
+							         	<span :class="{noselct:evaluate.scores<=2}">
+							         		<i class="iconfont" v-if="2<evaluate.scores&&evaluate.scores<3">&#xe713;</i>
+						          		<i class="iconfont" v-else="evaluate.scores==3">&#xe711;</i>
+						          		<i class="iconfont" v-if="evaluate.scores<=2">&#xe712;</i>
+							         	</span>
+							         	<span :class="{noselct:evaluate.scores<=3}">
+							         		<i class="iconfont" v-if="3<evaluate.scores&&evaluate.scores<4">&#xe713;</i>
+						          		<i class="iconfont" v-else="evaluate.scores==4">&#xe711;</i>
+						          		<i class="iconfont" v-if="evaluate.scores<=3">&#xe712;</i>
+							         	</span>
+							         	<span :class="{noselct:evaluate.scores<=4}">
+							         		<i class="iconfont" v-if="4<evaluate.scores&&evaluate.scores<5">&#xe713;</i>
+							         		<i class="iconfont" v-else></i>
+						          		<i class="iconfont" v-if="evaluate.scores==5">&#xe711;</i>
+						          		<i class="iconfont" v-else></i>
+						          		<i class="iconfont" v-if="evaluate.scores<=4">&#xe712;</i>
+						          		<i class="iconfont" v-else></i>
+							         	</span>
+											</div>
+	                </p>
+	               
+	                <p>{{evaluate.scores|starf}}分</p>
+	              </td>
+	              <td class="text-center">
+	             		{{evaluate.total_order}}/{{evaluate.have_comments_number}}
+	              </td>
+	             <td>
+	             	{{showstartime}}-{{showendtime}}
+	             </td>
+	              <td>
+	              	<!--送奶工-->
+	                 <!--<a v-link="{path: '/dashboard/assess/staffassdetail/'+evaluate[0].preorders[0].staff.id}">查看详情 </a>--> 
+	                 <span @click="gostaff(evaluate[0].preorders[0].staff.id)">查看详情</span>
+	              </td>
+	            </tr>
+	            </tbody>
+	          </table>
+          </div>
+        	<!--服务部排行-->
+          <div role="tabpanel" class="tab-pane fade" id="basic">
+             <table class="table table-hover table-striped">
             <tbody>
             <tr>
-              <th>NO.</th>
-              <th>用户信息</th>
-              <th>订单信息</th>
+              <th>排名</th>
               <th>服务部信息</th>
-              <th>订单时间</th>
-              <th>状态</th>
-              <th>操作</th>
+              <th>综合星级评分</th>
+              <th class="text-center">订单数/评价次数</th>
+	            <th>综合评论时间</th>
+              <th></th>
             </tr>
-            <tr v-for="order in orders">
-              <td>{{$index + 1}}</td>
+            
+            <tr v-for="evaluate in evaluates">
+              <td>{{$index+1}}</td>
+              
               <td>
-                <p>{{order.name}} - {{order.phone}}</p>
-                <p>{{order.address}}</p>
-                <p>订单号: {{order.order_no}}</p>
+              	<p>名称：{{evaluate[0].preorders[0].station.name}}</p>
+              	<p>负责人：{{evaluate[0].preorders[0].station.director}}</p>
+              	<p>电话：{{evaluate[0].preorders[0].station.phone}}</p>
+              	
               </td>
               <td>
-              	<p>订单号：{{order.order_no}}</p>
-              	<p>订单金额：{{order.total_amount/100 | currency '￥'}}</p>
-              	<p>优惠金额：{{order.discount_amount/100 | currency '￥'}}</p>
-              	<p>支付金额：{{order.pay_amount/100 | currency '￥'}}</p>
-              	<p>商品名称：<span v-for="shopname in order.skus">{{shopname.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+                <p>
+                	 <div class="star">
+						          	<span :class="{noselct:evaluate.scores<1}">
+						          		<i class="iconfont" v-if="evaluate.scores>=1">&#xe711;</i>
+						          		<i class="iconfont" v-else>&#xe712;</i>
+						          	</span>
+						          	<span :class="{noselct:evaluate.scores<=1}">
+						          		<i class="iconfont" v-if='1<evaluate.scores&&evaluate.scores<2'>&#xe713;</i>
+						          		<i class="iconfont" v-else='evaluate.scores==2'>&#xe711;</i>
+						          		<i class="iconfont" v-if='evaluate.scores<=1'>&#xe712;</i>
+						          	</span>
+							         	<span :class="{noselct:evaluate.scores<=2}">
+							         		<i class="iconfont" v-if="2<evaluate.scores&&evaluate.scores<3">&#xe713;</i>
+						          		<i class="iconfont" v-else="evaluate.scores==3">&#xe711;</i>
+						          		<i class="iconfont" v-if="evaluate.scores<=2">&#xe712;</i>
+							         	</span>
+							         	<span :class="{noselct:evaluate.scores<=3}">
+							         		<i class="iconfont" v-if="3<evaluate.scores&&evaluate.scores<4">&#xe713;</i>
+						          		<i class="iconfont" v-else="evaluate.scores==4">&#xe711;</i>
+						          		<i class="iconfont" v-if="evaluate.scores<=3">&#xe712;</i>
+							         	</span>
+							         	<span :class="{noselct:evaluate.scores<=4}">
+							         		<i class="iconfont" v-if="4<evaluate.scores&&evaluate.scores<5">&#xe713;</i>
+							         		<i class="iconfont" v-else></i>
+						          		<i class="iconfont" v-if="evaluate.scores==5">&#xe711;</i>
+						          		<i class="iconfont" v-else></i>
+						          		<i class="iconfont" v-if="evaluate.scores<=4">&#xe712;</i>
+						          		<i class="iconfont" v-else></i>
+							         	</span>
+											</div>
+                </p>
+                
+                <p>{{evaluate.scores|starf}}分</p>
               </td>
+              <td class="text-center">
+	             		{{evaluate.total_order}}/{{evaluate.have_comments_number}}
+	            </td>
+	            <td>
+	             	{{showstartime}}-{{showendtime}}
+	            </td>
               <td>
-                <p>名称: {{order['station']['name']}}</p>
-                <!--<p>负责人: {{order['station']['director']}}</p>
-                <p>电话: {{order['station']['phone']}}</p>-->
-              </td>
-              <td>
-                <p>下单: {{order.created_at.date | date}}</p>
-                <p>起送: {{order.start_time}}</p>
-                <p> {{order.weekday_type == 'all' ? '周一到周日' : '周一到周五'}}({{order.daytime ? '上午' : '下午'}})</p>
-              </td>
-              <td>
-                <span class="label label-primary" v-if="order.status == 'shipping'">正常</span>
-                <span class="label label-danger" v-if="order.status == 'assigning' && order.assign.status == 'reject'">被拒绝</span>
-                <span class="label label-danger" v-if="order.status == 'assigning' && order.assign.status == 'confirm'">未安排配送员</span>
-                <span class="label label-danger"
-                      v-if="order.status == 'assigning' && (order.assign.status == 'untreated' || order.assign.status == 'assign')">未处理</span>
-                <span class="label label-warning"
-                      v-if="order.status == 'assigning' && overtime(order.assign.time_before)">超时</span>
-                <span class="label label-danger" v-if="order.status == 'unpaid'">未支付</span>
-                <span class="label label-success" v-if="order.status == 'done'">已完成</span>
-                <span class="label label-default" v-if="order.status == 'cancel'">已取消</span>
-              </td>
-              <td>
-                <a v-link="{path: '/dashboard/stations/orders/detail/' + order.id}">详情 </a>
-                <a href="" @click.prevent="changeStation(order)"
-                   v-if="order.status == 'rejected' || order.status == 'assigning' || user.roles.indexOf('StationAdmin') > -1 ">重新分配</a>
-                <!--<select v-if="order.status == 'rejected' || order.status == 'assigning'"-->
-                <!--v-on:change="changeStation(order.id, $event)">-->
-                <!--<option value="no" :selected="newStation == 'no'">分配服务部</option>-->
-                <!--<option value="{{station.id}}" v-for="station in stations" v-if="station.id !== order.station.id">-->
-                <!--{{station['name']}}-->
-                <!--</option>-->
-                <!--</select>-->
+                <!--<a v-link="{path: '/dashboard/assess/stationassdetail/'+evaluate[0].preorders[0].station.id}">查看详情 </a>-->    
+                <span @click="gostation(evaluate[0].preorders[0].station.id)">查看详情</span>
               </td>
             </tr>
             </tbody>
           </table>
+          </div>
+         
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
@@ -175,55 +249,50 @@
 </template>
 <script>
   import api from 'api/index.js'
-  import Pagination from 'components/pagination.vue'
   import { API_ROOT } from 'src/config'
   import moment from 'moment'
-  
+ import Pagination from '../../pagination.vue'
   let tempQuery = false
   let tempPage = 1
   export default {
-    name: 'ListStationOrders',
+    name: 'assesslist',
     components: {
-      Pagination,
-      
-    },
-    vuex: {
-      getters: {
-        user: function (state) {
-          return state.user.info
-        }
-      }
+      Pagination
     },
     data () {
       return {
-        orders: [],
+      	evaluates:[],
         stations: [],
-        residences: [],
-//        stationsObj: {},
         filterStations: [],
         newStation: 'no',
         pagination: {},
+        users:[],
+        sid:null,
+        showstartime:null,
+        showendtime:null,
         query: {
-          station_id: null,
-          residence_id: null,
-          phone: null,
-          order_no: null,
-          pay_order_no: null,
-          status: null,
+        	type_role:'staff_id',
           start_time: null,
-          end_time: null
+          end_time: null,
+         	station_id: null,
+          staff_id:null,
+ 				  score:null
         }
       }
     },
     route: {
       data () {
+      	var self=this
         if (tempQuery) {
           this.query = tempQuery
           return this.search(tempPage)
         } else {
-          return Promise.all([this.getItems(), api.stations.getAll(), api.residences.getDropdown()]).then(function ([orderData, stations, residences]) {
+        	
+        	this.query.start_time=moment().format('YYYY-MM-01')
+        	this.showstartime=this.query.start_time
+        	this.showendtime="至今"
+          return Promise.all([api.assess.getstation(),this.getItems({start_time:this.query.start_time,type_role:'staff_id'})]).then(function ([stations,assessData]) {
             var temp = {}
-//            var stationsObj = {}
             if (window._user.roles.indexOf('StationContact') > -1) {
               var associateStations = window._user.associateStations.split(',')
               console.log(associateStations)
@@ -237,34 +306,72 @@
                 temp[val.id] = val
               })
             }
-//            stations.forEach(function (val) {
-//              stationsObj[val.id] = val
-//            })
+            self.filterStations=temp;
             return {
-              orders: orderData.data,
-              pagination: orderData.meta.pagination,
-              stations: stations,
-              residences: residences,
-//              stationsObj: stationsObj,
-              filterStations: temp
+              filterStations: temp,
+            	evaluates:assessData.result,
+            	pagination: assessData.paging,
+             
             }
           })
         }
       }
     },
+    watch:{
+    	sid(val,oldVal){
+    		var self=this
+    		self.query.station_id=val
+    		self.users=[]
+        self.users=self.filterStations[val].staffs
+    	}
+    },
     methods: {
-      changeStation (order) {
-        console.log(order)
-        this.$broadcast('changeStation', order)
-      },
-      overtime: function (timeBefore) {
-        return new Date().getTime() > new Date(timeBefore).getTime()
-      },
+    	gostaff:function(staffid){
+    		var self=this;
+    		self.$router.go({name:'staffassdetail',query:{type_role:self.query.type_role, start_time:self.query.start_time, end_time:self.query.end_time, station_id:self.query.station_id,staff_id:self.query.staff_id,staff_id:staffid}});
+    	},
+    	gostation:function(stationid){
+    		var self=this;
+    		self.$router.go({name:'stationassdetail',query:{type_role:self.query.type_role, start_time:self.query.start_time, end_time:self.query.end_time, station_id:self.query.station_id,staff_id:self.query.staff_id,station_id:stationid}});
+    	},
+    	milklist:function(){
+    		var self=this
+    		self.tempPage=1
+    		self.sid=null
+        
+    		self.query = {
+    			type_role:'staff_id',
+          start_time: null,
+          end_time: null,
+         	station_id: null,
+          staff_id:null,
+ 				  score:null
+        }
+    		self.query.start_time=moment().format('YYYY-MM-01')
+    		self.search(self.tempPage)
+    	},
+    	severlist:function(){
+    		var self=this
+    		self.tempPage=1
+    		self.sid=null
+    		
+    		self.query = {
+    			type_role:'station_id',
+          start_time: null,
+          end_time: null,
+         	station_id: null,
+          staff_id:null,
+ 				  score:null
+        }
+    		self.query.start_time=moment().format('YYYY-MM-01')
+    		self.search(self.tempPage)
+    	},    
       getItems: function (query = {}) {
         if (!query.station_id && window._user.roles.indexOf('StationContact') > -1) {
           query.station_id = window._user.associateStations
         }
-        return api.stations.orders.getAll(query)
+        query.seniority=1
+        return api.assess.getalgetcont(query)
       },
       export: function () {
         var query = this.query
@@ -295,30 +402,73 @@
         tempQuery = this.query
         tempPage = page
         var self = this
+         this.showstartime=this.query.start_time
+        this.showendtime=this.query.end_time==null?"至今":this.query.end_time
         this.getItems(this.getQuery(page)).then(function (data) {
-          self.pagination = data.meta.pagination
-          self.orders = data.data
+        
+          self.pagination = data.paging,
+          self.evaluates = data.result
+          
         })
       },
       reset: function () {
         this.query = {
-          station_id: null,
-          residence_id: null,
-          phone: null,
-          order_no: null,
-          status: null,
           start_time: null,
-          end_time: null
+          end_time: null,
+         	station_id: null,
+          staff_id:null,
+ 				  score:null
         }
       },
       select: function (format, week = false) {
         if (week) {
+        	
           this.query.start_time = moment().startOf('week').add(1, 'day').format(format)
+          console.log(  this.query.start_time)
+          
         } else {
+        	
           this.query.start_time = moment().format(format)
+          console.log( this.query.start_time)
+         
         }
+        this.query.end_time=null
+        this.showstartime=this.query.start_time
+        this.showendtime="至今"
         this.search()
       }
     }
   }
 </script>
+<style>
+  @font-face {
+	  font-family: 'iconfont';  /* project id 686760 */
+	  src: url('//at.alicdn.com/t/font_686760_716gqcjnhla.eot');
+	  src: url('//at.alicdn.com/t/font_686760_716gqcjnhla.eot?#iefix') format('embedded-opentype'),
+	  url('//at.alicdn.com/t/font_686760_716gqcjnhla.woff') format('woff'),
+	  url('//at.alicdn.com/t/font_686760_716gqcjnhla.ttf') format('truetype'),
+	  url('//at.alicdn.com/t/font_686760_716gqcjnhla.svg#iconfont') format('svg');
+	}
+  .iconfont {
+    font-family: "iconfont";
+    font-size: 2rem;
+    font-style: normal;
+  }
+  .all>input{opacity:0;position:absolute;}
+  .all>input:nth-of-type(1),
+  .all>span:nth-of-type(1){display:none;}
+  .all>span{color:gold;
+    -webkit-transition:color .2s;
+    transition:color .2s;
+  }
+  .all>input:checked~span{color:#666;}
+  .all>input:checked+span{color:gold;}
+  .tag{
+    width: 300px;
+    flex-wrap: wrap;
+  }
+   .star span i{color:#ffbb2a}
+  .star .noselct i{color:#999}
+   .star .parselct i{color:#d0ac5b}
+
+</style>

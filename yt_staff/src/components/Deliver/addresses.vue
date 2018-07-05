@@ -34,11 +34,11 @@
         </td>
         <td class="lg-column">
           <p v-for="product in preorder.skus">
-            {{product.name}} *{{product.quantity}}瓶
+            {{product.name|filtproductit}} *{{product.quantity}}瓶
           </p>
         </td>
         <td class="lg-column">
-          <span v-for="sku in preorder.skus">{{sku.name}}剩余{{sku.remain}}瓶<br></span>
+          <span v-for="sku in preorder.skus">{{sku.name|filtproductit}}剩余{{sku.remain}}瓶<br></span>
         </td>
         <td class="md-column">{{preorder.name}}</td>
         <td>{{preorder.phone}}</td>

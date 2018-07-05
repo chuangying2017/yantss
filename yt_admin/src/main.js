@@ -25,6 +25,14 @@ Vue.filter('money', function (val) {
   if (!val) return
   return (val / 100).toFixed(2)
 })
+Vue.filter('filtproductit', function productit(val){
+	if (val == null) return val
+  return val.replace(/<br\/>/gi,'');
+})
+Vue.filter('starf', function productit(val){
+  return parseFloat(val)
+})
+
 /**
  * router
  * @type {boolean}

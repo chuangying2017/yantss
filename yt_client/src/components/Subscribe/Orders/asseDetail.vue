@@ -1,41 +1,64 @@
 <template>
 	<div class="assedetail">
 		<div class="asscont">
-			<h3 class="milkname">送奶工</h3>
-			<p class="givetime">送奶时间:周一至周日&nbsp;&nbsp;上午9:00-11:00</p>
-			<p class="stationaddr">服务部:昌岗中服务部</p>
+			
+			<h3 class="milkname">{{starcont.preorders.staff.name}}</h3>
+			<p class="givetime">送奶时间:
+				<i v-if="starcont.preorders.weekday_type=='all'">周一至周日</i>
+				<i v-if="starcont.preorders.weekday_type=='workday'">周一至周五</i>
+				&nbsp;&nbsp;
+				<i v-if="starcont.preorders.daytime==1">上午6:00-8:00</i>
+				<i v-if="starcont.preorders.daytime==0">下午4:00-6:00</i>
+			</p>
+			<p class="stationaddr">服务部:{{starcont.preorders.station.name}}</p>
 			<div class="evaluate">
 				<p class="stationeval">服务评价</p>
 				<div class="star">
-		          	<input type="radio" name="b" value="1" v-model="" @click="setStar('1')"/>
-		          	<span><i class="ciconfont">&#xe711;</i></span>
-		          	<input type="radio" name="b" value="2" v-model="" @click="setStar('2')"/>
-		          	<span><i class="ciconfont">&#xe711;</i></span>
-		          	<input type="radio" name="b" value="3" v-model="" @click="setStar('3')"/>
-		          	<span><i class="ciconfont">&#xe711;</i></span>
-		          	<input type="radio" name="b" value="4" v-model="" @click="setStar('4')"/>
-		          	<span><i class="ciconfont">&#xe711;</i></span>
-		          	<input type="radio" name="b" value="5" v-model="" @click="setStar('5')"/>
-		          	<span class="noselct"><i class="ciconfont">&#xe712;</i></span>
+		          	<span @click="setStar(1)" :class="{noselct:starcont.comment_type.score<1}"><i class="ciconfont" v-if="starcont.comment_type.score>=1">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(2)" :class="{noselct:starcont.comment_type.score<2}"><i class="ciconfont" v-if="starcont.comment_type.score>=2">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(3)" :class="{noselct:starcont.comment_type.score<3}"><i class="ciconfont" v-if="starcont.comment_type.score>=3">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(4)" :class="{noselct:starcont.comment_type.score<4}"><i class="ciconfont" v-if="starcont.comment_type.score>=4">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
+		          	<span @click="setStar(5)" :class="{noselct:starcont.comment_type.score<5}"><i class="ciconfont" v-if="starcont.comment_type.score>=5">&#xe711;</i><i class="ciconfont" v-else>&#xe712;</i></span>
 				</div>
 				<div class="evalcont">
-					<p>热情健谈</p>
-					<p>及时送达</p>
-					<p>热情健谈</p>
-					<p>及时送达</p>
+					<p v-for="concont in starcont.comment_type.comment_label">{{concont}}</p>
 				</div>
 			</div>
 		</div>
 		<div class="comments">
 			<h2>留言评价</h2>
 			<div class="comcont">
-				服务真棒，送货好及时，准时准点的，又好说话，太喜欢了！
+				{{starcont.comment_type.content}}
+			</div>
+		</div>
+		<div class="comments">
+			<h2>追加评价</h2>
+			<div class="comcont">
+				{{starcont.comment_type.additional_comments}}
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	export default{
+		name:"assedetail",
+		data(){
+			return{
+				starcont:null,
+			}
+		},
+		route:{
+			data:function(){	
+				return Promise.all([this.$http.get('/comments/clientComments/2?preorderId='+ this.$route.params.order_no)]).then(function([starcont]){
+					
+					return {
+						starcont:starcont.data
+					}
+				})
+			}
+		},
+	}
 </script>
 
 <style scoped>
@@ -62,8 +85,9 @@
    .stationeval{font-size:1.7rem;color:#999}
    .star{margin-top:1.5rem;text-align: center;}
    .star input{opacity:0;}
-   .star span{color:#ffbb2a}
-   .star .noselct{color:#999}
+   /*.star span{color:#ffbb2a}*/
+   .star span i{color:#ffbb2a}
+   .star .noselct i{color:#999 !important}
    .evalcont p{
    		width: 47%;
 	    float: left;
@@ -79,7 +103,7 @@
    	}
    .evalcont p:nth-child(2n+2){margin-left:5.9%}
    .evalcont{width: 86%;margin: auto;overflow: hidden;margin-top:1.5rem; padding-bottom: 2.5rem;}
-   .comments h2{padding:0.8rem;text-align: center;font-size:1.7rem;color:#999;border-bottom:1px solid #f5f5f5;}
+   .comments h2{padding:0.8rem;font-size:1.6rem;color:#000;border-bottom:1px solid #f5f5f5;}
 	.comcont{padding:1.3rem 2.1rem;color:#999;font-size:1.4rem}
-	
+	i{font-style: normal;}
 </style>

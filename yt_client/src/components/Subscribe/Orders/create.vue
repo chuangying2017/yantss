@@ -1565,4 +1565,6 @@
     vertical-align: middle;
   }
   #allmap{height:25rem;}
+  
+  
 </style>

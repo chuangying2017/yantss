@@ -23,11 +23,14 @@ import Staff from './components/Staffs/staff.vue'
 import StaffInfo from './components/Staffs/info.vue'
 import StaffPreorder from './components/Staffs/preorders.vue'
 import StaffEdit from './components/Staffs/edit.vue'
-import DelOrder from './components/DelOrder/index.vue'
+
+//import DelOrder from './components/DelOrder/index.vue'
+import Assess from './components/Assess/index.vue'
+import AssessList from './components/Assess/list.vue'
+import AllAssess from './components/Assess/allAssess.vue'
 
 import StaffsHome from './components/Staffs/listhome.vue'
 import StaffsCount from './components/Staffs/count.vue'
-import AllAssess from './components/Staffs/allAssess.vue'
 import AssessInfo from './components/Staffs/assessInfo.vue'
 export default {
   init: function (router) {
@@ -94,9 +97,7 @@ export default {
               '/list': {
                 component: require('./components/Subscribes/listIndex.vue')
               },
-              '/allAssess': {
-                component: AllAssess
-              },
+             
               '/assessInfo': {
                 component: AssessInfo
               },
@@ -124,9 +125,22 @@ export default {
               }
             }
           },
-          '/deliveryOrder': {
-            component: DelOrder
+          '/assess':{
+          	component:Assess,
+          	subRoutes:{
+          		'/assesslist':{
+          			component:AssessList
+          		},
+          		'/allAssess': {
+          			name:'assesslist',
+                component: AllAssess
+              }
+          	}
           },
+//        '/deliveryOrder': {
+//          component: DelOrder
+//        },
+				
           '/listhome': {
             component: StaffsHome,
             subRoutes: {

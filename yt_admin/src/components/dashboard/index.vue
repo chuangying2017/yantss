@@ -144,7 +144,7 @@
             </ul>
           </li>
 
-          <!--<li class="treeview" v-if="permit('Integral')" :class="{active: route.nav == 'integral'}">
+          <li class="treeview" v-if="permit('Integral')" :class="{active: route.nav == 'integral'}">
             <a href="#">
               <i class="fa fa-gift"></i>
               <span>积分管理</span>
@@ -159,7 +159,7 @@
               <li><a v-link="{path: '/dashboard/integral/signRecord'}"><i class="fa fa-sitemap"></i> 签到记录</a></li>
               <li><a v-link="{path: '/dashboard/integral/exchangeList'}"><i class="fa fa-sitemap"></i> 兑换管理</a></li>
             </ul>
-          </li>-->
+          </li>
 
           <!--<li class="treeview">-->
           <!--<a href="#">-->
@@ -221,18 +221,18 @@
               <!--<li><a v-link="{path: '/dashboard/access/roles/list'}"><i class="fa fa-users"></i> 角色列表</a></li>-->
             </ul>
           </li>
-          <!--<li class="treeview" v-if="permit('AssessList')" :class="{active: route.nav == 'assessList'}">-->
-            <!--<a href="#">-->
-              <!--<i class="fa fa-gift"></i>-->
-              <!--<span>评价</span>-->
-              <!--<i class="fa fa-angle-left pull-right"></i>-->
-            <!--</a>-->
-            <!--<ul class="treeview-menu">-->
-              <!--<li><a v-link="{path: '/dashboard/assess/list'}"><i class="fa fa-navicon"></i> 用户评价</a></li>-->
-              <!--<li><a v-link="{path: '/dashboard/assess/starTag'}"><i class="fa fa-cubes"></i> 评价设置</a></li>-->
-              <!--<li><a v-link="{path: '/dashboard/assess/ranklist'}"><i class="fa fa-sitemap"></i> 好友率排行</a></li>-->
-            <!--</ul>-->
-          <!--</li>-->
+          <li class="treeview" v-if="permit('AssessList')" :class="{active: route.nav == 'assessList'}">
+            <a href="#">
+              <i class="fa fa-gift"></i>
+              <span>评价</span>
+              <i class="fa fa-angle-left pull-right"></i>
+           </a>
+            <ul class="treeview-menu">
+              <li><a v-link="{path: '/dashboard/assess/list'}"><i class="fa fa-navicon"></i> 用户评价</a></li>
+              <li><a v-link="{path: '/dashboard/assess/starTag'}"><i class="fa fa-cubes"></i> 评价设置</a></li>
+              <li><a v-link="{path: '/dashboard/assess/ranklist'}"><i class="fa fa-sitemap"></i> 好评率排行</a></li>
+            </ul>
+          </li>
         </ul>
       </section>
       <!-- /.sidebar -->

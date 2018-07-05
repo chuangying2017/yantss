@@ -25,7 +25,7 @@
       </thead>
       <tbody>
       <tr v-for="sku in summary">
-        <td>{{sku.name}}</td>
+        <td>{{sku.name|filtproductit}}</td>
         <td>
           {{sku.quantity}}
         </td>

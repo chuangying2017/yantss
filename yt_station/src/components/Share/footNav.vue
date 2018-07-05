@@ -7,10 +7,16 @@
           客户管理
         </a>
       </div>
-      <div class="pure-u-1-5">
+      <!--<div class="pure-u-1-5">
         <a v-link="{ path: '/station/deliveryOrder', activeClass: 'active' }">
           <i class="iconfont">&#xe656;</i><br>
           送货单
+        </a>
+      </div>-->
+       <div class="pure-u-1-5">
+        <a v-link="{ path: '/station/assess/assesslist', activeClass: 'active' }">
+          <i class="iconfont">&#xe656;</i><br>
+     			评价
         </a>
       </div>
       <div class="pure-u-1-5">

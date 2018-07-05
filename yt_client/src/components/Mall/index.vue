@@ -823,7 +823,7 @@
     padding: .5rem 1rem;
     border: 1px solid #EAEAEA;
     color: #BEBEBE;
-    margin: .2rem .5rem .2rem 0;
+     margin: .2rem 0rem .2rem 0;
   }
 
   #yt-mall .m-check input[type="checkbox"]:checked + label,

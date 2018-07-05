@@ -43,6 +43,18 @@
           </div>
         </div>
       </div>
+      <div class="pure-g">
+        <div class="pure-u-1-3">
+          <span class="title">所有评价</span>
+        </div>
+        <div class="pure-u-2-3">
+          <div class="content">
+          	<a v-link="{ path: '/station/subscribes/allAssess/'+$route.params.staff_id }">
+            	查看
+          	</a>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="qrcode">
       {{{qrcode}}}
@@ -114,7 +126,7 @@
         ]) {
           return {
             staff: staff,
-            bindURL: 'http://yt2.l43.cn/yt-staff/#!/bind/' + staff.id + '?bind_token=' + staff.bind_token,
+            bindURL: 'http://yt.l43.cn/yt-staff/#!/bind/' + staff.id + '?bind_token=' + staff.bind_token,
             staffs: staffs,
             selectStaffs: _.filter(staffs, function (item) {
               return item.id !== staff.id

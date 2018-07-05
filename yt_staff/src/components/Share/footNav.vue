@@ -7,10 +7,16 @@
           配送地址
         </a>
       </div>
-      <div class="pure-u-1-5">
+      <!--<div class="pure-u-1-5">
         <a v-link="{ path: '/deliver/data?time=0', activeClass: 'active' }">
           <i class="iconfont">&#xe64d;</i><br>
           取货统计
+        </a>
+      </div>-->
+      <div class="pure-u-1-5">
+        <a v-link="{ path: '/deliver/allassess', activeClass: 'active' }">
+          <i class="iconfont">&#xe64d;</i><br>
+                  评价
         </a>
       </div>
       <div class="pure-u-1-5">

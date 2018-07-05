@@ -58,6 +58,12 @@
                         <input type="text" class="form-control" v-model="sku.unit">
                       </div>
                     </div>
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-2 control-label">广告语</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" v-model="sku.product_row">
+                      </div>
+                    </div>
                      <div class="form-group">
                       <label for="inputPassword3" class="col-sm-2 control-label">配送方式</label>
                     	<div class="col-sm-6 clearfix"> 
@@ -224,7 +230,8 @@
           tags: '',
           open_time: '',
           end_time: '',
-          skus: []
+          skus: [],
+         
         },
         sku: {
           name: '',
@@ -238,7 +245,8 @@
           income_price: 0,
           settle_price: 0,
           attr_value_ids: [],
-          dismode:1 //1为单次配送 2为多次配送
+          dismode:1, //1为单次配送 2为多次配送
+          product_row:""
         },
         editor: {},
         images: [],
