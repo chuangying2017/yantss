@@ -75,7 +75,7 @@
       return {
         banner: {
           title: '',
-          type: 'slider',
+          type: 'integral',
           cover_image: '',
           url: '',
           index: 1
