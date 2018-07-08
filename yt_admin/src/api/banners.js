@@ -14,10 +14,11 @@ export default {
       )
     })
   },
-  list () {
+  list (parmarter) {
     return new Promise((resolve, reject) => {
-      Vue.http.get(root).then(
+      Vue.http.get(root, parmarter).then(
         function ({data: {data: banners}}) {
+          console.log(banners)
           resolve(banners)
         },
         function (data) {
