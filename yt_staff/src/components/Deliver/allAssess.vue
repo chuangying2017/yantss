@@ -121,7 +121,7 @@
 						totalPages: data.data.pagination.total_pages
 					}
 				},function(data){
-					alert(data)
+//					alert(data)
 				})
 			}
 		},
