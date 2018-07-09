@@ -2,19 +2,26 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 //商城
-import Mall from '@/components/Mall/index.vue'
+import Mall from '../components/Mall/index.vue'
 //积分签到
-import Integralin from '@/components/Integralin/index.vue'
+import Integralin from '../components/Integralin/index.vue'
 //积分兑换
-import Exchange from '@/components/Exchange/index.vue'
+import Exchange from '../components/Exchange/index.vue'
 
 export default new Router({
 	mode: 'history',
 	routes: [
+<<<<<<< HEAD
+		// {
+		// 	path:'/',
+		// 	redirect:'/mall/home'
+		// },
+=======
 //		{
 //			path:'/',
 //			redirect:'/mall/home'
 //		},
+>>>>>>> 4ef37088b3f9d69de6406dd5c51393fb785562ac
 	    {
 	    	//商城
 	    	path: '/mall',
@@ -22,11 +29,17 @@ export default new Router({
 	      	component: Mall,
 	      	children:[
 	      		//商城首页
+<<<<<<< HEAD
+	      		{path:'/home',name:'Home',component: resolve => require(['../components/Mall/Home/index.vue'], resolve)},
+	      		//商品选择
+	      		{path:'productdetail',name:'Productdetail',component:resolve => require(['../components/Mall/Product/productdetail.vue'],resolve)},
+=======
 	      		{path:'/home',name:'Home',component: resolve => require(['@/components/Mall/Home/index.vue'], resolve)},
 	      		//商品选择
 	      		{path:'/productdetail',name:'Productdetail',component:resolve => require(['@/components/Mall/Product/productdetail.vue'],resolve)},
+>>>>>>> 4ef37088b3f9d69de6406dd5c51393fb785562ac
 	      		//商品预览
-	      		{path:'productpreview',name:'Productpreview',component:resolve => require(['@/components/Mall/Product/productpreview.vue'],resolve)},
+	      		{path:'/productpreview',name:'Productpreview',component:resolve => require(['../components/Mall/Product/productpreview.vue'],resolve)},
 	      	]
 	    },
 	    //积分签到integrallist
@@ -36,9 +49,9 @@ export default new Router({
 	    	component:Integralin,
 	    	children:[
 	    		//积分签到
-	    		{path:'integralsignin',name:'Integralsignin',component:resolve => require(['@/components/Integralin/integralsignin.vue'],resolve)},
+	    		{path:'integralsignin',name:'Integralsignin',component:resolve => require(['../components/Integralin/integralsignin.vue'],resolve)},
 	    		//积分来源列表
-	    		{path:'integrallist',name:'Integrallist',component:resolve => require(['@/components/Integralin/integrallist.vue'],resolve)},
+	    		{path:'integrallist',name:'Integrallist',component:resolve => require(['../components/Integralin/integrallist.vue'],resolve)},
 	    	]
 	    },
 	    //积分兑换
