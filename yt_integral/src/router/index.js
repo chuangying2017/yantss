@@ -61,3 +61,6 @@ export default new Router({
 	    }
 	]
 })
+	router.redirect({
+			'*': '/dashboard/home'
+		})
