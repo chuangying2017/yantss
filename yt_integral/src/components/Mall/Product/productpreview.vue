@@ -43,9 +43,11 @@
 			<div class="needinteralw">
 				需支付：<i class="needinteral">288积分</i>
 			</div>
-			<div class="paybtn">
-				立即支付
-			</div>
+			<router-link to="/exchange/wthexchange">
+				<div class="paybtn">
+					立即支付
+				</div>
+			</router-link>
 		</div>
 	</div>
 </template>

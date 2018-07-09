@@ -11,6 +11,10 @@ import Exchange from '@/components/Exchange/index.vue'
 export default new Router({
 	mode: 'history',
 	routes: [
+		{
+			path:'/',
+			redirect:'/mall/home'
+		},
 	    {
 	    	//商城
 	    	path: '/mall',

@@ -73,11 +73,11 @@
 	</div>
 	
 	<loader v-show="$loadingRouteData"></loader>
-	
-	<div class="msg" v-show="!$loadingRouteData &&!datas.length" icon="&#xe651;">
+
+	<div class="msg" v-show="!$loadingRouteData&& !datas" icon="&#xe651;">
 		{{start_time}}至{{end_time}}没有任何评价
 	</div>
-	<div class="pagelist" v-show="!$loadingRouteData">
+	<div class="pagelist" v-show="!$loadingRouteData&&datas.length!=0">
 			<ul>
 				<li class="pre" :show="currentPage!=1" @click="pre()">上一页</li>
 				<li>
@@ -141,7 +141,7 @@
 		        day = '' + d.getDate(),
 		        year = d.getFullYear();
 			    if (month.length < 2) month = '0' + month;
-			    if (day.length < 2) month = '0' + day;
+			    if (day.length < 2) day = '0' + day;
 			  
 			    return [year, month, day].join('-');
     		},
@@ -171,8 +171,6 @@
 	          		self.datas=data.data.data,
 					self.showdata=data.data.staff[0],
 					self.totalPages= data.data.pagination.total_pages
-	
-		          
 		          },
 		          function (data) {
 		            console.log(data)

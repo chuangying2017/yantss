@@ -1,5 +1,27 @@
 <template>
-  <div class="u-tab">
+	<div class="u-tab">
+    <div class="pure-g">
+      <div class="pure-u-1-3">
+        <a @click.prevent="viewType = 'qrcode'"
+           :class="[ viewType === 'qrcode' ? 'active' : '' ]">
+          <i class="iconfont">&#xe65e;</i> 二维码
+        </a>
+      </div>
+      <div class="pure-u-1-3">
+        <a @click.prevent="viewType = 'clients'"
+           :class="[ viewType === 'clients' ? 'active' : '' ]">
+          <i class="iconfont">&#xe65f;</i> 我的客户
+        </a>
+      </div>
+      <div class="pure-u-1-3">
+        <a @click.prevent="viewType = 'rank'"
+           :class="[ viewType === 'rank' ? 'active' : '' ]">
+          <i class="iconfont">&#xe669;</i> 排行榜
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--<div class="u-tab">
     <div class="pure-g">
       <div class="pure-u-1-4">
         <a @click.prevent="viewType = 'qrcode'"
@@ -22,11 +44,11 @@
       <div class="pure-u-1-4">
         <a @click.prevent="viewType = 'rank'"
            :class="[ viewType === 'rank' ? 'active' : '' ]">
-         <!-- <i class="iconfont">&#xe669;</i> -->排行榜
+         <i class="iconfont">&#xe669;</i> 排行榜
         </a>
       </div>
     </div>
-  </div>
+  </div>-->
   <loader v-show="$loadingRouteData"></loader>
   <div v-show="!$loadingRouteData">
     <div v-show="viewType === 'qrcode'">
