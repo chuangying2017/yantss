@@ -95,7 +95,7 @@
         var self = this
         api.banners.create(this.banner).then(function (data) {
           window.alert('创建成功!')
-          self.$route.router.go('/dashboard/stations/banners/list')
+          self.$route.router.go('/dashboard/integral/banners/list')
         }, function () {
           window.alert('创建失败!')
         })
