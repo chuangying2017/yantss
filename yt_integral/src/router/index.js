@@ -9,7 +9,7 @@ import Integralin from '@/components/Integralin/index.vue'
 import Exchange from '@/components/Exchange/index.vue'
 
 export default new Router({
-	mode: 'history',
+//	mode: 'history',
 	routes: [
 		{
 			path:'/',
@@ -22,7 +22,7 @@ export default new Router({
 	      	component: Mall,
 	      	children:[
 	      		//商城首页
-	      		{path:'home',name:'Home',component: resolve => require(['@/components/Mall/Home/index.vue'], resolve)},
+	      		{path:'/home',name:'Home',component: resolve => require(['@/components/Mall/Home/index.vue'], resolve)},
 	      		//商品选择
 	      		{path:'productdetail',name:'Productdetail',component:resolve => require(['@/components/Mall/Product/productdetail.vue'],resolve)},
 	      		//商品预览
