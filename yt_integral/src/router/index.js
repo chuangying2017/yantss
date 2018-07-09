@@ -9,12 +9,12 @@ import Integralin from '@/components/Integralin/index.vue'
 import Exchange from '@/components/Exchange/index.vue'
 
 export default new Router({
-//	mode: 'history',
+	mode: 'history',
 	routes: [
-		{
-			path:'/',
-			redirect:'/mall/home'
-		},
+//		{
+//			path:'/',
+//			redirect:'/mall/home'
+//		},
 	    {
 	    	//商城
 	    	path: '/mall',
@@ -24,7 +24,7 @@ export default new Router({
 	      		//商城首页
 	      		{path:'/home',name:'Home',component: resolve => require(['@/components/Mall/Home/index.vue'], resolve)},
 	      		//商品选择
-	      		{path:'productdetail',name:'Productdetail',component:resolve => require(['@/components/Mall/Product/productdetail.vue'],resolve)},
+	      		{path:'/productdetail',name:'Productdetail',component:resolve => require(['@/components/Mall/Product/productdetail.vue'],resolve)},
 	      		//商品预览
 	      		{path:'productpreview',name:'Productpreview',component:resolve => require(['@/components/Mall/Product/productpreview.vue'],resolve)},
 	      	]
@@ -61,3 +61,4 @@ export default new Router({
 	    }
 	]
 })
+
