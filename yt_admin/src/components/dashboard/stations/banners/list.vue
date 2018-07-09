@@ -65,7 +65,7 @@
     route: {
       data () {
         return {
-          banners: api.banners.list()
+          banners: api.banners.list({params: {'type': 'slider'}})
         }
       }
     },
