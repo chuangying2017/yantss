@@ -16,17 +16,13 @@
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">排序</label>
                       <div class="col-sm-6">
-                        <select class="form-control" v-model="product.cat_id">
-                          <option v-for="cat in categories" value="{{cat.id}}">{{cat.name}}</option>
-                        </select>
+                        <input type="number" class="form-control" v-model="integral.file_sort" number>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">分类名称</label>
                       <div class="col-sm-6">
-                        <select class="form-control" v-model="product.cat_id">
-                          <option v-for="cat in categories" value="{{cat.id}}">{{cat.name}}</option>
-                        </select>
+                        <input type="text" class="form-control" v-model="integral.nickname">
                       </div>
                     </div>
                     <div class="form-group">
