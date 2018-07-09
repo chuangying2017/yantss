@@ -3,19 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-   	<script>
-   		window.onload = function(){
-		    getRem(750,100)
-			};
-			window.onresize = function(){
-			  getRem(750,100)
-			};
-			function getRem(pwidth,prem){
-			  var html = document.getElementsByTagName("html")[0];
-			  var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
-			  html.style.fontSize = oWidth/pwidth*prem + "px";
-			}
-   	</script>
     <title>yt_integral</title>
   </head>
   <body>
