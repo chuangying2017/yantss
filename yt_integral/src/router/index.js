@@ -11,17 +11,17 @@ import Exchange from '../components/Exchange/index.vue'
 export default new Router({
 	mode: 'history',
 	routes: [
-<<<<<<< HEAD
+
 		// {
 		// 	path:'/',
 		// 	redirect:'/mall/home'
 		// },
-=======
+
 //		{
 //			path:'/',
 //			redirect:'/mall/home'
 //		},
->>>>>>> 4ef37088b3f9d69de6406dd5c51393fb785562ac
+
 	    {
 	    	//商城
 	    	path: '/mall',
@@ -29,15 +29,12 @@ export default new Router({
 	      	component: Mall,
 	      	children:[
 	      		//商城首页
-<<<<<<< HEAD
+
 	      		{path:'/home',name:'Home',component: resolve => require(['../components/Mall/Home/index.vue'], resolve)},
 	      		//商品选择
 	      		{path:'productdetail',name:'Productdetail',component:resolve => require(['../components/Mall/Product/productdetail.vue'],resolve)},
-=======
+
 	      		{path:'/home',name:'Home',component: resolve => require(['@/components/Mall/Home/index.vue'], resolve)},
-	      		//商品选择
-	      		{path:'/productdetail',name:'Productdetail',component:resolve => require(['@/components/Mall/Product/productdetail.vue'],resolve)},
->>>>>>> 4ef37088b3f9d69de6406dd5c51393fb785562ac
 	      		//商品预览
 	      		{path:'/productpreview',name:'Productpreview',component:resolve => require(['../components/Mall/Product/productpreview.vue'],resolve)},
 	      	]
