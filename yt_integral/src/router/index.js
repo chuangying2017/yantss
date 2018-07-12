@@ -11,10 +11,17 @@ import Exchange from '../components/Exchange/index.vue'
 export default new Router({
 //	mode: 'history',
 	routes: [
+
+		// {
+		// 	path:'/',
+		// 	redirect:'/mall/home'
+		// },
+
 //		{
 //			path:'/',
 //			redirect:'/mall/home'
 //		},
+
 	    {
 	    	//商城
 	    	path: '/mall',
@@ -22,11 +29,22 @@ export default new Router({
 	      	component: Mall,
 	      	children:[
 	      		//商城首页
+<<<<<<< HEAD
 	      		{path:'home',name:'Home',component: resolve => require(['../components/Mall/Home/index.vue'], resolve)},
 	      		//商品选择
 	      		{path:'productdetail',name:'Productdetail',component:resolve => require(['../components/Mall/Product/productdetail.vue'],resolve)},
 	      		//商品预览
 	      		{path:'productpreview',name:'Productpreview',component:resolve => require(['../components/Mall/Product/productpreview.vue'],resolve)},
+=======
+
+	      		{path:'/home',name:'Home',component: resolve => require(['../components/Mall/Home/index.vue'], resolve)},
+	      		//商品选择
+	      		{path:'productdetail',name:'Productdetail',component:resolve => require(['../components/Mall/Product/productdetail.vue'],resolve)},
+
+	      		{path:'/home',name:'Home',component: resolve => require(['@/components/Mall/Home/index.vue'], resolve)},
+	      		//商品预览
+	      		{path:'/productpreview',name:'Productpreview',component:resolve => require(['../components/Mall/Product/productpreview.vue'],resolve)},
+>>>>>>> 9085bf6e2a20c77d82f4ecf1579519b89321fa48
 	      	]
 	    },
 	    //积分签到integrallist

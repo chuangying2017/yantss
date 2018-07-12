@@ -42,7 +42,7 @@
         <a v-link="{ path: '/coupons/list/usable' }" class="close"><span><i class="iconfont">&#xe634;</i></span></a>
         <h1>恭喜!你已经领到一张优惠券!</h1>
         <p>长按识别二维码关注优鲜达公众号<br>马上使用优惠券</p>
-        <img src="http://yt.cdn.weazm.com/qrcode.jpg">
+        <img src="http://pbfwg0nel.bkt.clouddn.com/qrcode.jpg">
       </div>
     </div>
   </div>
@@ -157,7 +157,7 @@
     ready: function () {
       var dataForWeixin = {
         share_type: 'coupon',
-        imgUrl: 'http://yt.cdn.weazm.com//mpwechat/cover.jpg',
+        imgUrl: 'http://pbfwg0nel.bkt.clouddn.com/mpwechat/cover.jpg',
         title: '优鲜达一大波优惠券袭来',
         timelineTitle: '一大波优惠券袭来,点击马上领取优惠券,享受优鲜达更多优惠活动',
         timelinelink: 'http://yt.l43.cn/yt-client/?#!/coupons/activity?utm_source=timeline_share_coupon',

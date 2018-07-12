@@ -138,7 +138,7 @@
         } else {
           dataForWeixin = {
             share_type: 'coupon',
-            imgUrl: 'http://yt.cdn.weazm.com/mpwechat/WechatIMG8.jpeg',
+            imgUrl: 'http://pbfwg0nel.bkt.clouddn.com/mpwechat/WechatIMG8.jpeg',
             title: '燕塘优鲜达线上商城',
             timelineTitle: '更多服务,尽在燕塘优鲜达',
             timelinelink: HOST + '/?#!/mall/home?utm_source=timeline_share',

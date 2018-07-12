@@ -160,7 +160,6 @@
               <li><a v-link="{path: '/dashboard/integral/exchangeList'}"><i class="fa fa-sitemap"></i> 兑换管理</a></li>
             </ul>
           </li>
-
           <!--<li class="treeview">-->
           <!--<a href="#">-->
           <!--<i class="fa fa-shopping-basket"></i>-->
