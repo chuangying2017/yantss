@@ -86,7 +86,7 @@
 	.ruletit img{width:100%;display: inherit;}
 	.rulecont{width:7.01rem;margin:auto;border:9px solid #6bdcfc;border-radius:0.28rem;box-sizing: border-box;overflow: hidden;}
 	/*兑换成功*/
-	.pop img{position: fixed;top:0.89rem;width:100%;}
+	.pop img{position: fixed;top:0.89rem;width:100vw;}
 	.sucbtn{width: 3.04rem;height: 0.98rem;background: #ef2c4e;margin: auto;margin-top: 7.1rem;color: #fff;font-size: 0.3rem;border-radius: 0.1rem;line-height: 0.98rem;text-align: center;z-index: 1111111;position: relative;}
 	
 </style>

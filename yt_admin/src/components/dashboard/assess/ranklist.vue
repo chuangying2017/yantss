@@ -122,28 +122,40 @@
 						          		<i class="iconfont" v-else>&#xe712;</i>
 						          	</span>
 						          	<span :class="{noselct:evaluate.scores<=1}">
-						          		<i class="iconfont" v-if='1<evaluate.scores&&evaluate.scores<2'>&#xe713;</i>
-						          		<i class="iconfont" v-else='evaluate.scores==2'>&#xe711;</i>
-						          		<i class="iconfont" v-if='evaluate.scores<=1'>&#xe712;</i>
+						          		<i class="iconfont" v-if="evaluate.scores==2">&#xe711;</i>
+						          		<span v-else>
+						          			<i class="iconfont" v-if='evaluate.scores>=3'>&#xe711;</i>
+						          			<i class="iconfont" v-else>&#xe712;</i>
+						          		</span>
 						          	</span>
-							         	<span :class="{noselct:evaluate.scores<=2}">
-							         		<i class="iconfont" v-if="2<evaluate.scores&&evaluate.scores<3">&#xe713;</i>
-						          		<i class="iconfont" v-else="evaluate.scores==3">&#xe711;</i>
-						          		<i class="iconfont" v-if="evaluate.scores<=2">&#xe712;</i>
-							         	</span>
-							         	<span :class="{noselct:evaluate.scores<=3}">
-							         		<i class="iconfont" v-if="3<evaluate.scores&&evaluate.scores<4">&#xe713;</i>
-						          		<i class="iconfont" v-else="evaluate.scores==4">&#xe711;</i>
-						          		<i class="iconfont" v-if="evaluate.scores<=3">&#xe712;</i>
-							         	</span>
-							         	<span :class="{noselct:evaluate.scores<=4}">
-							         		<i class="iconfont" v-if="4<evaluate.scores&&evaluate.scores<5">&#xe713;</i>
-							         		<i class="iconfont" v-else></i>
+						          	<span :class="{noselct:evaluate.scores<=2}">
+						          		<i class="iconfont" v-if="evaluate.scores==3">&#xe711;</i>
+						          		<span v-else>
+						          				<i class="iconfont" v-if='3<evaluate.scores&&evaluate.scores<4'>&#xe711;</i>
+								          		<span v-else>
+								          			<i class="iconfont" v-if='evaluate.scores>=4'>&#xe711;</i>
+								          			<i class="iconfont" v-else>&#xe712;</i>
+								          		</span>
+						          		</span>
+						          	</span>
+						          	<span :class="{noselct:evaluate.scores<=3}">
+						          		<i class="iconfont" v-if="evaluate.scores==4">&#xe711;</i>
+						          		<span v-else>
+						          				<i class="iconfont" v-if='4<evaluate.scores&&evaluate.scores<5'>&#xe711;</i>
+								          		<span v-else>
+								          			<i class="iconfont" v-if='evaluate.scores>=5'>&#xe711;</i>
+								          			<i class="iconfont" v-else>&#xe712;</i>
+								          		</span>
+						          		</span>
+						          	</span>
+						          	<span :class="{noselct:evaluate.scores<=4}">
 						          		<i class="iconfont" v-if="evaluate.scores==5">&#xe711;</i>
-						          		<i class="iconfont" v-else></i>
-						          		<i class="iconfont" v-if="evaluate.scores<=4">&#xe712;</i>
-						          		<i class="iconfont" v-else></i>
-							         	</span>
+						          		<span v-else>
+						          			<i class="iconfont" v-if='4<evaluate.scores&&evaluate.scores<5'>&#xe713;</i>
+						          			<i class="iconfont" v-else>&#xe712;</i>
+						          		</span>
+						          	</span>
+							         	
 											</div>
 	                </p>
 	               
@@ -194,28 +206,40 @@
 						          		<i class="iconfont" v-else>&#xe712;</i>
 						          	</span>
 						          	<span :class="{noselct:evaluate.scores<=1}">
-						          		<i class="iconfont" v-if='1<evaluate.scores&&evaluate.scores<2'>&#xe713;</i>
-						          		<i class="iconfont" v-else='evaluate.scores==2'>&#xe711;</i>
-						          		<i class="iconfont" v-if='evaluate.scores<=1'>&#xe712;</i>
+						          		<i class="iconfont" v-if="evaluate.scores==2">&#xe711;</i>
+						          		<span v-else>
+						          			<i class="iconfont" v-if='evaluate.scores>=3'>&#xe711;</i>
+						          			<i class="iconfont" v-else>&#xe712;</i>
+						          		</span>
 						          	</span>
-							         	<span :class="{noselct:evaluate.scores<=2}">
-							         		<i class="iconfont" v-if="2<evaluate.scores&&evaluate.scores<3">&#xe713;</i>
-						          		<i class="iconfont" v-else="evaluate.scores==3">&#xe711;</i>
-						          		<i class="iconfont" v-if="evaluate.scores<=2">&#xe712;</i>
-							         	</span>
-							         	<span :class="{noselct:evaluate.scores<=3}">
-							         		<i class="iconfont" v-if="3<evaluate.scores&&evaluate.scores<4">&#xe713;</i>
-						          		<i class="iconfont" v-else="evaluate.scores==4">&#xe711;</i>
-						          		<i class="iconfont" v-if="evaluate.scores<=3">&#xe712;</i>
-							         	</span>
-							         	<span :class="{noselct:evaluate.scores<=4}">
-							         		<i class="iconfont" v-if="4<evaluate.scores&&evaluate.scores<5">&#xe713;</i>
-							         		<i class="iconfont" v-else></i>
+						          	<span :class="{noselct:evaluate.scores<=2}">
+						          		<i class="iconfont" v-if="evaluate.scores==3">&#xe711;</i>
+						          		<span v-else>
+						          				<i class="iconfont" v-if='3<evaluate.scores&&evaluate.scores<4'>&#xe711;</i>
+								          		<span v-else>
+								          			<i class="iconfont" v-if='evaluate.scores>=4'>&#xe711;</i>
+								          			<i class="iconfont" v-else>&#xe712;</i>
+								          		</span>
+						          		</span>
+						          	</span>
+						          	<span :class="{noselct:evaluate.scores<=3}">
+						          		<i class="iconfont" v-if="evaluate.scores==4">&#xe711;</i>
+						          		<span v-else>
+						          				<i class="iconfont" v-if='4<evaluate.scores&&evaluate.scores<5'>&#xe711;</i>
+								          		<span v-else>
+								          			<i class="iconfont" v-if='evaluate.scores>=5'>&#xe711;</i>
+								          			<i class="iconfont" v-else>&#xe712;</i>
+								          		</span>
+						          		</span>
+						          	</span>
+						          	<span :class="{noselct:evaluate.scores<=4}">
 						          		<i class="iconfont" v-if="evaluate.scores==5">&#xe711;</i>
-						          		<i class="iconfont" v-else></i>
-						          		<i class="iconfont" v-if="evaluate.scores<=4">&#xe712;</i>
-						          		<i class="iconfont" v-else></i>
-							         	</span>
+						          		<span v-else>
+						          			<i class="iconfont" v-if='4<evaluate.scores&&evaluate.scores<5'>&#xe713;</i>
+						          			<i class="iconfont" v-else>&#xe712;</i>
+						          		</span>
+						          	</span>
+							         	
 											</div>
                 </p>
                 
