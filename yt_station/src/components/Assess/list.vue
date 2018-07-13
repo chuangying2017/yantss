@@ -6,7 +6,7 @@
 					<div class="select-wrap">
 				      <div class="pure-g contentC">
 				        <div class="selectC">
-				     		<span>天平架服务部</span>
+				     		<span>{{stations}}</span>
 				        </div>
 				        <!--<div class="white20"></div>-->
 				        <div class="dateC">
@@ -21,7 +21,7 @@
 		</ul>
 
 	</div>
-	<div class="m-user m-user-alert" v-show="!$loadingRouteData&&showdata.length">
+	<div class="m-user m-user-alert" v-show="!$loadingRouteData&&showdata.length!==0">
 		<ul>
 			
 			<li class="user-list">
@@ -78,7 +78,7 @@
 	
 	<loader v-show="$loadingRouteData"></loader>
 	
-	<div class="msg" v-show="!$loadingRouteData &&!showdata.length" icon="&#xe651;">
+	<div class="msg" v-show="!$loadingRouteData &&showdata.length==0" icon="&#xe651;">
 		此服务部{{start_time}}至{{end_time}}没有任何评价
 	</div>
 	
@@ -93,7 +93,8 @@
 				start_time:"",
 				end_time:"",
 				datas:null,
-				showdata:null
+				showdata:null,
+				stations:""
 			}
 		},
 		route:{
@@ -101,13 +102,14 @@
 				var self=this;
 				self.start_time=self.gettime()
 				self.end_time=self.getnow()
-				return self.$http.get('/stations/station_comment_see',{start_time:self.start_time,end_time:self.end_time}).then(function(data){
+				return self.$http.get('/stations/station_comment_see',{start_time:self.start_time,end_time:self.end_time}).then(function(data){				
 					return {
-						datas:data.data[0],
-						showdata:data.data
+						stations:data.data['station'].stationName,
+						datas:data.data[0][0],
+						showdata:data.data[0]
 					}
 				},function(data){
-					alert(data)
+//					alert(data)
 				})
 			}
 		},
@@ -155,9 +157,12 @@
 		        
 		        
 		        this.$http.get('/stations/station_comment_see',{start_time:self.start_time,end_time:self.end_time}).then(
-		          function (data) {
-		          	self.showdata=data.data
-		            self.onestaffs = data.data.data
+		        
+		         function (data) {
+		         	
+		          	self.stations=data.data['station'].stationName,
+					self.datas=data.data[0][0],
+					self.showdata=data.data[0]
 		          },
 		          function (data) {
 		            console.log(data)

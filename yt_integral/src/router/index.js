@@ -9,7 +9,7 @@ import Integralin from '../components/Integralin/index.vue'
 import Exchange from '../components/Exchange/index.vue'
 
 export default new Router({
-	mode: 'history',
+//	mode: 'history',
 	routes: [
 
 		// {
@@ -29,6 +29,13 @@ export default new Router({
 	      	component: Mall,
 	      	children:[
 	      		//商城首页
+<<<<<<< HEAD
+	      		{path:'home',name:'Home',component: resolve => require(['../components/Mall/Home/index.vue'], resolve)},
+	      		//商品选择
+	      		{path:'productdetail',name:'Productdetail',component:resolve => require(['../components/Mall/Product/productdetail.vue'],resolve)},
+	      		//商品预览
+	      		{path:'productpreview',name:'Productpreview',component:resolve => require(['../components/Mall/Product/productpreview.vue'],resolve)},
+=======
 
 	      		{path:'/home',name:'Home',component: resolve => require(['../components/Mall/Home/index.vue'], resolve)},
 	      		//商品选择
@@ -37,6 +44,7 @@ export default new Router({
 	      		{path:'/home',name:'Home',component: resolve => require(['@/components/Mall/Home/index.vue'], resolve)},
 	      		//商品预览
 	      		{path:'/productpreview',name:'Productpreview',component:resolve => require(['../components/Mall/Product/productpreview.vue'],resolve)},
+>>>>>>> 9085bf6e2a20c77d82f4ecf1579519b89321fa48
 	      	]
 	    },
 	    //积分签到integrallist
@@ -58,15 +66,15 @@ export default new Router({
 	    	component:Exchange,
 	    	children:[
 	    		//兑换列表
-	    		{path:'exchangelist',name:'Exchangelist',component:resolve => require(['@/components/Exchange/exchangelist.vue'],resolve)},
+	    		{path:'exchangelist',name:'Exchangelist',component:resolve => require(['../components/Exchange/exchangelist.vue'],resolve)},
 	    		//兑换确认及规则
-	    		{path:'exchangedetail/:id',name:'Exchangedetail',component:resolve => require(['@/components/Exchange/exchangedetail.vue'],resolve)},
+	    		{path:'exchangedetail/:id',name:'Exchangedetail',component:resolve => require(['../components/Exchange/exchangedetail.vue'],resolve)},
 	    		//兑换成功
-	    		{path:'exchangesuc',name:'Exchangesuc',component:resolve => require(['@/components/Exchange/exchangesuc.vue'],resolve)},
+	    		{path:'exchangesuc',name:'Exchangesuc',component:resolve => require(['../components/Exchange/exchangesuc.vue'],resolve)},
 	    		//是否兑换
-	    		{path:'wthexchange',name:'Wthexchange',component:resolve => require(['@/components/Exchange/wthexchange.vue'],resolve)},
+	    		{path:'wthexchange',name:'Wthexchange',component:resolve => require(['../components/Exchange/wthexchange.vue'],resolve)},
 	    		//兑换记录
-	    		{path:'exrecord',name:'Exrecord',component:resolve => require(['@/components/Exchange/exrecord.vue'],resolve)}
+	    		{path:'exrecord',name:'Exrecord',component:resolve => require(['../components/Exchange/exrecord.vue'],resolve)}
 	    	]
 	    }
 	]

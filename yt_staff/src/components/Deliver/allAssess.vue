@@ -6,7 +6,7 @@
 					<div class="select-wrap">
 				      <div class="pure-g contentC">
 				        <div class="selectC">
-				     		<span>天平架服务部</span>
+				     		<span>{{stations}}</span>
 				        </div>
 				        <!--<div class="white20"></div>-->
 				        <div class="dateC">
@@ -21,7 +21,7 @@
 		</ul>
 
 	</div>
-	<div class="m-user m-user-alert" v-show="!$loadingRouteData&&datas.length">
+	<div class="m-user m-user-alert" v-show="!$loadingRouteData&&datas.length!=0">
 		<ul>
 			
 			<li class="user-list">
@@ -52,7 +52,7 @@
 			        </thead>
 			        <tbody>
 				        <tr v-if="staff.comment_type=='HaveUses'||staff.comment_type=='Additional'" v-for="staff in datas">
-				          <td>{{staff.created_at}}</td>
+				          <td>{{staff.updated_at}}</td>
 				          <td>
 				          	<div class="star">
 					          	<span @click="setStar(1)" :class="{noselct:staff.score<1}"><i class="iconfont" v-if="staff.score>=1">&#xe711;</i><i class="iconfont" v-else>&#xe712;</i></span>
@@ -74,7 +74,7 @@
 	
 	<loader v-show="$loadingRouteData"></loader>
 
-	<div class="msg" v-show="!$loadingRouteData&& !datas" icon="&#xe651;">
+	<div class="msg" v-show="!$loadingRouteData&&(datas==undefined||datas.length==0)" icon="&#xe651;">
 		{{start_time}}至{{end_time}}没有任何评价
 	</div>
 	<div class="pagelist" v-show="!$loadingRouteData&&datas.length!=0">
@@ -93,14 +93,14 @@
 <script>
 	import Loader from './../Share/loader.vue'
 	export default{
-		name:'assesslist',
+		name:'allAssess',
 		data(){
 			return {
 				start_time:"",
 				end_time:"",
 				datas:[],
 				showdata:[],
-				
+				stations:"",
 			
 		        page:1,
           		totalPages: null,
@@ -111,14 +111,17 @@
 		},
 		route:{
 			data:function(){
+				
 				var self=this;
 				self.start_time=self.gettime()
 				self.end_time=self.getnow()
-				return self.$http.get('/staffs/center/show_comment',{start_time:self.start_time,end_time:self.end_time,page:self.page}).then(function(data){
+				return self.$http.get('/staffs/center/show_comment',{start_time:self.start_time,end_time:self.end_time,page:self.page}).then(function({data:data}){
+					self.stations=data['station'].stationName
 					return {
-						datas:data.data.data,
-						showdata:data.data.staff[0],
-						totalPages: data.data.pagination.total_pages
+						datas:data[0].data,
+						showdata:data[0].staff[0],
+						totalPages:data[0].pagination.total_pages,
+						
 					}
 				},function(data){
 //					alert(data)
@@ -145,10 +148,10 @@
 			  
 			    return [year, month, day].join('-');
     		},
-    		godetail:function(staffid){
-    			var self=this;
-    			self.$router.go({name:"assesslist",query:{start_time:self.start_time,end_time:self.end_time,staff_id:staffid}})
-    		},
+//  		godetail:function(staffid){
+//  			var self=this;
+//  			self.$router.go({name:"assesslist",query:{start_time:self.start_time,end_time:self.end_time,staff_id:staffid}})
+//  		},
 		    changeDate: function () {
 		        var self = this
 		        var nowstr=new Date()
@@ -167,13 +170,15 @@
 					return false
 				}
 		        this.$http.get('/staffs/center/show_comment',{start_time:self.start_time,end_time:self.end_time,page:1}).then(
-		          function (data) {
-	          		self.datas=data.data.data,
-					self.showdata=data.data.staff[0],
-					self.totalPages= data.data.pagination.total_pages
+		        
+		         function ({data:data}) {
+		         	self.stations=data['station'].stationName
+	          		self.datas=data[0].data
+					self.showdata=data[0].staff[0]
+					self.totalPages=data[0].pagination.total_pages	
 		          },
 		          function (data) {
-		            console.log(data)
+		            //console.log(data)
 		        })
 		    },
 		    pre() {
@@ -184,10 +189,11 @@
 				}	
 				page = self.current_page
 				return this.$http.get('/staffs/center/show_comment',{start_time:self.start_time,end_time:self.end_time,staff_id:self.staff_id,page:page-1}).then(       	
-	          		function(data) {		
-						self.datas=data.data.data,
-						self.showdata=data.data.staff[0],
-						self.totalPages= data.data.pagination.total_pages					
+	          		function({data:data}) {	
+	          			self.stations=data['station'].stationName
+						self.datas=data[0].data
+						self.showdata=data[0].staff[0]
+						self.totalPages=data[0].pagination.total_pages			
 					},
 					function(data) {
 						
@@ -202,10 +208,11 @@
 				}
 				page = self.current_page
 				 return this.$http.get('/staffs/center/show_comment',{start_time:self.start_time,end_time:self.end_time,staff_id:self.staff_id,page:page+1}).then(       	
-		         	function(data) {
-						self.datas=data.data.data,
-						self.showdata=data.data.staff[0],
-						self.totalPages= data.data.pagination.total_pages						
+		         	function({data:data}) {
+		         		self.stations=data['station'].stationName
+						self.datas=data[0].data
+						self.showdata=data[0].staff[0]
+						self.totalPages=data[0].pagination.total_pages							
 					},
 					function(data) {
 					
@@ -222,10 +229,11 @@
 				page = self.current_page
 			
 				return this.$http.get('/staffs/center/show_comment',{start_time:	self.start_time,end_time:self.end_time,staff_id:self.staff_id,page:goNum}).then(       	
-					function(data) {
-						self.datas=data.data.data,
-						self.showdata=data.data.staff[0],
-						self.totalPages= data.data.pagination.total_pages				
+					function({data:data}) {
+						self.stations=data['station'].stationName
+						self.datas=data[0].data
+						self.showdata=data[0].staff[0]
+						self.totalPages=data[0].pagination.total_pages					
 					},
 					function(data) {
 						

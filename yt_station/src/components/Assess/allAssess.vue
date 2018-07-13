@@ -33,7 +33,7 @@
       </div>
       <div class="fr">
         <div class="date">
-          {{cont.preorders[0].created_at.date|formatDate}}
+          {{cont.updated_at.date|formatDate}}
         </div>
       </div>
     </div>
@@ -82,7 +82,7 @@
        	self.staff_id=transition.to.query.staff_id;
          return this.$http.get('/stations/station_comment_see',{start_time:self.start_time,end_time:self.end_time,staff_id:self.staff_id,page:self.page}).then(       	
            function ({data:datas}) {     
-         	console.log(datas.data)
+         	
              return {
                comment:datas.data,
                totalPages: datas.meta.pagination.total_pages
