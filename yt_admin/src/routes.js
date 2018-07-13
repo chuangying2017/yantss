@@ -294,8 +294,33 @@ export default {
 						role: 'Integral',
 						nav: 'integral',
 						subRoutes: {
-							'/list': {
-								component: require('./components/dashboard/integral/list.vue')
+							'/selllist': {
+								component: require('./components/dashboard/integral/selllist/index.vue'),
+								subRoutes:{
+									'/list':{
+										component: require('./components/dashboard/integral/selllist/list.vue'),
+									},
+									'/create': {
+										component: require('./components/dashboard/integral/selllist/create.vue')
+									},
+									'/edit/:product_id': {
+										component: require('./components/dashboard/integral/selllist/edit.vue')
+									}
+								}
+							},
+							'/depotpro': {
+								component: require('./components/dashboard/integral/depotpro/index.vue'),
+								subRoutes:{
+									'/list':{
+										component: require('./components/dashboard/integral/depotpro/list.vue'),
+									},
+									'/create': {
+										component: require('./components/dashboard/integral/depotpro/create.vue')
+									},
+									'/edit/:product_id': {
+										component: require('./components/dashboard/integral/depotpro/edit.vue')
+									}
+								}
 							},
 							'/categoriesList': {
 								component: require('./components/dashboard/integral/categories/list.vue')

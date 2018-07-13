@@ -151,7 +151,8 @@
               <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li><a v-link="{path: '/dashboard/integral/list'}"><i class="fa fa-navicon"></i> 商品管理</a></li>
+              <li><a v-link="{path: '/dashboard/integral/selllist/list'}"><i class="fa fa-navicon">出售中的商品</i> </a></li>
+              <li><a v-link="{path: '/dashboard/integral/depotpro/list'}"><i class="fa fa-navicon">仓库中的商品</i> </a></li>
               <li><a v-link="{path: '/dashboard/integral/categoriesList'}"><i class="fa fa-cubes"></i> 分类管理</a></li>
               <li><a v-link="{path: '/dashboard/integral/banners'}"><i class="fa fa-sitemap"></i> 幻灯片管理</a></li>
               <li><a v-link="{path: '/dashboard/integral/delivery'}"><i class="fa fa-sitemap"></i> 发货管理</a></li>

@@ -30,6 +30,18 @@
                 </div>
               </div>
               <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label">退款扣除积分</label>
+                <div class="col-sm-5">
+                  <input type="number" min="1"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label">积分派送</label>
+                <div class="col-sm-5">
+                  <input type="number" min="1"/>
+                </div>
+              </div>
+              <div class="form-group">
                 <label for="inputEmail3" class="col-sm-3 control-label">优惠券</label>
 
                 <div class="col-sm-5">
