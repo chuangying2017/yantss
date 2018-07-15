@@ -20,6 +20,7 @@ import allcards from './allcards.js'
 import cardorder from './cardorder.js'
 import payagre from './payagre.js'
 import assess from './assess.js'
+import integral from './integral'
 export default {
   users: users,
   access: access,
@@ -41,6 +42,7 @@ export default {
   residences: residences,
   allcards: allcards,
   cardorder: cardorder,
-  payagre:payagre,
-  assess:assess
+  payagre: payagre,
+  assess: assess,
+  integral: integral
 }

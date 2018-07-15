@@ -1,6 +1,5 @@
 <template>
-  <gallery :limit="5" :coverlimit="limittype" :images.sync="images"></gallery>
-  <div class="row" v-if="!$loadRouteData">
+  <div class="row">
     <div class="col-xs-12">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs" role="tablist">
@@ -27,11 +26,18 @@
                     <div class="form-group">
                       <label for="inputPassword3" class="col-sm-2 control-label">分类图片</label>
                       <div class="col-sm-6">
+                        <gallery :limit='1' :url.sync='integralData.cover_image'></gallery>
                         <button type="button" class="btn btn-danger mb20" @click="openGallery">上传图片</button>
                         <div class="row">
-                          <div class="col-xs-6 col-md-3" v-for="image in images" track-by="$index">
-                            <div href="#" class="thumbnail thumbnail-mask">
-                              <img :src="image.url" alt="" width="64">
+                          <div class='col-xs-6 col-md-3' v-show='integralData.cover_image'>
+                            <div href='#' class='thumbnail thumbnail-mask'>
+                              <img :src='integralData.cover_image' alt='' id="content" style="display: none;max-width: 300px;">
+                              <a data-src="#content" data-fancybox>
+                                <img :src='integralData.cover_image' alt=''>
+                              </a>
+                              <span class='cover-delete' @click="integralData.cover_image = ''">
+                                <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -86,19 +92,12 @@
     components: [Gallery, Editor],
     data: function () {
       return {
-        limittype: '1',
-        integralData: {active: '', sort_type: '1', title: ''}
+        integralData: {active: '', sort_type: '1', title: '', cover_image: ''}
       }
     },
-    watch: {
-      images (newVal) {
-        if (typeof newVal === 'object') {
-          var self = this
-          this.product.image_ids = []
-          newVal.map(function (val) {
-            self.product.image_ids.push(val.media_id)
-          })
-        }
+    computed: {
+      formValid () {
+        return this.integralData.title.length > 0 && this.integralData.cover_image.length > 0 && this.integralData.url.length > 0
       }
     },
     methods: {
@@ -107,9 +106,9 @@
       },
       submit () {
         var self = this
-        api.products.create(this.product).then(function (da) {
+        api.integral.create(this.integralData).then(function (da) {
           window.alert('创建成功!')
-          self.$route.router.go('/dashboard/products/list')
+          self.$route.router.go('/dashboard/integral/categoriesList')
         })
       }
     }
